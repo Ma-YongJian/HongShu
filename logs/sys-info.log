@@ -1,0 +1,98 @@
+01:03:18.809 [restartedMain] INFO  c.h.HongshuApplication - [logStarting,55] - Starting HongshuApplication using Java 1.8.0_321 on 192.168.1.9 with PID 68743 (/Users/mayongjian/Desktop/hongshu_ruoyi/hongshu_springboot/hongshu-admin/target/classes started by mayongjian in /Users/mayongjian/Desktop/hongshu_ruoyi/hongshu_springboot)
+01:03:18.865 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+01:03:18.867 [restartedMain] INFO  c.h.HongshuApplication - [logStartupProfileInfo,686] - The following 1 profile is active: "druid"
+01:03:21.956 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+01:03:21.958 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+01:03:21.958 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.75]
+01:03:22.129 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+01:03:24.805 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,1009] - {dataSource-1} inited
+01:03:28.001 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+01:03:28.010 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+01:03:28.012 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+01:03:28.012 [restartedMain] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+01:03:28.014 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+01:03:28.014 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+01:03:28.014 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+01:03:28.014 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@330b979
+01:03:28.937 [restartedMain] INFO  c.g.d.c.DozerBeanMapperBuilder - [build,544] - Initializing Dozer. Version: 6.5.2, Thread Name: restartedMain
+01:03:28.939 [restartedMain] INFO  c.g.d.c.u.RuntimeUtils - [isOSGi,53] - OSGi support is false
+01:03:28.944 [restartedMain] INFO  c.g.d.c.c.r.LegacyPropertiesSettingsResolver - [processFile,60] - Trying to find Dozer configuration file: dozer.properties
+01:03:28.945 [restartedMain] INFO  c.g.d.c.c.r.LegacyPropertiesSettingsResolver - [processFile,63] - Failed to find dozer.properties via com.github.dozermapper.core.config.resolvers.LegacyPropertiesSettingsResolver.
+01:03:28.948 [restartedMain] INFO  c.g.d.c.e.ELExpressionFactory - [isSupported,60] - javax.el is not supported; Failed to resolve ExpressionFactory, com.sun.el.ExpressionFactoryImpl
+01:03:29.783 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+01:03:30.314 [restartedMain] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+01:03:30.333 [restartedMain] INFO  c.h.HongshuApplication - [logStarted,61] - Started HongshuApplication in 11.973 seconds (JVM running for 12.765)
+01:05:37.748 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+01:05:37.809 [http-nio-8080-exec-1] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:null,null
+01:05:37.809 [http-nio-8080-exec-3] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:null,null
+01:05:37.815 [http-nio-8080-exec-2] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:null,null
+01:05:38.003 [http-nio-8080-exec-3] INFO  c.g.d.c.DozerBeanMapperBuilder - [build,544] - Initializing Dozer. Version: 6.5.2, Thread Name: http-nio-8080-exec-3
+01:05:38.004 [http-nio-8080-exec-3] INFO  c.g.d.c.c.r.LegacyPropertiesSettingsResolver - [processFile,60] - Trying to find Dozer configuration file: dozer.properties
+01:05:38.005 [http-nio-8080-exec-3] INFO  c.g.d.c.c.r.LegacyPropertiesSettingsResolver - [processFile,63] - Failed to find dozer.properties via com.github.dozermapper.core.config.resolvers.LegacyPropertiesSettingsResolver.
+01:06:42.416 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+01:06:42.468 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+01:06:42.470 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+01:06:42.470 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+01:06:42.471 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+01:06:42.484 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2174] - {dataSource-1} closing ...
+01:06:42.504 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2247] - {dataSource-1} closed
+01:06:48.214 [restartedMain] INFO  c.h.HongshuApplication - [logStarting,55] - Starting HongshuApplication using Java 1.8.0_321 on 192.168.1.9 with PID 69543 (/Users/mayongjian/Desktop/hongshu_ruoyi/hongshu_springboot/hongshu-admin/target/classes started by mayongjian in /Users/mayongjian/Desktop/hongshu_ruoyi/hongshu_springboot)
+01:06:48.218 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+01:06:48.223 [restartedMain] INFO  c.h.HongshuApplication - [logStartupProfileInfo,686] - The following 1 profile is active: "druid"
+01:06:51.483 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+01:06:51.484 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+01:06:51.484 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.75]
+01:06:51.569 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+01:06:53.918 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,1009] - {dataSource-1} inited
+01:06:56.994 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+01:06:57.003 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+01:06:57.004 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+01:06:57.004 [restartedMain] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+01:06:57.005 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+01:06:57.006 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+01:06:57.006 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+01:06:57.006 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@7b51359b
+01:06:57.969 [restartedMain] INFO  c.g.d.c.DozerBeanMapperBuilder - [build,544] - Initializing Dozer. Version: 6.5.2, Thread Name: restartedMain
+01:06:57.972 [restartedMain] INFO  c.g.d.c.u.RuntimeUtils - [isOSGi,53] - OSGi support is false
+01:06:57.977 [restartedMain] INFO  c.g.d.c.c.r.LegacyPropertiesSettingsResolver - [processFile,60] - Trying to find Dozer configuration file: dozer.properties
+01:06:57.978 [restartedMain] INFO  c.g.d.c.c.r.LegacyPropertiesSettingsResolver - [processFile,63] - Failed to find dozer.properties via com.github.dozermapper.core.config.resolvers.LegacyPropertiesSettingsResolver.
+01:06:57.982 [restartedMain] INFO  c.g.d.c.e.ELExpressionFactory - [isSupported,60] - javax.el is not supported; Failed to resolve ExpressionFactory, com.sun.el.ExpressionFactoryImpl
+01:06:58.821 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+01:06:59.355 [restartedMain] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+01:06:59.370 [restartedMain] INFO  c.h.HongshuApplication - [logStarted,61] - Started HongshuApplication in 11.819 seconds (JVM running for 12.75)
+01:07:04.078 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+01:07:04.130 [http-nio-8080-exec-3] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:null,null
+01:07:04.130 [http-nio-8080-exec-1] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:null,null
+01:07:04.143 [http-nio-8080-exec-2] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:null,null
+01:07:04.315 [http-nio-8080-exec-3] INFO  c.g.d.c.DozerBeanMapperBuilder - [build,544] - Initializing Dozer. Version: 6.5.2, Thread Name: http-nio-8080-exec-3
+01:07:04.315 [http-nio-8080-exec-3] INFO  c.g.d.c.c.r.LegacyPropertiesSettingsResolver - [processFile,60] - Trying to find Dozer configuration file: dozer.properties
+01:07:04.317 [http-nio-8080-exec-3] INFO  c.g.d.c.c.r.LegacyPropertiesSettingsResolver - [processFile,63] - Failed to find dozer.properties via com.github.dozermapper.core.config.resolvers.LegacyPropertiesSettingsResolver.
+01:07:11.931 [http-nio-8080-exec-4] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:null,null
+01:07:12.232 [schedule-pool-1] INFO  web-user - [run,52] - [127.0.0.1]内网IP[头像][Success][登录成功]
+01:07:12.303 [http-nio-8080-exec-6] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29
+01:07:12.303 [http-nio-8080-exec-7] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29
+01:07:12.313 [http-nio-8080-exec-9] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29
+01:07:12.314 [http-nio-8080-exec-8] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29
+01:07:12.360 [http-nio-8080-exec-5] INFO  c.h.w.w.WebSocketServer - [onOpen,70] - 29加入webSocket！当前人数为=1
+01:07:12.467 [http-nio-8080-exec-10] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29
+01:07:15.421 [http-nio-8080-exec-11] INFO  c.h.w.w.WebSocketServer - [onOpen,70] - 29加入webSocket！当前人数为=2
+01:07:15.434 [http-nio-8080-exec-12] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29
+01:07:15.436 [http-nio-8080-exec-15] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29
+01:07:15.436 [http-nio-8080-exec-14] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29
+01:07:15.436 [http-nio-8080-exec-13] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29
+01:07:15.441 [http-nio-8080-exec-16] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29
+01:07:15.552 [http-nio-8080-exec-17] INFO  c.h.w.a.UserLoginInterceptor - [preHandle,41] - accessToken:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzIwMDI2NDMyLCJleHAiOjE3MjAxMTI4MzIsInVzZXJJZCI6IjI5In0.JM2iFsg15SwRdlmZ_-Ogaxp_rRd0Z3e7RGAqQWg4qdg,29

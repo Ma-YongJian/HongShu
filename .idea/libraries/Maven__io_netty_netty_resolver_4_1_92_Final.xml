@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: io.netty:netty-resolver:4.1.92.Final">
+    <CLASSES>
+      <root url="jar:///Library/Maven/repo/io/netty/netty-resolver/4.1.92.Final/netty-resolver-4.1.92.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///Library/Maven/repo/io/netty/netty-resolver/4.1.92.Final/netty-resolver-4.1.92.Final-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///Library/Maven/repo/io/netty/netty-resolver/4.1.92.Final/netty-resolver-4.1.92.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

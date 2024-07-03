@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.glassfish.jaxb:jaxb-runtime:2.3.8">
+    <CLASSES>
+      <root url="jar:///Library/Maven/repo/org/glassfish/jaxb/jaxb-runtime/2.3.8/jaxb-runtime-2.3.8.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///Library/Maven/repo/org/glassfish/jaxb/jaxb-runtime/2.3.8/jaxb-runtime-2.3.8-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///Library/Maven/repo/org/glassfish/jaxb/jaxb-runtime/2.3.8/jaxb-runtime-2.3.8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

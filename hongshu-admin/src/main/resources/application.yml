@@ -157,10 +157,10 @@ oss:
   type: 1 # 0：是本地存储，1：是七牛云存储
 
 qiNiuYun:
-  domain: https://image.mayongjian.cn
-  accessKey: DtBEKv-uwl79DhgdGRWDTxX0qrVw2oLb25BuNpTv
-  secretKey: JV6AM6iMR6ovouNEwoSQvLpsRWLhwOjBmnj2SyxP
-  bucketName: xiaomage-blog
+  domain: 
+  accessKey: 
+  secretKey: 
+  bucketName: 
 
 file:
   upload:

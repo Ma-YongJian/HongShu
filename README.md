@@ -78,7 +78,7 @@
 
 
 ## 演示图
-- web端：
+* web端：
 <table>
     <tr>
         <td><img src="doc/images/login.png"/></td>
@@ -97,7 +97,8 @@
         <td><img src="doc/images/user.png"/></td>
     </tr>
 </table>
-- 管理端：
+
+* 管理端：
 <table>	 
     <tr>
         <td><img src="doc/images/admin-login.png"/></td>

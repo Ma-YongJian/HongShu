@@ -61,15 +61,15 @@
 4. 加入协同过滤算法优化首页推荐功能
 5. 使用 MQ+Redis 优化点赞、收藏、浏览功能
 
-- 如有项目问题、部署问题可联系微信：coder_xiaomage
+- 如遇到项目问题、部署需求可联系微信：coder_xiaomage
 
-## 在线体验（2.0版）
+## 演示站（2.0版）
 - web端 ➡️ [点我进入](http://47.95.205.22)
 - 管理端 ➡️ [点我进入](http://47.95.205.22/admin/)
 - app端 ➡️ [点我进入](http://47.95.205.22/app/)
 * 由于服务器资源有限，加载可能缓慢。
 * 同时也感谢小伙伴们打赏支持❤️。
-  <img src="doc/images/pay.png" style="width: 200px"/>
+  <img src="doc/images/pay.png" style="width: 50px heihgt: 50px"/>
 * 文档及资料会暂时放到我的个人博客：[点我进入](https://mayongjian.cn)
 
 ## 视频演示
@@ -80,39 +80,63 @@
 * web端：
 <table>
     <tr>
-        <td><img src="doc/images/login.png"/></td>
-        <td><img src="doc/images/dashboard.png"/></td>
+        <td><img src="doc/images/web/web-login.png"/></td>
+        <td><img src="doc/images/web/web-dashboard.png"/></td>
     </tr>
     <tr>
-        <td><img src="doc/images/search.png"/></td>
-        <td><img src="doc/images/trends.png"/></td>
+        <td><img src="doc/images/web/web-search.png"/></td>
+        <td><img src="doc/images/web/web-trends.png"/></td>
     </tr>
     <tr>
-        <td><img src="doc/images/message.png"/></td>
-        <td><img src="doc/images/follow.png"/></td>
+        <td><img src="doc/images/web/web-message.png"/></td>
+        <td><img src="doc/images/web/web-follow.png"/></td>
     </tr>
 	<tr>
-        <td><img src="doc/images/publish.png"/></td>
-        <td><img src="doc/images/user.png"/></td>
+        <td><img src="doc/images/web/web-publish.png"/></td>
+        <td><img src="doc/images/web/web-user.png"/></td>
     </tr>
 </table>
 
 * 管理端：
 <table>	 
     <tr>
-        <td><img src="doc/images/admin-login.png"/></td>
-        <td><img src="doc/images/data.png"/></td>
+        <td><img src="doc/images/admin/admin-login.png"/></td>
+        <td><img src="doc/images/admin/admin-data.png"/></td>
     </tr>
 	<tr>
-        <td><img src="doc/images/category.png"/></td>
-        <td><img src="doc/images/member.png"/></td>
+        <td><img src="doc/images/admin/admin-category.png"/></td>
+        <td><img src="doc/images/admin/admin-member.png"/></td>
     </tr>
 	<tr>
-        <td><img src="doc/images/note.png"/></td>
-        <td><img src="doc/images/album.png"/></td>
+        <td><img src="doc/images/admin/admin-note.png"/></td>
+        <td><img src="doc/images/admin/admin-album.png"/></td>
     </tr>
     <tr>
-        <td><img src="doc/images/comment.png"/></td>
-        <td><img src="doc/images/log.png"/></td>
+        <td><img src="doc/images/admin/admin-comment.png"/></td>
+        <td><img src="doc/images/admin/admin-log.png"/></td>
+    </tr>
+</table>
+
+* app端：
+<table>	 
+    <tr>
+        <td><img src="doc/images/app/app-index.png"/></td>
+        <td><img src="doc/images/app/app-trend.png"/></td>
+    </tr>
+	<tr>
+        <td><img src="doc/images/app/app-message.png"/></td>
+        <td><img src="doc/images/app/app-user.png"/></td>
+    </tr>
+	<tr>
+        <td><img src="doc/images/app/app-follow.png"/></td>
+        <td><img src="doc/images/app/app-search.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="doc/images/app/app-main.png"/></td>
+        <td><img src="doc/images/app/app-push.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="doc/images/app/app-comment.png"/></td>
+        <td><img src="doc/images/app/app-like.png"/></td>
     </tr>
 </table>

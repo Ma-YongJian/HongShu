@@ -25,7 +25,7 @@ import com.hongshu.system.service.ISysDeptService;
 /**
  * 部门信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/system/dept")

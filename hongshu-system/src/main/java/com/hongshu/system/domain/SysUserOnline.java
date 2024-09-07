@@ -3,7 +3,7 @@ package com.hongshu.system.domain;
 /**
  * 当前在线会话
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysUserOnline
 {

@@ -3,7 +3,7 @@ package com.hongshu.common.constant;
 /**
  * 缓存的key 常量
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class CacheConstants
 {

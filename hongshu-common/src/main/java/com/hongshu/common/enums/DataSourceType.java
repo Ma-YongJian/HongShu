@@ -3,7 +3,7 @@ package com.hongshu.common.enums;
 /**
  * 数据源
  *
- * @author hongshu
+ * @author: hongshu
  */
 public enum DataSourceType
 {

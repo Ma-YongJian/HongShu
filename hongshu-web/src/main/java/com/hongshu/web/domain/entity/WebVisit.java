@@ -10,7 +10,7 @@ import lombok.Data;
  * Web访问记录表
  * </p>
  *
- * @author xuzhixiang
+ * @author: hongshu
  * @since 2018年12月8日09:27:17
  */
 @Data

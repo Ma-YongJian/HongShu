@@ -7,7 +7,7 @@ import com.hongshu.system.domain.SysConfig;
 /**
  * 参数配置 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface SysConfigMapper
 {

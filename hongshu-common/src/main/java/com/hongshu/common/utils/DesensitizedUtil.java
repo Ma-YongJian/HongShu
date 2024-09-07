@@ -3,7 +3,7 @@ package com.hongshu.common.utils;
 /**
  * 脱敏工具类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class DesensitizedUtil
 {

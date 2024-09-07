@@ -5,7 +5,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * 路由显示信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class MetaVo
 {

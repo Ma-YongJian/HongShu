@@ -9,7 +9,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * 在线用户 服务层处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysUserOnlineServiceImpl implements ISysUserOnlineService

@@ -6,7 +6,7 @@ import com.hongshu.common.core.domain.entity.SysDictType;
 /**
  * 字典表 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface SysDictTypeMapper
 {

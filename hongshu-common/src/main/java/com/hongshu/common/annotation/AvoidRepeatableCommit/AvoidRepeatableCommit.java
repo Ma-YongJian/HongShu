@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 自定义注解 避免接口重复提交
  *
- * @author Administrator
+ * @author: hongshu Administrator
  * @date 2020年4月23日12:12:04
  */
 @Target(ElementType.METHOD)

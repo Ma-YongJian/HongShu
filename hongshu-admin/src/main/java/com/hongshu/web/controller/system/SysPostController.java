@@ -25,7 +25,7 @@ import com.hongshu.system.service.ISysPostService;
 /**
  * 岗位信息操作处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/system/post")

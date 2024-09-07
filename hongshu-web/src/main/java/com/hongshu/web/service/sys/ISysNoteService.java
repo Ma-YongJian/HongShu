@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * 笔记信息 服务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysNoteService {
 

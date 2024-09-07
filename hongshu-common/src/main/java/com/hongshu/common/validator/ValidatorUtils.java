@@ -24,7 +24,7 @@ import java.util.Set;
 /**
  * hibernate-validator校验工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author: hongshu Mark sunlightcs@gmail.com
  * @since 1.0.0
  */
 public class ValidatorUtils {

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 导航栏 业务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysNavbarService {
 

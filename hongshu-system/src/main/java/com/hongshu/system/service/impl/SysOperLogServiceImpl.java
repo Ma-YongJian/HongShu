@@ -11,7 +11,7 @@ import com.hongshu.system.service.ISysOperLogService;
 /**
  * 操作日志 服务层处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysOperLogServiceImpl implements ISysOperLogService

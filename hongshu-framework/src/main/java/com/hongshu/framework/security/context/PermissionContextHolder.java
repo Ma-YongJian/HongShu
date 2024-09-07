@@ -7,7 +7,7 @@ import com.hongshu.common.core.text.Convert;
 /**
  * 权限信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class PermissionContextHolder
 {

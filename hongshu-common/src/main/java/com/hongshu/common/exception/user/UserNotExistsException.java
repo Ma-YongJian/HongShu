@@ -3,7 +3,7 @@ package com.hongshu.common.exception.user;
 /**
  * 用户不存在异常类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class UserNotExistsException extends UserException
 {

@@ -23,7 +23,7 @@ import com.hongshu.system.service.ISysNoticeService;
 /**
  * 公告 信息操作处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/system/notice")

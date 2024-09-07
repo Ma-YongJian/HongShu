@@ -19,7 +19,7 @@ import com.hongshu.framework.web.service.TokenService;
 /**
  * token过滤器 验证token有效性
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter

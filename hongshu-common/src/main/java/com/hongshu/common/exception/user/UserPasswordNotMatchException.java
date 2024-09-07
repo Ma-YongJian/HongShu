@@ -3,7 +3,7 @@ package com.hongshu.common.exception.user;
 /**
  * 用户密码不正确或不符合规范异常类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class UserPasswordNotMatchException extends UserException
 {

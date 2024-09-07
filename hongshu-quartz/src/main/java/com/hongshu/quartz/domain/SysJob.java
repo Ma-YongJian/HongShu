@@ -16,7 +16,7 @@ import com.hongshu.quartz.util.CronUtils;
 /**
  * 定时任务调度表 sys_job
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysJob extends BaseEntity
 {

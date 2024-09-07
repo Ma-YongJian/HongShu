@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 /**
  * 导航栏表 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Mapper
 public interface SysNavbarMapper extends BaseMapper<WebCategory> {

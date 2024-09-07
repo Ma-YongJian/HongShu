@@ -14,7 +14,7 @@ import com.hongshu.system.service.ISysRoleService;
 /**
  * 用户权限处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Component
 public class SysPermissionService

@@ -6,7 +6,7 @@ import com.hongshu.common.utils.DateUtils;
 import com.hongshu.common.utils.StringUtils;
 
 /**
- * @author hongshu 序列生成类
+ * @author: hongshu 序列生成类
  */
 public class Seq
 {

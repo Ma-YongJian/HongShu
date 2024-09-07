@@ -7,7 +7,7 @@ import com.hongshu.system.domain.SysRoleMenu;
 /**
  * 角色与菜单关联表 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface SysRoleMenuMapper
 {

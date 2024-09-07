@@ -7,7 +7,7 @@ import com.hongshu.common.core.domain.entity.SysDept;
 /**
  * 部门管理 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface SysDeptMapper
 {

@@ -9,7 +9,7 @@ import com.hongshu.system.domain.vo.RouterVo;
 /**
  * 菜单 业务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysMenuService
 {

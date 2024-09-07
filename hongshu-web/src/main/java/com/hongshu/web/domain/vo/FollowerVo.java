@@ -20,9 +20,11 @@ public class FollowerVo implements Serializable {
 
     private String avatar;
 
+    private Long hsId;
+
+    private Long fanCount;
+
     private Boolean isFollow;
 
     private Long time;
-
-
 }

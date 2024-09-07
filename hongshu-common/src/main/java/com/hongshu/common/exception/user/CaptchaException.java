@@ -3,7 +3,7 @@ package com.hongshu.common.exception.user;
 /**
  * 验证码错误异常类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class CaptchaException extends UserException
 {

@@ -20,7 +20,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * 全局异常处理器
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler

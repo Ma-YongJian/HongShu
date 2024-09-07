@@ -7,7 +7,7 @@ import com.hongshu.common.utils.DateUtils;
 /**
  * JVM相关信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class Jvm
 {

@@ -24,7 +24,7 @@ import com.hongshu.system.service.ISysMenuService;
 /**
  * 菜单信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/system/menu")

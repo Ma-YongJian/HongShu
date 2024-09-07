@@ -15,7 +15,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * Filter配置
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Configuration
 public class FilterConfig

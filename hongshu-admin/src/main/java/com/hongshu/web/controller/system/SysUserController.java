@@ -35,7 +35,7 @@ import com.hongshu.system.service.ISysUserService;
 /**
  * 用户信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/system/user")

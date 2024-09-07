@@ -44,8 +44,8 @@ public class WebFollowerController {
      * @param type        类型
      */
     @GetMapping("getFriend/{currentPage}/{pageSize}")
-    public Result<?> getFriend(@PathVariable long currentPage, @PathVariable long pageSize, Integer type) {
-        Page<FollowerVo> pageInfo = followerService.getFriend(currentPage, pageSize, type);
+    public Result<?> getFriend(@PathVariable long currentPage, @PathVariable long pageSize, String uid, Integer type) {
+        Page<FollowerVo> pageInfo = followerService.getFriend(currentPage, pageSize, uid, type);
         return Result.ok(pageInfo);
     }
 

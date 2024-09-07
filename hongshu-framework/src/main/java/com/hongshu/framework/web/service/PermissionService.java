@@ -14,7 +14,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * hongshu首创 自定义权限实现，ss取自SpringSecurity首字母
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service("ss")
 public class PermissionService

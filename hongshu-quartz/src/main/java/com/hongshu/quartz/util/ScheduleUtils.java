@@ -21,7 +21,7 @@ import com.hongshu.common.utils.spring.SpringUtils;
 /**
  * 定时任务工具类
  *
- * @author hongshu
+ * @author: hongshu
  *
  */
 public class ScheduleUtils

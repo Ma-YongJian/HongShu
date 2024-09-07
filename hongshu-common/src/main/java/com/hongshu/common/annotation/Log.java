@@ -11,7 +11,7 @@ import com.hongshu.common.enums.OperatorType;
 /**
  * 自定义操作日志记录注解
  *
- * @author hongshu
+ * @author: hongshu
  *
  */
 @Target({ ElementType.PARAMETER, ElementType.METHOD })

@@ -7,7 +7,7 @@ import com.hongshu.common.core.domain.entity.SysDictType;
 /**
  * 字典 业务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysDictTypeService
 {

@@ -3,7 +3,7 @@ package com.hongshu.framework.web.domain.server;
 /**
  * 系统相关信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class Sys
 {

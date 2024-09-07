@@ -16,7 +16,6 @@
         <module>hongshu-admin</module>
         <module>hongshu-common</module>
         <module>hongshu-framework</module>
-<!--        <module>hongshu-generator</module>-->
         <module>hongshu-quartz</module>
         <module>hongshu-system</module>
         <module>hongshu-web</module>

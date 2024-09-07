@@ -10,7 +10,7 @@ import com.hongshu.framework.web.domain.Server;
 /**
  * 服务器监控
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/monitor/server")

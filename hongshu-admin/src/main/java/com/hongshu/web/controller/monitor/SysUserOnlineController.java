@@ -26,7 +26,7 @@ import com.hongshu.system.service.ISysUserOnlineService;
 /**
  * 在线用户监控
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/monitor/online")

@@ -3,7 +3,7 @@ package com.hongshu.common.constant;
 /**
  * 代码生成通用常量
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class GenConstants
 {

@@ -21,7 +21,7 @@ import com.hongshu.system.service.ISysUserService;
 /**
  * 注册校验方法
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Component
 public class SysRegisterService

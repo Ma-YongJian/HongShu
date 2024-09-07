@@ -12,7 +12,7 @@ import com.hongshu.common.constant.UserConstants;
 /**
  * 字典数据表 sys_dict_data
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysDictData extends BaseEntity
 {

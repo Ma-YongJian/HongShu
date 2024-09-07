@@ -6,7 +6,7 @@ import com.hongshu.common.utils.DesensitizedUtil;
 /**
  * 脱敏类型
  *
- * @author hongshu
+ * @author: hongshu
  */
 public enum DesensitizedType
 {

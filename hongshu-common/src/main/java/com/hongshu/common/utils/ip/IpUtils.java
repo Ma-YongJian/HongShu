@@ -10,7 +10,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * 获取IP方法
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class IpUtils
 {

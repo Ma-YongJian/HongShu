@@ -2,11 +2,10 @@ package com.hongshu.web.controller.web;
 
 import com.hongshu.common.enums.Result;
 import com.hongshu.common.validator.myVaildator.noLogin.NoLoginIntercept;
+import com.hongshu.web.domain.dto.EsRecordDTO;
 import com.hongshu.web.service.IWebEsRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * ES
@@ -22,12 +21,10 @@ public class WebEsRecordController {
 
     /**
      * 获取搜索记录
-     *
-     * @param keyword 关键词
      */
     @GetMapping("getRecordByKeyWord")
-    public Result<?> getRecordByKeyWord(String keyword) {
-        return Result.ok(esRecordService.getRecordByKeyWord(keyword));
+    public Result<?> getRecordByKeyWord(EsRecordDTO esRecordDTO) {
+        return Result.ok(esRecordService.getRecordByKeyWord(esRecordDTO));
     }
 
     /**
@@ -41,12 +38,10 @@ public class WebEsRecordController {
 
     /**
      * 增加搜索记录
-     *
-     * @param keyword 关键词
      */
-    @GetMapping("addRecord")
-    public Result<?> addRecord(String keyword) {
-        esRecordService.addRecord(keyword);
+    @PostMapping("addRecord")
+    public Result<?> addRecord(@RequestBody EsRecordDTO esRecordDTO) {
+        esRecordService.addRecord(esRecordDTO);
         return Result.ok();
     }
 }

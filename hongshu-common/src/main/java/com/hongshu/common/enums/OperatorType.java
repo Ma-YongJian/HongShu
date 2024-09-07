@@ -3,7 +3,7 @@ package com.hongshu.common.enums;
 /**
  * 操作人类别
  *
- * @author hongshu
+ * @author: hongshu
  */
 public enum OperatorType
 {

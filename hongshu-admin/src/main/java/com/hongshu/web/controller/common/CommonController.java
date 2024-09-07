@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * 通用请求处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/common")

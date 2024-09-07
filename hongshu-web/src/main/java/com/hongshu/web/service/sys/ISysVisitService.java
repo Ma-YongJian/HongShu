@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * 会员信息 服务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysVisitService {
 

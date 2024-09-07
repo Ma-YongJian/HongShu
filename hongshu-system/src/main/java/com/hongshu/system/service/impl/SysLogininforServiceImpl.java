@@ -11,7 +11,7 @@ import com.hongshu.system.mapper.SysLogininforMapper;
 /**
  * 系统访问日志情况信息 服务层处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysLogininforServiceImpl implements ISysLogininforService

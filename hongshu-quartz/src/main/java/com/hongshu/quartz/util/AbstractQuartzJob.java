@@ -20,7 +20,7 @@ import com.hongshu.quartz.service.ISysJobLogService;
 /**
  * 抽象quartz调用
  *
- * @author hongshu
+ * @author: hongshu
  */
 public abstract class AbstractQuartzJob implements Job
 {

@@ -43,7 +43,7 @@ import java.util.stream.Collectors;
 /**
  * Excel相关处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class ExcelUtil<T> {
     private static final Logger log = LoggerFactory.getLogger(ExcelUtil.class);

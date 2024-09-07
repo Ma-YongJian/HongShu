@@ -5,7 +5,7 @@ import com.hongshu.common.utils.Arith;
 /**
  * CPU相关信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class Cpu
 {

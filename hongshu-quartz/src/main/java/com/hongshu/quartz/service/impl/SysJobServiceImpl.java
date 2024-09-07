@@ -21,7 +21,7 @@ import com.hongshu.common.exception.job.TaskException;
 /**
  * 定时任务调度信息 服务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysJobServiceImpl implements ISysJobService

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * NavbarTreeSelect树结构实体类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class NavbarTreeSelect implements Serializable {
 

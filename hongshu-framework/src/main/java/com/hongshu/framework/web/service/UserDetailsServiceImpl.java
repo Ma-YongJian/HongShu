@@ -18,7 +18,7 @@ import com.hongshu.system.service.ISysUserService;
 /**
  * 用户验证处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService

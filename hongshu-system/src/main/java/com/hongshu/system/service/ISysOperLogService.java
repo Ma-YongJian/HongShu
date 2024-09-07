@@ -7,7 +7,7 @@ import com.hongshu.system.domain.SysOperLog;
 /**
  * 操作日志 服务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysOperLogService
 {

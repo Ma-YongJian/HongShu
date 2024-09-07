@@ -29,6 +29,8 @@ public class TrendVo implements Serializable {
 
     private List<String> imgUrls;
 
+    private Long viewCount;
+
     private Long likeCount;
 
     private Long commentCount;

@@ -3,7 +3,7 @@ package com.hongshu.common.exception.user;
 /**
  * 用户错误最大次数异常类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class UserPasswordRetryLimitExceedException extends UserException
 {

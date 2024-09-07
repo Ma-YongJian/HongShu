@@ -11,7 +11,7 @@ import com.hongshu.common.enums.LimitType;
 /**
  * 限流注解
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

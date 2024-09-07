@@ -24,7 +24,7 @@ import com.hongshu.system.domain.SysCache;
 /**
  * 缓存监控
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/monitor/cache")

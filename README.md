@@ -2,7 +2,7 @@
  <img alt="logo" src="https://image.mayongjian.cn/2024/07/03/1de3ee08e0a34ab6bf9a163d380fb596.png" style="width: 100px">
 </p>
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">HongShu v1.0</h1>
-<h4 align="center">基于SpringBoot+Vue前后端分离仿小红书项目</h4>
+<h4 align="center">基于 SpringBoot + Vue 前后端分离的仿小红书项目</h4>
 <p align="center">
 	<a href="https://gitee.com/Maverick_Ma/hongshu/stargazers">
     <img src="https://gitee.com/Maverick_Ma/hongshu/badge/star.svg?theme=dark"></a>
@@ -14,26 +14,24 @@
 
 
 ## 平台简介
-* 前端采用Vue、Element UI。
-* 后端采用Spring Boot、Spring Security、Redis & Jwt。
+* 前端采用Vue3、Element Plus、Ts、Vite。
+* 后端采用Spring Boot、Spring Security、WebSocket、Redis、ElasticSearch & Jwt。
+* 移动端采用uniapp
 * 权限认证使用Jwt，支持多终端认证系统。
 * 支持加载动态权限菜单，多方式轻松权限控制。
-* 提供了技术栈（[Vue3](https://v3.cn.vuejs.org) [Element Plus](https://element-plus.org/zh-CN) [Vite](https://cn.vitejs.dev)）
-* 单应用版本 [HongShu](https://gitee.com/Maverick_Ma/hongshu)
-* 微服务版本，请移步 [HongShu-Cloud](https://gitee.com/Maverick_Ma/hongshu-cloud)
-* 阿里云优惠券：[点我领取](https://www.aliyun.com/minisite/goods?source=5176.11533457&userCode=ojvsntx1)
-* 腾讯云优惠券：[点我领取](https://curl.qcloud.com/efTJbNyi)
+* 单应用： [HongShu](https://gitee.com/Maverick_Ma/hongshu)
+* 网页端，请移步： [HongShu-Web](https://gitee.com/Maverick_Ma/hongshu-web)
+* 管理端，请移步： [HongShu-Admin](https://gitee.com/Maverick_Ma/hongshu-admin)
+* 移动端，请移步： [HongShu-App](https://gitee.com/Maverick_Ma/hongshu-app)
 
 ## 用户端内置功能
-1. 瀑布流展示笔记，懒加载笔记图片
-2. 笔记分类查询，使用 ElasticSearch 做关键词搜索查询笔记
-3. 关键词使用 ElasticSearch 做高亮查询
-4. 动态展示，展示个人和好友动态
-5. 支持私信聊天，关注用户，评论笔记，点赞笔记和点赞图片功能，收藏笔记功能
-6. 使用 WebSocket 消息通知，用户发送的消息会实时通知，消息页面会实时收到当前用户未读消息数量
-7. 双token登陆，使用 Redis 做对象缓存
-8. 发布和修改笔记功能，使用七牛云oss对象存储图片
-9. 个人信息展示，展示当前用户发布的笔记和点赞收藏的笔记
+1. 笔记：瀑布流按分类展示笔记，懒加载笔记图片
+2. 搜索：使用 ElasticSearch 做关键词搜索高亮查询 
+3. 动态：展示个人和好友动态 
+4. 消息：使用 WebSocket 做私信聊天和消息通知，用户发送消息实时通知、消息页面实时展示当前未读消息数量提醒 
+5. 发布：发布和修改笔记功能，使用七牛云oss对象存储图片
+6. 用户信息：展示当前用户发布、点赞和收藏的笔记
+7. 双 Token 登录机制、无感刷新，使用 Redis 做对象缓存
 
 ## 管理端内置功能
 1. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
@@ -54,30 +52,32 @@
 16. 在线构建器：拖动表单元素生成相应的HTML代码。
 17. 连接池监视：监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
 
-## 2.0版本实现功能⚠️
-1. 添加移动端版本
-2. 重构实现 SpringCloud 微服务架构版本
+## 2.0版本实现功能
+1. 添加移动端
+2. 重构实现 SpringCloud 微服务架构
 3. 加入商城购物功能
-4. 加入协同过滤算法优化首页推荐功能
+4. 加入推荐算法，优化内容推荐和用户推荐功能
 5. 使用 MQ+Redis 优化点赞、收藏、浏览功能
+6. 支持七牛云、阿里、腾讯、Minio等多种oss对象存储方式
+7. 笔记内容支持视频和live图
 
-- 如遇到项目问题、部署需求可联系微信：coder_xiaomage
+### ⚠️如有【项目问题】或【部署需求】可联系微信：coder_xiaomage
 
 ## 演示站（2.0版）
-- web端 ➡️ [点我进入](http://47.95.205.22)
-- 管理端 ➡️ [点我进入](http://47.95.205.22/admin/)
-- app端 ➡️ [点我进入](http://47.95.205.22/app/)
-* 由于服务器资源有限，加载可能缓慢。
-* 同时也感谢小伙伴们打赏支持❤️。
-  <img src="doc/images/pay.png" style="width: 50px heihgt: 50px"/>
-* 文档及资料会暂时放到我的个人博客：[点我进入](https://mayongjian.cn)
+- web端 ➡️ [点我体验](http://47.95.205.22)
+- admin端 ➡️ [点我体验](http://47.95.205.22/admin/)
+- app端 ➡️ [点我体验](http://47.95.205.22/app/)
+- 文档及资料会暂时放到我的个人博客：[点我进入](https://mayongjian.cn)
+* 由于服务器资源有限，首次加载可能缓慢一些。
+* 同时为优化服务器也感谢小伙伴们打赏支持❤️。
+<img src="doc/images/reward.png" style="width: 50px heihgt: 50px"/>
 
 ## 视频演示
-[点击查看](https://www.bilibili.com/video/BV1QP8dekEGq/?spm_id_from=333.999.list.card_archive.click&vd_source=ec9224821314432ac6e12dc7d500d74b)
+➡️ [点击查看](https://www.bilibili.com/video/BV1QP8dekEGq/?spm_id_from=333.999.list.card_archive.click&vd_source=ec9224821314432ac6e12dc7d500d74b)
 
 
 ## 演示图
-* web端：
+### - web端：
 <table>
     <tr>
         <td><img src="doc/images/web/web-login.png"/></td>
@@ -97,7 +97,7 @@
     </tr>
 </table>
 
-* 管理端：
+### - admin端：
 <table>	 
     <tr>
         <td><img src="doc/images/admin/admin-login.png"/></td>
@@ -117,26 +117,26 @@
     </tr>
 </table>
 
-* app端：
+### - app端：
 <table>	 
     <tr>
+        <td><img src="doc/images/app/app-login.png"/></td>
         <td><img src="doc/images/app/app-index.png"/></td>
+    </tr>
+	<tr>
         <td><img src="doc/images/app/app-trend.png"/></td>
-    </tr>
-	<tr>
         <td><img src="doc/images/app/app-message.png"/></td>
-        <td><img src="doc/images/app/app-user.png"/></td>
     </tr>
 	<tr>
+        <td><img src="doc/images/app/app-user.png"/></td>
         <td><img src="doc/images/app/app-follow.png"/></td>
-        <td><img src="doc/images/app/app-search.png"/></td>
     </tr>
     <tr>
+        <td><img src="doc/images/app/app-hot.png"/></td>
         <td><img src="doc/images/app/app-main.png"/></td>
-        <td><img src="doc/images/app/app-push.png"/></td>
     </tr>
     <tr>
-        <td><img src="doc/images/app/app-comment.png"/></td>
-        <td><img src="doc/images/app/app-like.png"/></td>
+        <td><img src="doc/images/app/app-search.png"/></td>
+        <td><img src="doc/images/app/app-push.png"/></td>
     </tr>
 </table>

@@ -11,7 +11,7 @@ import com.hongshu.system.mapper.SysNoticeMapper;
 /**
  * 公告 服务层实现
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysNoticeServiceImpl implements ISysNoticeService

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 评论信息 服务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysCommentService {
 

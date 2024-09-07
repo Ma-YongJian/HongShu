@@ -22,7 +22,7 @@ import com.hongshu.system.service.ISysOperLogService;
 /**
  * 操作日志记录
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/monitor/operlog")

@@ -22,7 +22,7 @@ import com.hongshu.common.utils.ip.IpUtils;
 /**
  * 限流处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Aspect
 @Component

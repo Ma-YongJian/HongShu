@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * 评论 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Mapper
 public interface SysCommentMapper extends BaseMapper<WebComment> {

@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * 个人信息 业务处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/system/user/profile")

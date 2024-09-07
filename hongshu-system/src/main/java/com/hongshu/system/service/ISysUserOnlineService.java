@@ -6,7 +6,7 @@ import com.hongshu.system.domain.SysUserOnline;
 /**
  * 在线用户 服务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysUserOnlineService
 {

@@ -11,7 +11,7 @@ import com.hongshu.common.core.domain.BaseEntity;
 /**
  * 参数配置表 sys_config
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysConfig extends BaseEntity
 {

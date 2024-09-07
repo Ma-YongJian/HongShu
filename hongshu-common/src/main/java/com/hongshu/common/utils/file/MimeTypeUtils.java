@@ -3,7 +3,7 @@ package com.hongshu.common.utils.file;
 /**
  * 媒体类型工具类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class MimeTypeUtils
 {

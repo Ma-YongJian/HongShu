@@ -25,7 +25,7 @@ import com.hongshu.system.service.ISysDictTypeService;
 /**
  * 数据字典信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/system/dict/type")

@@ -3,7 +3,7 @@ package com.hongshu.common.enums;
 /**
  * 业务操作类型
  *
- * @author hongshu
+ * @author: hongshu
  */
 public enum BusinessType
 {

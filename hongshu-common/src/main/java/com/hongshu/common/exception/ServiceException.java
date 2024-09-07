@@ -3,7 +3,7 @@ package com.hongshu.common.exception;
 /**
  * 业务异常
  *
- * @author hongshu
+ * @author: hongshu
  */
 public final class ServiceException extends RuntimeException
 {

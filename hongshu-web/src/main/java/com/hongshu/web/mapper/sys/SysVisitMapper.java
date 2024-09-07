@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * 会员信息 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Mapper
 public interface SysVisitMapper extends BaseMapper<WebVisit> {

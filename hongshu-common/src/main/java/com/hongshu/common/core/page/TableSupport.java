@@ -6,7 +6,7 @@ import com.hongshu.common.utils.ServletUtils;
 /**
  * 表格数据处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class TableSupport
 {

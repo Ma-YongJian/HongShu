@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 通用配置
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Configuration
 public class ResourcesConfig implements WebMvcConfigurer {

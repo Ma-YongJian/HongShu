@@ -7,7 +7,7 @@ import com.hongshu.common.utils.ServletUtils;
 /**
  * 服务相关配置
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Component
 public class ServerConfig

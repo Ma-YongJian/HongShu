@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hongshu.common.constant.ImConstant;
+import com.hongshu.common.constant.UserConstant;
 import com.hongshu.common.utils.ConvertUtils;
 import com.hongshu.common.utils.RedisUtils;
+import com.hongshu.common.utils.WebUtils;
 import com.hongshu.web.auth.AuthContextHolder;
 import com.hongshu.web.domain.entity.WebChat;
 import com.hongshu.web.domain.entity.WebChatUserRelation;
@@ -95,7 +97,8 @@ public class WebChatServiceImpl extends ServiceImpl<WebChatMapper, WebChat> impl
      */
     @Override
     public List<ChatUserRelationVo> getChatUserList() {
-        String currentUid = AuthContextHolder.getUserId();
+        String currentUid = WebUtils.getRequestHeader(UserConstant.USER_ID);
+//        String currentUid = AuthContextHolder.getUserId();
         List<ChatUserRelationVo> result = new ArrayList<>();
         List<WebChatUserRelation> chatUserRelationList = chatUserRelationMapper.selectList(new QueryWrapper<WebChatUserRelation>().eq("accept_uid", currentUid).orderByDesc("timestamp"));
         if (chatUserRelationList.isEmpty()) {

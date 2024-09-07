@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * 用户和岗位关联 sys_user_post
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysUserPost
 {

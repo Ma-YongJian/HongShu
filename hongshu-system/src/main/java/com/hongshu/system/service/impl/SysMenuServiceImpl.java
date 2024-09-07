@@ -29,7 +29,7 @@ import com.hongshu.system.mapper.SysMenuMapper;
 /**
  * 菜单 业务层处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysMenuServiceImpl implements ISysMenuService

@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * 系统访问记录
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/loginInfo")

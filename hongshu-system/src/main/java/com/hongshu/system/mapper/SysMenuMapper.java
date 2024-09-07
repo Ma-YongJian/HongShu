@@ -7,7 +7,7 @@ import com.hongshu.common.core.domain.entity.SysMenu;
 /**
  * 菜单表 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface SysMenuMapper
 {

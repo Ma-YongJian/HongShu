@@ -3,7 +3,7 @@ package com.hongshu.common.utils.uuid;
 /**
  * ID生成器工具类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class IdUtils
 {

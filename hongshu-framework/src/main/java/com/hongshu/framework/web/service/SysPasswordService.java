@@ -16,7 +16,7 @@ import com.hongshu.framework.security.context.AuthenticationContextHolder;
 /**
  * 登录密码方法
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Component
 public class SysPasswordService

@@ -17,7 +17,7 @@ import com.hongshu.common.exception.ServiceException;
 /**
  * 安全服务工具类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SecurityUtils
 {

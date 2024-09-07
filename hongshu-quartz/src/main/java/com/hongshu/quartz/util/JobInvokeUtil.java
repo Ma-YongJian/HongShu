@@ -11,7 +11,7 @@ import com.hongshu.quartz.domain.SysJob;
 /**
  * 任务执行工具
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class JobInvokeUtil
 {

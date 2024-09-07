@@ -4,9 +4,11 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hongshu.common.constant.UserConstant;
 import com.hongshu.common.enums.ResultCodeEnum;
 import com.hongshu.common.exception.web.HongshuException;
 import com.hongshu.common.utils.ConvertUtils;
+import com.hongshu.common.utils.WebUtils;
 import com.hongshu.web.auth.AuthContextHolder;
 import com.hongshu.web.domain.entity.WebLikeOrCollection;
 import com.hongshu.web.domain.entity.WebNote;
@@ -135,6 +137,11 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
         List<WebLikeOrCollection> likeOrCollectionList = likeOrCollectionPage.getRecords();
         long total = likeOrCollectionPage.getTotal();
 
+        // 是否点赞
+        List<WebLikeOrCollection> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollection>().eq("uid", userId).eq("type", 1));
+        List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollection::getLikeOrCollectionId).collect(Collectors.toList());
+
+
         Set<String> uids = likeOrCollectionList.stream().map(WebLikeOrCollection::getPublishUid).collect(Collectors.toSet());
         Map<String, WebUser> userMap = this.listByIds(uids).stream().collect(Collectors.toMap(WebUser::getId, user -> user));
 
@@ -148,6 +155,7 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
             NoteSearchVo noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVo.class);
             WebUser user = userMap.get(model.getPublishUid());
             noteSearchVo.setUsername(user.getUsername())
+                    .setIsLike(likeOrCollectionIds.contains(note.getId()))
                     .setAvatar(user.getAvatar());
             noteSearchVoList.add(noteSearchVo);
         }
@@ -174,29 +182,29 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
     private Page<NoteSearchVo> getLikeOrCollectionPageByUser(long currentPage, long pageSize, String userId) {
         Page<NoteSearchVo> noteSearchVoPage = new Page<>();
         // 得到当前用户发布的所有专辑
-        String currentUserId = AuthContextHolder.getUserId();
+        String currentUserId = WebUtils.getRequestHeader(UserConstant.USER_ID);
         Page<WebNote> notePage;
-        if (currentUserId.equals(userId)) {
-            // 是当前用户
-            notePage = noteMapper.selectPage(new Page<>((int) currentPage, (int) pageSize), new QueryWrapper<WebNote>().eq("uid", userId).orderByDesc("pinned", "update_time"));
-        } else {
-            notePage = noteMapper.selectPage(new Page<>((int) currentPage, (int) pageSize), new QueryWrapper<WebNote>().eq("uid", userId).orderByDesc("pinned", "update_time"));
-        }
+        notePage = noteMapper.selectPage(new Page<>(currentPage, pageSize), new QueryWrapper<WebNote>().eq("uid", userId).orderByDesc("pinned", "update_time"));
         List<WebNote> noteList = notePage.getRecords();
         long total = notePage.getTotal();
 
         // 得到所有用户的信息
         Set<String> uids = noteList.stream().map(WebNote::getUid).collect(Collectors.toSet());
+
+        // 是否点赞
+        List<WebLikeOrCollection> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollection>().eq("uid", userId).eq("type", 1));
+        List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollection::getLikeOrCollectionId).collect(Collectors.toList());
+
         if (CollectionUtil.isNotEmpty(uids)) {
             Map<String, WebUser> userMap = this.listByIds(uids).stream().collect(Collectors.toMap(WebUser::getId, user -> user));
-
             List<NoteSearchVo> noteSearchVoList = new ArrayList<>();
             for (WebNote note : noteList) {
                 NoteSearchVo noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVo.class);
                 WebUser user = userMap.get(note.getUid());
                 noteSearchVo.setUsername(user.getUsername())
                         .setAvatar(user.getAvatar())
-                        .setTime(new Date().getTime());
+                        .setIsLike(likeOrCollectionIds.contains(note.getId()))
+                        .setTime(note.getUpdateTime().getTime());
                 if (!currentUserId.equals(userId)) {
                     noteSearchVo.setViewCount(null);
                 }

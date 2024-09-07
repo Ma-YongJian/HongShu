@@ -23,7 +23,7 @@ import com.hongshu.system.service.ISysLogininforService;
 /**
  * 系统访问记录
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/monitor/logininfor")

@@ -34,7 +34,7 @@ import com.hongshu.system.service.ISysUserService;
 /**
  * 角色信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/system/role")

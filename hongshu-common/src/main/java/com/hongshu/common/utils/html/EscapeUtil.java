@@ -5,7 +5,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * 转义和反转义工具类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class EscapeUtil
 {

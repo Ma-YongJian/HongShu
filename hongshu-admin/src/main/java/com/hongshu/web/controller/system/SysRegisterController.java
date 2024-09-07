@@ -14,7 +14,7 @@ import com.hongshu.system.service.ISysConfigService;
 /**
  * 注册验证
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 public class SysRegisterController extends BaseController

@@ -11,7 +11,7 @@ import com.hongshu.common.utils.spring.SpringUtils;
 /**
  * 字典工具类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class DictUtils
 {

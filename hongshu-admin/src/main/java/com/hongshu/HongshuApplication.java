@@ -7,12 +7,11 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 /**
  * 启动程序
  *
- * @author hongshu
+ * @author: hongshu
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class HongshuApplication {
     public static void main(String[] args) {
-        // System.setProperty("spring.devtools.restart.enabled", "false");
         SpringApplication.run(HongshuApplication.class, args);
     }
 }

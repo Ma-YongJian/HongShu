@@ -16,7 +16,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * 认证失败处理类 返回未授权
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Component
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint, Serializable

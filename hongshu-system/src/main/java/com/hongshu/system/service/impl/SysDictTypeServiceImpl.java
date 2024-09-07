@@ -22,7 +22,7 @@ import com.hongshu.system.mapper.SysDictTypeMapper;
 /**
  * 字典 业务层处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService

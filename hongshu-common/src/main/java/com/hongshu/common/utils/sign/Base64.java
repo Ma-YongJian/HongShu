@@ -3,7 +3,7 @@ package com.hongshu.common.utils.sign;
 /**
  * Base64工具类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public final class Base64
 {

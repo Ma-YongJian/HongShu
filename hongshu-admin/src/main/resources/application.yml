@@ -149,19 +149,25 @@ xss:
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
 
+# ES配置
 es:
   url: localhost
   port: 9200
+  username:
+  password:
 
+# OSS类型 0：本地、1：七牛云
 oss:
-  type: 1 # 0：是本地存储，1：是七牛云存储
+  type: 1
 
+# 七牛云配置
 qiNiuYun:
-  domain: 
-  accessKey: 
-  secretKey: 
-  bucketName: 
+  domain:
+  accessKey:
+  secretKey:
+  bucketName:
 
+# 下载路径
 file:
   upload:
-    path: /data/docker/nginx/html/data
+    path: D:/hongshu/uploadPath

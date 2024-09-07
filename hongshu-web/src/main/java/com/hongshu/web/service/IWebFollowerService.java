@@ -22,13 +22,21 @@ public interface IWebFollowerService extends IService<WebFollower> {
     Page<TrendVo> getFollowTrend(long currentPage, long pageSize);
 
     /**
+     * 获取关注列表
+     *
+     * @param currentPage 当前页
+     * @param pageSize    分页数
+     */
+    Page<TrendVo> getFollowList(long currentPage, long pageSize);
+
+    /**
      * 获取当前用户所有的关注和粉丝
      *
      * @param currentPage 当前页
      * @param pageSize    分页数
      * @param type        类型
      */
-    Page<FollowerVo> getFriend(long currentPage, long pageSize, Integer type);
+    Page<FollowerVo> getFriend(long currentPage, long pageSize, String uid, Integer type);
 
     /**
      * 关注用户

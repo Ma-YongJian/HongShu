@@ -5,7 +5,7 @@ import com.hongshu.common.exception.base.BaseException;
 /**
  * 文件信息异常类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class FileException extends BaseException
 {

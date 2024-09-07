@@ -4,14 +4,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hongshu.common.constant.UserConstant;
 import com.hongshu.common.utils.ConvertUtils;
+import com.hongshu.common.utils.WebUtils;
 import com.hongshu.web.auth.AuthContextHolder;
 import com.hongshu.web.domain.dto.CommentDTO;
 import com.hongshu.web.domain.entity.*;
 import com.hongshu.web.domain.vo.CommentVo;
-import com.hongshu.web.websocket.im.ChatUtils;
 import com.hongshu.web.mapper.*;
 import com.hongshu.web.service.IWebCommentService;
+import com.hongshu.web.websocket.im.ChatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -185,7 +187,8 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
     @Override
     public IPage<CommentVo> getNoticeComment(long currentPage, long pageSize) {
         Page<CommentVo> result = new Page<>();
-        String currentUid = AuthContextHolder.getUserId();
+        String currentUid = WebUtils.getRequestHeader(UserConstant.USER_ID);
+//        String currentUid = AuthContextHolder.getUserId();
 
         Page<WebComment> commentPage = this.page(new Page<>((int) currentPage, (int) pageSize), new QueryWrapper<WebComment>().or(e -> e.eq("note_uid", currentUid).or().eq("reply_uid", currentUid)).ne("uid", currentUid).orderByDesc("create_time"));
 

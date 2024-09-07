@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.hongshu.web.domain.dto.EsNoteDTO;
 import com.hongshu.web.domain.entity.WebCategory;
 import com.hongshu.web.domain.entity.WebNote;
+import com.hongshu.web.domain.entity.WebUser;
 import com.hongshu.web.domain.vo.NoteSearchVo;
 
 import java.util.List;
@@ -33,12 +34,28 @@ public interface IWebEsNoteService extends IService<WebNote> {
     List<WebCategory> getCategoryAgg(EsNoteDTO esNoteDTO);
 
     /**
-     * 分页查询笔记
+     * 获取推荐笔记
      *
      * @param currentPage 当前页
      * @param pageSize    分页数
      */
     Page<NoteSearchVo> getRecommendNote(long currentPage, long pageSize);
+
+    /**
+     * 获取推荐用户
+     *
+     * @param currentPage 当前页
+     * @param pageSize    分页数
+     */
+    Page<WebUser> getRecommendUser(long currentPage, long pageSize);
+
+    /**
+     * 获取热榜笔记
+     *
+     * @param currentPage 当前页
+     * @param pageSize    分页数
+     */
+    Page<NoteSearchVo> getHotNote(long currentPage, long pageSize);
 
     /**
      * 增加笔记

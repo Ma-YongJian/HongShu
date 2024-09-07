@@ -3,7 +3,7 @@ package com.hongshu.common.core.domain.model;
 /**
  * 用户登录对象
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class LoginBody
 {

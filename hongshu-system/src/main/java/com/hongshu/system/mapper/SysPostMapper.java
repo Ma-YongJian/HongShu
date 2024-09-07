@@ -7,7 +7,7 @@ import com.hongshu.system.domain.SysPost;
 /**
  * 岗位信息 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface SysPostMapper
 {

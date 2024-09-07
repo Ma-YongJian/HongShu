@@ -5,7 +5,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * 缓存信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysCache
 {

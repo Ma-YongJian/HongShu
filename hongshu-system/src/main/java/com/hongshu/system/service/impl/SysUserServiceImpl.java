@@ -34,7 +34,7 @@ import com.hongshu.system.mapper.SysUserRoleMapper;
 /**
  * 用户 业务层处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysUserServiceImpl implements ISysUserService

@@ -6,7 +6,7 @@ import com.hongshu.system.domain.SysOperLog;
 /**
  * 操作日志 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface SysOperLogMapper
 {

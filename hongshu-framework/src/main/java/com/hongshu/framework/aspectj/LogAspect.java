@@ -34,7 +34,7 @@ import com.hongshu.system.domain.SysOperLog;
 /**
  * 操作日志记录处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Aspect
 @Component

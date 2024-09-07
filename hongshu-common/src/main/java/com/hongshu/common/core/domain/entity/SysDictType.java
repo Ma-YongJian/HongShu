@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * 字典类型表 sys_dict_type
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysDictType extends BaseEntity
 {

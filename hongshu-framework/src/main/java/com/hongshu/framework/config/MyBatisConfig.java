@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Mybatis支持*匹配扫描包
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Configuration
 public class MyBatisConfig

@@ -18,7 +18,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * 防止XSS攻击的过滤器
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class XssFilter implements Filter
 {

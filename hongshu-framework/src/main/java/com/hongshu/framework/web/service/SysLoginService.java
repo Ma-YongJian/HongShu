@@ -33,7 +33,7 @@ import com.hongshu.system.service.ISysUserService;
 /**
  * 登录校验方法
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Component
 public class SysLoginService

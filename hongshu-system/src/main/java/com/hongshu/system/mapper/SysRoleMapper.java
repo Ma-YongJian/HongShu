@@ -6,7 +6,7 @@ import com.hongshu.common.core.domain.entity.SysRole;
 /**
  * 角色表 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface SysRoleMapper
 {

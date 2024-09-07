@@ -9,7 +9,7 @@ import com.hongshu.common.core.domain.BaseEntity;
 /**
  * 系统访问记录表 sys_logininfor
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysLogininfor extends BaseEntity
 {

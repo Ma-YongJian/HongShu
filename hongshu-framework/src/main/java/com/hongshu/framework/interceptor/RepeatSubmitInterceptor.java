@@ -14,7 +14,7 @@ import com.hongshu.common.utils.ServletUtils;
 /**
  * 防止重复提交拦截器
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Component
 public abstract class RepeatSubmitInterceptor implements HandlerInterceptor

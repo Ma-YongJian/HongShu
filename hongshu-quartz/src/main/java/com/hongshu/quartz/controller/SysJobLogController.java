@@ -23,7 +23,7 @@ import com.hongshu.quartz.service.ISysJobLogService;
 /**
  * 调度日志操作处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/monitor/jobLog")

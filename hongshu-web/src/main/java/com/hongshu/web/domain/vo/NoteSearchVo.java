@@ -48,6 +48,8 @@ public class NoteSearchVo implements Serializable {
 
     private String status;
 
+    private Boolean isLike;
+
     private Long likeCount;
 
     private Long viewCount;

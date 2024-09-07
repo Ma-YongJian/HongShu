@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 /**
  * 导航栏 业务层处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysNavbarServiceImpl implements ISysNavbarService {

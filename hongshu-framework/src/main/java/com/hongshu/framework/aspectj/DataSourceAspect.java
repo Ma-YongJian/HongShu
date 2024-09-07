@@ -18,7 +18,7 @@ import com.hongshu.framework.datasource.DynamicDataSourceContextHolder;
 /**
  * 多数据源处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Aspect
 @Order(1)

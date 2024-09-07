@@ -21,7 +21,7 @@ import com.hongshu.system.mapper.SysConfigMapper;
 /**
  * 参数配置 服务层实现
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysConfigServiceImpl implements ISysConfigService

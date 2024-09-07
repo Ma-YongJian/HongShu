@@ -3,7 +3,7 @@ package com.hongshu.common.enums;
 /**
  * 用户状态
  *
- * @author hongshu
+ * @author: hongshu
  */
 public enum UserStatus
 {

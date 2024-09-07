@@ -5,7 +5,7 @@ import com.hongshu.common.utils.Arith;
 /**
  * 內存相关信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class Mem
 {

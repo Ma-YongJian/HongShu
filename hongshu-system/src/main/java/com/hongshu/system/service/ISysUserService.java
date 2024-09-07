@@ -6,7 +6,7 @@ import com.hongshu.common.core.domain.entity.SysUser;
 /**
  * 用户 业务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysUserService
 {

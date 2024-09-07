@@ -3,7 +3,7 @@ package com.hongshu.framework.web.domain.server;
 /**
  * 系统文件相关信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysFile
 {

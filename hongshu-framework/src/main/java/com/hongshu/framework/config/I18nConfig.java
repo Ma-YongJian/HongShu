@@ -12,7 +12,7 @@ import com.hongshu.common.constant.Constants;
 /**
  * 资源文件配置加载
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Configuration
 public class I18nConfig implements WebMvcConfigurer

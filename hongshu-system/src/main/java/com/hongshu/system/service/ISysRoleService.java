@@ -8,7 +8,7 @@ import com.hongshu.system.domain.SysUserRole;
 /**
  * 角色业务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysRoleService
 {

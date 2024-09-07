@@ -1,8 +1,8 @@
 package com.hongshu.framework.config;
 
 import com.hongshu.framework.config.properties.PermitAllUrlProperties;
-import com.hongshu.framework.security.handle.AuthenticationEntryPointImpl;
 import com.hongshu.framework.security.filter.JwtAuthenticationTokenFilter;
+import com.hongshu.framework.security.handle.AuthenticationEntryPointImpl;
 import com.hongshu.framework.security.handle.LogoutSuccessHandlerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -108,10 +108,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 过滤请求
                 .authorizeRequests()
                 // 对于登录login 注册register 验证码captchaImage 允许匿名访问
-                .antMatchers("/web/**", "/login", "/register", "/captchaImage").permitAll()
+                .antMatchers(
+                        "/web/**",
+                        "/app/**",
+                        "/login",
+                        "/register",
+                        "/captchaImage",
+                        "/captchaImage").permitAll()
                 // 静态资源，可匿名访问
-                .antMatchers(HttpMethod.GET, "/", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js", "/profile/**").permitAll()
-                .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/*/api-docs", "/druid/**").permitAll()
+                .antMatchers(
+                        HttpMethod.GET,
+                        "/",
+                        "/*.html",
+                        "/**/*.html",
+                        "/**/*.css",
+                        "/**/*.js",
+                        "/profile/**").permitAll()
+                .antMatchers("/swagger-ui.html",
+                        "/swagger-resources/**",
+                        "/webjars/**",
+                        "/*/api-docs",
+                        "/druid/**").permitAll()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated()
                 .and()

@@ -3,7 +3,7 @@ package com.hongshu.common.utils;
 /**
  * 处理并记录日志文件
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class LogUtils
 {

@@ -3,7 +3,7 @@ package com.hongshu.common.constant;
 /**
  * 任务调度通用常量
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class ScheduleConstants
 {

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 会员信息 服务层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface ISysTagService {
 

@@ -3,7 +3,7 @@ package com.hongshu.common.enums;
 /**
  * 限流类型
  *
- * @author hongshu
+ * @author: hongshu
  */
 
 public enum LimitType

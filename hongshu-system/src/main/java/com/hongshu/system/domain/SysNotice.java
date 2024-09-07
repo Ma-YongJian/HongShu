@@ -10,7 +10,7 @@ import com.hongshu.common.xss.Xss;
 /**
  * 通知公告表 sys_notice
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysNotice extends BaseEntity
 {

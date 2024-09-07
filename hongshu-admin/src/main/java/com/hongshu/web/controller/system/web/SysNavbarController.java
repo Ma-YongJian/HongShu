@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 导航栏信息
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/navbar")

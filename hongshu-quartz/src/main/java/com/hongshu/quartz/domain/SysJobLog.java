@@ -9,7 +9,7 @@ import com.hongshu.common.core.domain.BaseEntity;
 /**
  * 定时任务调度日志表 sys_job_log
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysJobLog extends BaseEntity
 {

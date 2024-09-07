@@ -25,7 +25,7 @@ import com.hongshu.system.mapper.SysDeptMapper;
 /**
  * 部门管理 服务实现
  *
- * @author hongshu
+ * @author: hongshu
  */
 @Service
 public class SysDeptServiceImpl implements ISysDeptService

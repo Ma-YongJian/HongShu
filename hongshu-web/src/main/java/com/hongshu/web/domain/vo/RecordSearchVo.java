@@ -12,9 +12,13 @@ import java.io.Serializable;
 @Data
 public class RecordSearchVo implements Serializable {
 
+    private String uid;
+
     private String content;
 
     private String highlightContent;
 
     private Long searchCount;
+
+    private Long time;
 }

@@ -31,7 +31,7 @@ import com.hongshu.quartz.service.ISysJobService;
 /**
  * 调度任务信息操作处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/monitor/job")

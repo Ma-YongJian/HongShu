@@ -7,7 +7,7 @@ import com.hongshu.common.utils.spring.SpringUtils;
 /**
  * 获取i18n资源文件
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class MessageUtils
 {

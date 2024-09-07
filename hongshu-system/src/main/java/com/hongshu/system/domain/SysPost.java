@@ -12,7 +12,7 @@ import com.hongshu.common.core.domain.BaseEntity;
 /**
  * 岗位表 sys_post
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class SysPost extends BaseEntity
 {

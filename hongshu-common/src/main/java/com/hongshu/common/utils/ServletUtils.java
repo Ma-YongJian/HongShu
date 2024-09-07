@@ -21,7 +21,7 @@ import com.hongshu.common.constant.Constants;
 /**
  * 客户端工具类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class ServletUtils
 {

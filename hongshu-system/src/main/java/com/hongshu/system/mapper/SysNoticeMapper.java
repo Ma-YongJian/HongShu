@@ -7,7 +7,7 @@ import com.hongshu.system.domain.SysNotice;
 /**
  * 通知公告表 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface SysNoticeMapper
 {

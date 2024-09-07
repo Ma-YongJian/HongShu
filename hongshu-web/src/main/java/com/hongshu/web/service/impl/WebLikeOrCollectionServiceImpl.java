@@ -3,7 +3,9 @@ package com.hongshu.web.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hongshu.common.constant.UserConstant;
 import com.hongshu.common.utils.ConvertUtils;
+import com.hongshu.common.utils.WebUtils;
 import com.hongshu.web.auth.AuthContextHolder;
 import com.hongshu.web.domain.dto.LikeOrCollectionDTO;
 import com.hongshu.web.domain.entity.*;
@@ -95,7 +97,8 @@ public class WebLikeOrCollectionServiceImpl extends ServiceImpl<WebLikeOrCollect
     @Override
     public Page<LikeOrCollectionVo> getNoticeLikeOrCollection(long currentPage, long pageSize) {
         Page<LikeOrCollectionVo> result = new Page<>();
-        String currentUid = AuthContextHolder.getUserId();
+        String currentUid = WebUtils.getRequestHeader(UserConstant.USER_ID);
+//        String currentUid = AuthContextHolder.getUserId();
 
         Page<WebLikeOrCollection> likeOrCollectionPage = this.page(new Page<>((int) currentPage, (int) pageSize), new QueryWrapper<WebLikeOrCollection>().eq("publish_uid", currentUid).ne("uid", currentUid).orderByDesc("create_time"));
         List<WebLikeOrCollection> likeOrCollectionList = likeOrCollectionPage.getRecords();

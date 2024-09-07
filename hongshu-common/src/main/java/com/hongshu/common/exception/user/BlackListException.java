@@ -3,7 +3,7 @@ package com.hongshu.common.exception.user;
 /**
  * 黑名单IP异常类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class BlackListException extends UserException
 {

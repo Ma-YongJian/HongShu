@@ -3,7 +3,7 @@ package com.hongshu.common.enums;
 /**
  * 操作状态
  *
- * @author hongshu
+ * @author: hongshu
  *
  */
 public enum BusinessStatus

@@ -5,7 +5,7 @@ import com.hongshu.common.exception.base.BaseException;
 /**
  * 用户信息异常类
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class UserException extends BaseException
 {

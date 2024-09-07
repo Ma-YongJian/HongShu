@@ -5,7 +5,7 @@ import com.hongshu.common.utils.StringUtils;
 /**
  * 分页数据
  *
- * @author hongshu
+ * @author: hongshu
  */
 public class PageDomain
 {

@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 /**
  * 用户与角色关联表 数据层
  *
- * @author hongshu
+ * @author: hongshu
  */
 public interface SysUserRoleMapper
 {

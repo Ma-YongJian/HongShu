@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * 会员操作处理
  *
- * @author hongshu
+ * @author: hongshu
  */
 @RestController
 @RequestMapping("/member")

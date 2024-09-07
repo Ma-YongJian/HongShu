@@ -15,7 +15,7 @@
 
 ## 平台简介
 * 前端采用Vue3、Element Plus、Ts、Vite。
-* 后端采用Spring Boot、Spring Security、WebSocket、Redis、ElasticSearch & Jwt。
+* 后端采用SpringBoot、SpringSecurity、WebSocket、Redis、ElasticSearch & Jwt。
 * 移动端采用uniapp
 * 权限认证使用Jwt，支持多终端认证系统。
 * 支持加载动态权限菜单，多方式轻松权限控制。

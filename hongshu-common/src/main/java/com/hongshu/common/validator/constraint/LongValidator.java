@@ -8,11 +8,9 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * 判断Long是否为空【校验器】
  *
- * @author: hongshu
- * @date 2019年12月4日13:16:06
+ * @Author hongshu
  */
 public class LongValidator implements ConstraintValidator<LongNotNull, Long> {
-
 
     @Override
     public void initialize(LongNotNull constraintAnnotation) {

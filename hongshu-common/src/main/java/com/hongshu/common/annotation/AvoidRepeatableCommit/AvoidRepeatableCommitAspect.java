@@ -23,8 +23,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 避免接口重复提交AOP
  *
- * @author: hongshu
- * @create: 2020-04-23-12:12
+ * @Author hongshu
  */
 @Aspect
 @Component
@@ -33,6 +32,7 @@ public class AvoidRepeatableCommitAspect {
 
     @Autowired
     private RedisUtil redisUtil;
+
 
     /**
      * @param point

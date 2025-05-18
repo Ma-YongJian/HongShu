@@ -10,9 +10,7 @@ import java.util.stream.Collectors;
 /**
  * 树形结构递归处理类
  *
- * @author: hongshu
- * @date: 2020/12/24
- * @version: 1.0.0
+ * @Author hongshu
  */
 public class TreeUtil {
 

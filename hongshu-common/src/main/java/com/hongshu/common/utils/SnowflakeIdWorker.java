@@ -3,9 +3,8 @@ package com.hongshu.common.utils;
 /**
  * 雪花ID生成器
  *
- * @author: hongshu
- * @create: 2020-11-13-10:36
- *
+ * @Author hongshu
+ * <p>
  * Twitter开源的分布式Id生成器，使用雪花算法
  * SnowFlake的结构如下(每部分用-分开):<br>
  * 0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000 <br>
@@ -21,6 +20,7 @@ package com.hongshu.common.utils;
  * 并且效率较高，经测试，SnowFlake每秒能够产生26万ID左右
  */
 public class SnowflakeIdWorker {
+
     // ==============================Fields===========================================
     /**
      * 开始时间截 (2015-01-01)
@@ -75,7 +75,7 @@ public class SnowflakeIdWorker {
     /**
      * 工作机器ID(0~31)
      */
-    private long workerId ;
+    private long workerId;
 
     /**
      * 数据中心ID(0~31)

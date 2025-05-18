@@ -2,10 +2,8 @@ package com.hongshu.common.utils;
 /**
  * 时间操作工具类
  *
- * @author: hongshu
- * 2018年5月8日 上午9:20:33
+ * @Author hongshu
  */
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,7 +62,7 @@ public class DateUtilss {
 
     /**
      * @return
-     * @author: hongshu
+     * @Author hongshu
      * @date 2018年6月14日
      */
     public static String getNowTimeFormat() {

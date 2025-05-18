@@ -5,7 +5,7 @@ import com.hongshu.common.utils.ConvertUtils;
 import com.hongshu.web.domain.entity.WebChat;
 import com.hongshu.web.domain.entity.WebChatUserRelation;
 import com.hongshu.web.domain.entity.WebUser;
-import com.hongshu.web.domain.vo.ChatUserRelationVo;
+import com.hongshu.web.domain.vo.ChatUserRelationVO;
 import com.hongshu.web.websocket.im.Message;
 import com.hongshu.web.mapper.WebChatUserRelationMapper;
 import com.hongshu.web.mapper.WebUserMapper;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 public class ChatUserMessage implements MessageFactory {
 
@@ -82,19 +82,19 @@ public class ChatUserMessage implements MessageFactory {
         List<WebChatUserRelation> chatUserRelationList = chatUserRelationMapper.selectList(new QueryWrapper<WebChatUserRelation>().eq("accept_uid", acceptUid).orderByDesc("create_time"));
         Set<String> uids = chatUserRelationList.stream().map(WebChatUserRelation::getSendUid).collect(Collectors.toSet());
         Map<String, WebUser> userMap = userMapper.selectBatchIds(uids).stream().collect(Collectors.toMap(WebUser::getId, user -> user));
-        List<ChatUserRelationVo> chatUserRelationVoList = new ArrayList<>();
+        List<ChatUserRelationVO> chatUserRelationVOList = new ArrayList<>();
         chatUserRelationList.forEach(item -> {
-            ChatUserRelationVo chatUserRelationVo = ConvertUtils.sourceToTarget(item, ChatUserRelationVo.class);
+            ChatUserRelationVO chatUserRelationVo = ConvertUtils.sourceToTarget(item, ChatUserRelationVO.class);
             WebUser user = userMap.get(item.getSendUid());
             chatUserRelationVo.setUid(String.valueOf(user.getId()));
             chatUserRelationVo.setUsername(user.getUsername());
             chatUserRelationVo.setAvatar(user.getAvatar());
-            chatUserRelationVoList.add(chatUserRelationVo);
+            chatUserRelationVOList.add(chatUserRelationVo);
         });
 
         Message currentUserMessage = new Message();
         currentUserMessage.setAcceptUid(acceptUid);
-        currentUserMessage.setContent(chatUserRelationVoList);
+        currentUserMessage.setContent(chatUserRelationVOList);
         currentUserMessage.setMsgType(5);
         webSocketServer.sendInfo(currentUserMessage);
     }

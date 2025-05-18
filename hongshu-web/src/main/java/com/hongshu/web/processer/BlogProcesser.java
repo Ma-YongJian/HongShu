@@ -10,8 +10,7 @@ import java.util.List;
 /**
  * 爬取的博客页面处理
  *
- * @author: hongshu
- * @date 2021年1月8日16:47:34
+ * @Author hongshu
  */
 @Component
 public class BlogProcesser implements PageProcessor {

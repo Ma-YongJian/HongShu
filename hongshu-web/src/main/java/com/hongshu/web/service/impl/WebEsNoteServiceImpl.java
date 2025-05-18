@@ -19,13 +19,13 @@ import com.hongshu.common.exception.web.HongshuException;
 import com.hongshu.common.utils.DozerUtil;
 import com.hongshu.common.utils.WebUtils;
 import com.hongshu.web.domain.dto.EsNoteDTO;
-import com.hongshu.web.domain.entity.WebCategory;
-import com.hongshu.web.domain.entity.WebLikeOrCollection;
+import com.hongshu.web.domain.entity.WebNavbar;
+import com.hongshu.web.domain.entity.WebLikeOrCollect;
 import com.hongshu.web.domain.entity.WebNote;
 import com.hongshu.web.domain.entity.WebUser;
-import com.hongshu.web.domain.vo.NoteSearchVo;
-import com.hongshu.web.mapper.WebCategoryMapper;
-import com.hongshu.web.mapper.WebLikeOrCollectionMapper;
+import com.hongshu.web.domain.vo.NoteSearchVO;
+import com.hongshu.web.mapper.WebNavbarMapper;
+import com.hongshu.web.mapper.WebLikeOrCollectMapper;
 import com.hongshu.web.mapper.WebNoteMapper;
 import com.hongshu.web.mapper.WebUserMapper;
 import com.hongshu.web.service.IWebEsNoteService;
@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
 /**
  * ES
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
 @Slf4j
@@ -50,13 +50,13 @@ public class WebEsNoteServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> im
     @Autowired
     private WebUserMapper userMapper;
     @Autowired
-    private WebCategoryMapper categoryMapper;
+    private WebNavbarMapper categoryMapper;
     @Autowired
     private WebNoteMapper noteMapper;
     @Autowired
     private ElasticsearchClient elasticsearchClient;
     @Autowired
-    private WebLikeOrCollectionMapper likeOrCollectionMapper;
+    private WebLikeOrCollectMapper likeOrCollectionMapper;
 
 
     /**
@@ -67,9 +67,9 @@ public class WebEsNoteServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> im
      * @param esNoteDTO   笔记
      */
     @Override
-    public Page<NoteSearchVo> getNoteByDTO(long currentPage, long pageSize, EsNoteDTO esNoteDTO) {
-        Page<NoteSearchVo> page = new Page<>();
-        List<NoteSearchVo> noteSearchVoList = new ArrayList<>();
+    public Page<NoteSearchVO> getNoteByDTO(long currentPage, long pageSize, EsNoteDTO esNoteDTO) {
+        Page<NoteSearchVO> page = new Page<>();
+        List<NoteSearchVO> noteSearchVOList = new ArrayList<>();
         try {
             SearchRequest.Builder builder = new SearchRequest.Builder().index(NoteConstant.NOTE_INDEX);
             if (StringUtils.isNotBlank(esNoteDTO.getKeyword())) {
@@ -99,19 +99,19 @@ public class WebEsNoteServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> im
             builder.from((int) (currentPage - 1) * (int) pageSize);
             builder.size((int) pageSize);
             SearchRequest searchRequest = builder.build();
-            SearchResponse<NoteSearchVo> searchResponse = elasticsearchClient.search(searchRequest, NoteSearchVo.class);
+            SearchResponse<NoteSearchVO> searchResponse = elasticsearchClient.search(searchRequest, NoteSearchVO.class);
             TotalHits totalHits = searchResponse.hits().total();
             page.setTotal(Objects.requireNonNull(totalHits).value());
-            List<Hit<NoteSearchVo>> hits = searchResponse.hits().hits();
-            for (Hit<NoteSearchVo> hit : hits) {
-                NoteSearchVo noteSearchVo = hit.source();
-                noteSearchVoList.add(noteSearchVo);
+            List<Hit<NoteSearchVO>> hits = searchResponse.hits().hits();
+            for (Hit<NoteSearchVO> hit : hits) {
+                NoteSearchVO noteSearchVo = hit.source();
+                noteSearchVOList.add(noteSearchVo);
             }
         } catch (Exception e) {
             e.printStackTrace();
             throw new HongshuException("es查找数据异常");
         }
-        page.setRecords(noteSearchVoList);
+        page.setRecords(noteSearchVOList);
         return page;
     }
 
@@ -122,8 +122,8 @@ public class WebEsNoteServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> im
      * @return
      */
     @Override
-    public List<WebCategory> getCategoryAgg(EsNoteDTO esNoteDTO) {
-        List<WebCategory> categoryList = categoryMapper.selectList(new QueryWrapper<WebCategory>().like("title", esNoteDTO.getKeyword()));
+    public List<WebNavbar> getCategoryAgg(EsNoteDTO esNoteDTO) {
+        List<WebNavbar> categoryList = categoryMapper.selectList(new QueryWrapper<WebNavbar>().like("title", esNoteDTO.getKeyword()));
         return categoryList;
     }
 
@@ -134,29 +134,29 @@ public class WebEsNoteServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> im
      * @param pageSize    分页数
      */
     @Override
-    public Page<NoteSearchVo> getRecommendNote(long currentPage, long pageSize) {
-        Page<NoteSearchVo> page = new Page<>();
-        List<NoteSearchVo> noteSearchVoList = new ArrayList<>();
+    public Page<NoteSearchVO> getRecommendNote(long currentPage, long pageSize) {
+        Page<NoteSearchVO> page = new Page<>();
+        List<NoteSearchVO> noteSearchVOList = new ArrayList<>();
         //得到当前用户的浏览记录
         try {
             SearchRequest.Builder builder = new SearchRequest.Builder().index(NoteConstant.NOTE_INDEX);
             builder.size(1000);
             SearchRequest searchRequest = builder.build();
-            SearchResponse<NoteSearchVo> searchResponse = elasticsearchClient.search(searchRequest, NoteSearchVo.class);
+            SearchResponse<NoteSearchVO> searchResponse = elasticsearchClient.search(searchRequest, NoteSearchVO.class);
             TotalHits totalHits = searchResponse.hits().total();
             //得到所有的数据
-            List<Hit<NoteSearchVo>> hits = searchResponse.hits().hits();
+            List<Hit<NoteSearchVO>> hits = searchResponse.hits().hits();
             if (CollectionUtil.isNotEmpty(hits)) {
-                for (Hit<NoteSearchVo> hit : hits) {
-                    NoteSearchVo noteSearchVo = hit.source();
-                    noteSearchVoList.add(noteSearchVo);
+                for (Hit<NoteSearchVO> hit : hits) {
+                    NoteSearchVO noteSearchVo = hit.source();
+                    noteSearchVOList.add(noteSearchVo);
                 }
 
-                Collections.shuffle(noteSearchVoList);
-                List<List<NoteSearchVo>> partition = Lists.partition(noteSearchVoList, (int) pageSize);
-                List<NoteSearchVo> noteSearchVos = partition.get((int) currentPage - 1);
+                Collections.shuffle(noteSearchVOList);
+                List<List<NoteSearchVO>> partition = Lists.partition(noteSearchVOList, (int) pageSize);
+                List<NoteSearchVO> noteSearchVOS = partition.get((int) currentPage - 1);
                 page.setTotal(totalHits != null ? totalHits.value() : 0);
-                page.setRecords(noteSearchVos);
+                page.setRecords(noteSearchVOS);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -211,9 +211,9 @@ public class WebEsNoteServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> im
      * @param pageSize    分页数
      */
     @Override
-    public Page<NoteSearchVo> getHotNote(long currentPage, long pageSize) {
-        Page<NoteSearchVo> page = new Page<>(currentPage, pageSize);
-        List<NoteSearchVo> noteSearchVoList = new ArrayList<>();
+    public Page<NoteSearchVO> getHotNote(long currentPage, long pageSize) {
+        Page<NoteSearchVO> page = new Page<>(currentPage, pageSize);
+        List<NoteSearchVO> noteSearchVOList = new ArrayList<>();
 
         try {
             // 构建搜索请求
@@ -226,21 +226,21 @@ public class WebEsNoteServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> im
             SearchRequest searchRequest = builder.build();
 
             // 执行搜索请求
-            SearchResponse<NoteSearchVo> searchResponse = elasticsearchClient.search(searchRequest, NoteSearchVo.class);
+            SearchResponse<NoteSearchVO> searchResponse = elasticsearchClient.search(searchRequest, NoteSearchVO.class);
             TotalHits totalHits = searchResponse.hits().total();
 
             // 获取搜索结果
-            List<Hit<NoteSearchVo>> hits = searchResponse.hits().hits();
+            List<Hit<NoteSearchVO>> hits = searchResponse.hits().hits();
             if (CollectionUtil.isNotEmpty(hits)) {
-                for (Hit<NoteSearchVo> hit : hits) {
-                    NoteSearchVo noteSearchVo = hit.source();
-                    noteSearchVoList.add(noteSearchVo);
+                for (Hit<NoteSearchVO> hit : hits) {
+                    NoteSearchVO noteSearchVo = hit.source();
+                    noteSearchVOList.add(noteSearchVo);
                 }
             }
 
             // 设置分页结果
             page.setTotal(totalHits != null ? totalHits.value() : 0);
-            page.setRecords(noteSearchVoList);
+            page.setRecords(noteSearchVOList);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -255,7 +255,7 @@ public class WebEsNoteServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> im
      * @param noteSearchVo 笔记
      */
     @Override
-    public void addNote(NoteSearchVo noteSearchVo) {
+    public void addNote(NoteSearchVO noteSearchVo) {
         try {
             CreateResponse createResponse = elasticsearchClient.create(e -> e.index(NoteConstant.NOTE_INDEX).id(noteSearchVo.getId()).document(noteSearchVo));
             log.info("createResponse.result{}", createResponse.result());
@@ -270,9 +270,9 @@ public class WebEsNoteServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> im
      * @param noteSearchVo 笔记
      */
     @Override
-    public void updateNote(NoteSearchVo noteSearchVo) {
+    public void updateNote(NoteSearchVO noteSearchVo) {
         try {
-            UpdateResponse<NoteSearchVo> updateResponse = elasticsearchClient.update(e -> e.index(NoteConstant.NOTE_INDEX).id(noteSearchVo.getId()).doc(noteSearchVo), NoteSearchVo.class);
+            UpdateResponse<NoteSearchVO> updateResponse = elasticsearchClient.update(e -> e.index(NoteConstant.NOTE_INDEX).id(noteSearchVo.getId()).doc(noteSearchVo), NoteSearchVO.class);
             log.info("updateResponse.result() = " + updateResponse.result());
         } catch (Exception e) {
             e.printStackTrace();
@@ -300,20 +300,20 @@ public class WebEsNoteServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> im
     @Override
     public void addNoteBulkData() {
         List<WebNote> noteList = noteMapper.selectList(new QueryWrapper<WebNote>().eq("audit_status", 1));
-        List<NoteSearchVo> noteSearchVoList = DozerUtil.convertor(noteList, NoteSearchVo.class);
-        for (NoteSearchVo noteSearchVo : noteSearchVoList) {
+        List<NoteSearchVO> noteSearchVOList = DozerUtil.convertor(noteList, NoteSearchVO.class);
+        for (NoteSearchVO noteSearchVo : noteSearchVOList) {
             WebUser user = userMapper.selectOne(new QueryWrapper<WebUser>().like("id", noteSearchVo.getUid()));
             noteSearchVo.setAvatar(user.getAvatar());
             noteSearchVo.setUsername(user.getUsername());
 
             // 是否点赞
-            List<WebLikeOrCollection> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollection>().eq("uid", user.getId()).eq("type", 1));
-            List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollection::getLikeOrCollectionId).collect(Collectors.toList());
+            List<WebLikeOrCollect> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollect>().eq("uid", user.getId()).eq("type", 1));
+            List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollect::getLikeOrCollectionId).collect(Collectors.toList());
             noteSearchVo.setIsLike(likeOrCollectionIds.contains(noteSearchVo.getId()));
         }
         try {
             List<BulkOperation> result = new ArrayList<>();
-            for (NoteSearchVo noteSearchVo : noteSearchVoList) {
+            for (NoteSearchVO noteSearchVo : noteSearchVOList) {
                 result.add(new BulkOperation.Builder().create(
                         d -> d.document(noteSearchVo).id(noteSearchVo.getId()).index(NoteConstant.NOTE_INDEX)).build());
             }

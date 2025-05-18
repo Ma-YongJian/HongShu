@@ -11,9 +11,7 @@ import java.util.Map;
 /**
  * 数据校验返回错误提示
  *
- * @author: hongshu
- * @date: 2019/8/16
- * @version: 1.0.0
+ * @Author hongshu
  */
 public abstract class BaseAssert {
 

@@ -21,8 +21,7 @@ import java.util.regex.Pattern;
 /**
  * 爬取的图片页面处理
  *
- * @author: hongshu
- * @date 2021年1月8日16:47:34
+ * @Author hongshu
  */
 @Component
 @Slf4j

@@ -8,8 +8,7 @@ import java.io.Serializable;
 /**
  * 自定义新增操作相关的异常
  *
- * @author: hongshu
- * @date 2020年9月9日16:41:19
+ * @Author hongshu
  */
 public class InsertException extends RuntimeException implements Serializable {
 

@@ -8,8 +8,7 @@ import java.io.Serializable;
 /**
  * 自定义查询操作相关的异常
  *
- * @author: hongshu
- * @date 2020年9月9日16:58:07
+ * @Author hongshu
  */
 public class QueryException extends RuntimeException implements Serializable {
 

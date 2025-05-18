@@ -3,12 +3,12 @@ package com.hongshu.web.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hongshu.web.domain.entity.WebAlbumNoteRelation;
-import com.hongshu.web.domain.vo.NoteSearchVo;
+import com.hongshu.web.domain.vo.NoteSearchVO;
 
 /**
  * 专辑-笔记
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public interface IWebAlbumNoteRelationService extends IService<WebAlbumNoteRelation> {
 
@@ -20,5 +20,5 @@ public interface IWebAlbumNoteRelationService extends IService<WebAlbumNoteRelat
      * @param albumId     专辑ID
      * @param userId      用户ID
      */
-    Page<NoteSearchVo> getNoteByAlbumId(long currentPage, long pageSize, String albumId, String userId);
+    Page<NoteSearchVO> getNoteByAlbumId(long currentPage, long pageSize, String albumId, String userId);
 }

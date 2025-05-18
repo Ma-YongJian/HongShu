@@ -5,7 +5,7 @@ import com.hongshu.web.domain.entity.WebChat;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @Mapper
 public interface WebChatMapper extends BaseMapper<WebChat> {

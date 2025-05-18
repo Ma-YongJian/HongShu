@@ -9,11 +9,11 @@ import java.util.List;
 /**
  * 用户
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @Accessors(chain = true)
-public class TrendVo implements Serializable {
+public class TrendVO implements Serializable {
 
     private String nid;
 

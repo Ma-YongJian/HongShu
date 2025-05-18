@@ -8,8 +8,7 @@ import java.io.Serializable;
 /**
  * 自定义删除操作相关的异常
  *
- * @author: hongshu
- * @date 2020年9月9日16:41:26
+ * @Author hongshu
  */
 public class DeleteException extends RuntimeException implements Serializable {
 

@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @Slf4j
 public class UploadFileToLoacl implements OssFactory {

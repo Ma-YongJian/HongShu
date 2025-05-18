@@ -8,7 +8,7 @@ import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import com.hongshu.common.constant.NoteConstant;
 import com.hongshu.web.domain.dto.EsRecordDTO;
-import com.hongshu.web.domain.vo.RecordSearchVo;
+import com.hongshu.web.domain.vo.RecordSearchVO;
 import com.hongshu.web.service.IWebEsRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * ES
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
 @Slf4j
@@ -35,11 +35,11 @@ public class WebEsRecordServiceImpl implements IWebEsRecordService {
      * 获取搜索记录
      */
     @Override
-    public List<RecordSearchVo> getRecordByKeyWord(EsRecordDTO esRecordDTO) {
+    public List<RecordSearchVO> getRecordByKeyWord(EsRecordDTO esRecordDTO) {
         String keyword = esRecordDTO.getKeyword();
         String uid = esRecordDTO.getUid();
 
-        List<RecordSearchVo> records = new ArrayList<>();
+        List<RecordSearchVO> records = new ArrayList<>();
         try {
             // 构建搜索请求
             SearchRequest.Builder builder = new SearchRequest.Builder().index(NoteConstant.RECORD_INDEX);
@@ -62,14 +62,14 @@ public class WebEsRecordServiceImpl implements IWebEsRecordService {
 
             // 执行搜索请求
             SearchRequest searchRequest = builder.build();
-            SearchResponse<RecordSearchVo> searchResponse = elasticsearchClient.search(searchRequest, RecordSearchVo.class);
+            SearchResponse<RecordSearchVO> searchResponse = elasticsearchClient.search(searchRequest, RecordSearchVO.class);
 
             // 获取搜索结果
-            List<Hit<RecordSearchVo>> hits = searchResponse.hits().hits();
+            List<Hit<RecordSearchVO>> hits = searchResponse.hits().hits();
 
             // 处理搜索结果
-            for (Hit<RecordSearchVo> hit : hits) {
-                RecordSearchVo recordSearchVo = hit.source();
+            for (Hit<RecordSearchVO> hit : hits) {
+                RecordSearchVO recordSearchVo = hit.source();
                 records.add(recordSearchVo);
             }
 
@@ -84,8 +84,8 @@ public class WebEsRecordServiceImpl implements IWebEsRecordService {
      * 热门搜索
      */
     @Override
-    public List<RecordSearchVo> getHotRecord() {
-        List<RecordSearchVo> records = new ArrayList<>();
+    public List<RecordSearchVO> getHotRecord() {
+        List<RecordSearchVO> records = new ArrayList<>();
         try {
             BooleanResponse exists = elasticsearchClient.indices().exists(e -> e
                     .index(NoteConstant.RECORD_INDEX));
@@ -96,11 +96,11 @@ public class WebEsRecordServiceImpl implements IWebEsRecordService {
             builder.sort(o -> o.field(f -> f.field("searchCount").order(SortOrder.Desc)));
             builder.size(10);
             SearchRequest searchRequest = builder.build();
-            SearchResponse<RecordSearchVo> searchResponse = elasticsearchClient.search(searchRequest, RecordSearchVo.class);
+            SearchResponse<RecordSearchVO> searchResponse = elasticsearchClient.search(searchRequest, RecordSearchVO.class);
             //得到所有的数据
-            List<Hit<RecordSearchVo>> hits = searchResponse.hits().hits();
-            for (Hit<RecordSearchVo> hit : hits) {
-                RecordSearchVo recordSearchVo = hit.source();
+            List<Hit<RecordSearchVO>> hits = searchResponse.hits().hits();
+            for (Hit<RecordSearchVO> hit : hits) {
+                RecordSearchVO recordSearchVo = hit.source();
                 records.add(recordSearchVo);
             }
             return records;
@@ -130,21 +130,21 @@ public class WebEsRecordServiceImpl implements IWebEsRecordService {
             }
             builder.size(10);
             SearchRequest searchRequest = builder.build();
-            SearchResponse<RecordSearchVo> searchResponse = elasticsearchClient.search(searchRequest, RecordSearchVo.class);
+            SearchResponse<RecordSearchVO> searchResponse = elasticsearchClient.search(searchRequest, RecordSearchVO.class);
             //得到所有的数据
-            List<Hit<RecordSearchVo>> hits = searchResponse.hits().hits();
+            List<Hit<RecordSearchVO>> hits = searchResponse.hits().hits();
 
             List<String> contents = new ArrayList<>();
             // 高亮查询
-            for (Hit<RecordSearchVo> hit : hits) {
-                RecordSearchVo recordSearchVo = hit.source();
+            for (Hit<RecordSearchVO> hit : hits) {
+                RecordSearchVO recordSearchVo = hit.source();
                 recordSearchVo.setSearchCount(recordSearchVo.getSearchCount() + 1);
-                UpdateResponse<RecordSearchVo> response = elasticsearchClient.update(u -> u.index(NoteConstant.RECORD_INDEX).id(hit.id()).doc(recordSearchVo), RecordSearchVo.class);
+                UpdateResponse<RecordSearchVO> response = elasticsearchClient.update(u -> u.index(NoteConstant.RECORD_INDEX).id(hit.id()).doc(recordSearchVo), RecordSearchVO.class);
                 log.info("response", response.toString());
                 contents.add(recordSearchVo.getContent());
             }
             if (StringUtils.isNotBlank(keyword) && !contents.contains(keyword.trim())) {
-                RecordSearchVo recordSearchVo = new RecordSearchVo();
+                RecordSearchVO recordSearchVo = new RecordSearchVO();
                 recordSearchVo.setContent(keyword);
                 recordSearchVo.setSearchCount(1L);
                 String id = RandomUtil.randomString(12);

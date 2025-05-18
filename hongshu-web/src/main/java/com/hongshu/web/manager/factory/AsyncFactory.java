@@ -7,8 +7,8 @@ import com.hongshu.common.utils.StringUtils;
 import com.hongshu.common.utils.ip.AddressUtils;
 import com.hongshu.common.utils.ip.IpUtils;
 import com.hongshu.common.utils.spring.SpringUtils;
-import com.hongshu.web.domain.entity.WebLoginInfor;
-import com.hongshu.web.service.sys.ISysLoginInforService;
+import com.hongshu.web.domain.entity.WebLoginLog;
+import com.hongshu.web.service.ISysLoginInforService;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ import java.util.TimerTask;
 /**
  * 异步工厂（产生任务用）
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public class AsyncFactory {
 
@@ -55,7 +55,7 @@ public class AsyncFactory {
                 // 获取客户端浏览器
                 String browser = userAgent.getBrowser().getName();
                 // 封装对象
-                WebLoginInfor loginInfor = new WebLoginInfor();
+                WebLoginLog loginInfor = new WebLoginLog();
                 loginInfor.setUid(Long.valueOf(uid));
                 loginInfor.setUsername(username);
                 loginInfor.setIpaddr(ip);

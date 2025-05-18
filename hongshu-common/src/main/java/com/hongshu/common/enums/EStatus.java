@@ -3,10 +3,10 @@ package com.hongshu.common.enums;
 /**
  * 状态枚举类
  *
- * @author: hongshu
- * @date 2017年10月4日16:34:00
+ * @Author xuzhixiang
  */
 public class EStatus {
+
     /**
      * 删除的
      */

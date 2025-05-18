@@ -3,22 +3,22 @@ package com.hongshu.web.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hongshu.web.domain.entity.WebTag;
-import com.hongshu.web.domain.vo.NoteVo;
-import com.hongshu.web.domain.vo.TagVo;
+import com.hongshu.web.domain.vo.NoteVO;
+import com.hongshu.web.domain.vo.TagVO;
 
 import java.util.List;
 
 /**
  * 标签
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public interface IWebTagService extends IService<WebTag> {
 
     /**
      * 获取热门标签
      */
-    List<TagVo> getHotTagList();
+    List<TagVO> getHotTagList();
 
     /**
      * 根据标签ID获取图片信息
@@ -28,7 +28,7 @@ public interface IWebTagService extends IService<WebTag> {
      * @param tagId       标签id
      * @param type        类型
      */
-    Page<NoteVo> getNoteByTagId(long currentPage, long pageSize, String tagId, Integer type);
+    Page<NoteVO> getNoteByTagId(long currentPage, long pageSize, String tagId, Integer type);
 
     /**
      * 根据关键词获取标签

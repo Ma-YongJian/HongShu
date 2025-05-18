@@ -16,8 +16,7 @@ import java.util.Date;
 /**
  * Entity基类
  *
- * @author: hongshu
- * @date 2018年9月17日09:47:12
+ * @Author hongshu
  */
 @Data
 @SuppressWarnings("rawtypes")

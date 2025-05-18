@@ -7,7 +7,7 @@ import com.hongshu.web.service.IWebTagNoteRelationService;
 import org.springframework.stereotype.Service;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
 public class WebTagNoteRelationServiceImpl extends ServiceImpl<WebTagNoteRelationMapper, WebTagNoteRelation> implements IWebTagNoteRelationService {

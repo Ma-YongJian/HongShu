@@ -7,10 +7,10 @@ import org.springframework.context.i18n.LocaleContextHolder;
 /**
  * 国际化
  *
- * @author: hongshu Mark sunlightcs@gmail.com
- * @since 1.0.0
+ * @Author hongshu
  */
 public class MessageUtil {
+
     private static MessageSource messageSource;
 
     static {

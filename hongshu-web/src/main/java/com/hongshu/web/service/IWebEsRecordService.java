@@ -1,26 +1,26 @@
 package com.hongshu.web.service;
 
 import com.hongshu.web.domain.dto.EsRecordDTO;
-import com.hongshu.web.domain.vo.RecordSearchVo;
+import com.hongshu.web.domain.vo.RecordSearchVO;
 
 import java.util.List;
 
 /**
  * ES
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public interface IWebEsRecordService {
 
     /**
      * 获取搜索记录
      */
-    List<RecordSearchVo> getRecordByKeyWord(EsRecordDTO esRecordDTO);
+    List<RecordSearchVO> getRecordByKeyWord(EsRecordDTO esRecordDTO);
 
     /**
      * 热门关键词
      */
-    List<RecordSearchVo> getHotRecord();
+    List<RecordSearchVO> getHotRecord();
 
     /**
      * 增加搜索记录

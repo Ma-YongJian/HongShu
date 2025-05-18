@@ -3,8 +3,7 @@ package com.hongshu.common.global;
 /**
  * 状态码常量
  *
- * @author: hongshu
- * @create: 2019-12-04-14:56
+ * @Author hongshu
  */
 public class ECode {
 

@@ -8,7 +8,7 @@ import com.hongshu.web.service.IWebCommentSyncService;
 import org.springframework.stereotype.Service;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
 public class WebCommentSyncServiceImpl extends ServiceImpl<WebCommentSyncMapper, WebCommentSync> implements IWebCommentSyncService {

@@ -9,8 +9,7 @@ import lombok.Data;
 /**
  * 系统配置表
  *
- * @author: hongshu
- * @since 2020年1月21日09:02:29
+ * @Author hongshu
  */
 @Data
 @TableName("t_system_config")

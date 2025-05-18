@@ -9,11 +9,12 @@ import java.io.Serializable;
 /**
  * 评论
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @ApiModel(value = "评论DTO")
 public class CommentDTO implements Serializable {
+
     @ApiModelProperty("笔记id")
     private String nid;
 

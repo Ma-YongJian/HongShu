@@ -5,7 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 全局配置
- * @author: hongshu
+ *
+ * @Author hongshu
  */
 @ApiModel("全局配置变量")
 public interface GlobalConstant {

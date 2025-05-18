@@ -5,11 +5,7 @@ import lombok.Getter;
 /**
  * 数字枚举
  *
- * @author: hongshu
- * @date: 2020/10/21
- * @version: 1.0.0
-
-
+ * @Author hongshu
  */
 @Getter
 public enum IntEnum {

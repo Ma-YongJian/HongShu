@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * 评论
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @Accessors(chain = true)
-public class CommentVo implements Serializable {
+public class CommentVO implements Serializable {
 
     private String id;
 
@@ -42,6 +42,8 @@ public class CommentVo implements Serializable {
 
     private String replyUsername;
 
+    private String replyAvatar;
+
     private String content;
 
     private String replyContent;
@@ -58,6 +60,6 @@ public class CommentVo implements Serializable {
 
     private Long twoCommentCount;
 
-    private List<CommentVo> children;
+    private List<CommentVO> children;
 
 }

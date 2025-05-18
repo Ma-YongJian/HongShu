@@ -3,10 +3,10 @@ package com.hongshu.common.constant;
 /**
  * 返回状态码
  *
- * @author: hongshu
+ * @Author hongshu
  */
-public class HttpStatus
-{
+public class HttpStatus {
+
     /**
      * 操作成功
      */

@@ -3,7 +3,6 @@ package com.hongshu.web.service;
 import com.hongshu.common.core.domain.entity.SystemConfig;
 import com.hongshu.web.domain.entity.WebFile;
 import com.hongshu.web.domain.vo.FileVO;
-import com.hongshu.web.service.sys.SuperService;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +11,7 @@ import java.util.List;
 /**
  * 文件服务类
  *
- * @author: hongshu
- * @since 2018-09-17
+ * @Author hongshu
  */
 public interface IWebFileService extends SuperService<WebFile> {
 

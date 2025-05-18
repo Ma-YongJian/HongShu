@@ -3,11 +3,9 @@ package com.hongshu.common.global;
 /**
  * SQL字段常量
  *
- * @author: hongshu
- * @date 2018年10月20日15:13:09
+ * @Author hongshu
  */
 public final class SQLConf extends BaseSQLConf {
-
 
     /**
      * FileSort表

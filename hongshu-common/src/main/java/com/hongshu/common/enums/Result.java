@@ -5,12 +5,11 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @ApiModel("统一返回结果")
 @Data
 public class Result<T> {
-
 
     @ApiModelProperty("状态码")
     private Integer code;

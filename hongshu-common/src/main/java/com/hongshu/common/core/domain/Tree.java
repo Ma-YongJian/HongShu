@@ -8,11 +8,7 @@ import java.util.List;
 /**
  * 树形结构
  *
- * @author: hongshu
- * @date: 2020/12/8
- * @version: 1.0.0
-
-
+ * @Author hongshu
  */
 @Data
 public class Tree implements Serializable {

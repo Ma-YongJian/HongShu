@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hongshu.web.domain.entity.WebTag;
-import com.hongshu.web.domain.vo.NoteVo;
-import com.hongshu.web.domain.vo.TagVo;
+import com.hongshu.web.domain.vo.NoteVO;
+import com.hongshu.web.domain.vo.TagVO;
 import com.hongshu.web.mapper.WebTagMapper;
 import com.hongshu.web.service.IWebTagService;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 标签
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
 public class WebTagServiceImpl extends ServiceImpl<WebTagMapper, WebTag> implements IWebTagService {
@@ -26,7 +26,7 @@ public class WebTagServiceImpl extends ServiceImpl<WebTagMapper, WebTag> impleme
      * 获取热门标签
      */
     @Override
-    public List<TagVo> getHotTagList() {
+    public List<TagVO> getHotTagList() {
         return null;
     }
 
@@ -39,7 +39,7 @@ public class WebTagServiceImpl extends ServiceImpl<WebTagMapper, WebTag> impleme
      * @param type        类型
      */
     @Override
-    public Page<NoteVo> getNoteByTagId(long currentPage, long pageSize, String tagId, Integer type) {
+    public Page<NoteVO> getNoteByTagId(long currentPage, long pageSize, String tagId, Integer type) {
         return null;
     }
 

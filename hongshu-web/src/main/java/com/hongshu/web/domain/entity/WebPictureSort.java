@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 相册分类实体类
  *
- * @author: hongshu
+ * @Author xuzhixiang
  * @date 2018年9月17日16:10:38
  */
 @Data

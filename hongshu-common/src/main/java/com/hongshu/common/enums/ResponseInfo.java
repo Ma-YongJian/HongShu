@@ -8,11 +8,7 @@ import java.io.Serializable;
 /**
  * 通用返回对象
  *
- * @author: hongshu
- * @date: 2020/11/18
- * @version: 1.0.0
-
-
+ * @Author hongshu
  */
 @Data
 public class ResponseInfo<T> implements Serializable {

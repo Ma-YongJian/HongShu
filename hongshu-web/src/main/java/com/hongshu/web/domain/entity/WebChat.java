@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * 聊天
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @TableName("web_chat")

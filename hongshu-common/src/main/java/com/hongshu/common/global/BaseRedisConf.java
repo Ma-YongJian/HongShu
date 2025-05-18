@@ -3,8 +3,7 @@ package com.hongshu.common.global;
 /**
  * Redis常量基类
  *
- * @author: hongshu
- * @create: 2020-03-06-20:43
+ * @Author hongshu
  */
 public class BaseRedisConf {
 

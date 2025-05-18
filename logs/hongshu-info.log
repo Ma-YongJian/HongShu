@@ -1,0 +1,43 @@
+11:15:14.507 [restartedMain] INFO  c.h.HongshuApplication - [logStarting,55] - Starting HongshuApplication using Java 1.8.0_321 on xiaomagedeMBP.lan with PID 34729 (/Users/mayongjian/Desktop/hongshu-gitee/hongshu/hongshu-server/target/classes started by mayongjian in /Users/mayongjian/Desktop/hongshu-gitee/hongshu)
+11:15:14.510 [restartedMain] INFO  c.h.HongshuApplication - [logStartupProfileInfo,686] - The following 1 profile is active: "druid"
+11:15:14.516 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+11:15:17.454 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+11:15:17.455 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+11:15:17.456 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.75]
+11:15:17.535 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+11:15:19.952 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,1009] - {dataSource-1} inited
+11:15:22.024 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2174] - {dataSource-1} closing ...
+11:15:22.039 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2247] - {dataSource-1} closed
+11:15:22.207 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
+12:33:01.177 [restartedMain] INFO  c.h.HongshuApplication - [logStarting,55] - Starting HongshuApplication using Java 17.0.5 on xiaomagedeMBP.lan with PID 53324 (/Users/mayongjian/Desktop/hongshu-github/hongshu/hongshu-server/target/classes started by mayongjian in /Users/mayongjian/Desktop/hongshu-github/hongshu)
+12:33:01.178 [restartedMain] INFO  c.h.HongshuApplication - [logStartupProfileInfo,686] - The following 1 profile is active: "druid"
+12:33:01.179 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+12:33:02.241 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+12:33:02.241 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+12:33:02.241 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.75]
+12:33:02.287 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+12:33:03.317 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,1009] - {dataSource-1} inited
+12:33:04.971 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+12:33:04.977 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+12:33:04.977 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+12:33:04.978 [restartedMain] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+12:33:04.978 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+12:33:04.978 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+12:33:04.978 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+12:33:04.978 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@6be31569
+12:33:05.505 [restartedMain] INFO  c.g.d.c.DozerBeanMapperBuilder - [build,544] - Initializing Dozer. Version: 6.5.2, Thread Name: restartedMain
+12:33:05.507 [restartedMain] INFO  c.g.d.c.u.RuntimeUtils - [isOSGi,53] - OSGi support is false
+12:33:05.510 [restartedMain] INFO  c.g.d.c.c.r.LegacyPropertiesSettingsResolver - [processFile,60] - Trying to find Dozer configuration file: dozer.properties
+12:33:05.511 [restartedMain] INFO  c.g.d.c.c.r.LegacyPropertiesSettingsResolver - [processFile,63] - Failed to find dozer.properties via com.github.dozermapper.core.config.resolvers.LegacyPropertiesSettingsResolver.
+12:33:05.513 [restartedMain] INFO  c.g.d.c.e.ELExpressionFactory - [isSupported,60] - javax.el is not supported; Failed to resolve ExpressionFactory, com.sun.el.ExpressionFactoryImpl
+12:33:06.109 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+12:33:06.304 [restartedMain] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+12:33:06.311 [restartedMain] INFO  c.h.HongshuApplication - [logStarted,61] - Started HongshuApplication in 5.285 seconds (JVM running for 5.603)
+12:33:10.598 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.

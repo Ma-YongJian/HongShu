@@ -9,9 +9,7 @@ import java.text.DecimalFormat;
 /**
  * 数据工具类
  *
- * @author: hongshu
- * @date: 2020/12/24
- * @version: 1.0.0
+ * @Author hongshu
  */
 public class NumberUtil {
 

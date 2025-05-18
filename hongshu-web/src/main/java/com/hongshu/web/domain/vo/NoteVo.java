@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * 笔记
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @Accessors(chain = true)
-public class NoteVo implements Serializable {
+public class NoteVO implements Serializable {
 
     private String id;
 

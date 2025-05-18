@@ -21,8 +21,7 @@ import java.util.List;
 /**
  * 本地对象存储服务 Minio上传工具类
  *
- * @author: hongshu
- * @create: 2020-10-19-10:22
+ * @Author hongshu
  */
 @Component
 @Slf4j

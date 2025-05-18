@@ -3,8 +3,7 @@ package com.hongshu.common.global;
 /**
  * 字符常量
  *
- * @author: hongshu
- * @date: 2019年12月4日22:47:53
+ * @Author hongshu
  */
 public class Constants {
 

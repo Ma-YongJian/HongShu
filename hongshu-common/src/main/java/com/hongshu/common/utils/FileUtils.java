@@ -29,8 +29,7 @@ import java.util.List;
 /**
  * 文件操作工具类
  *
- * @author: hongshu
- * @date 2017年10月2日12:16:27
+ * @Author hongshu
  */
 @Slf4j
 public class FileUtils {

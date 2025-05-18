@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * 评论
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @TableName("web_comment")

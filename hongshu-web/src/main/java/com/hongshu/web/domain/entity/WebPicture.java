@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * 图片实体类
  *
- * @author: hongshu
+ * @Author xuzhixiang
  * @date 2018年9月17日16:08:58
  */
 @Data

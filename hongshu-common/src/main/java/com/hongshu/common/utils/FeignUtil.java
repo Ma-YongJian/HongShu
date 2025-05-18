@@ -20,8 +20,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Feign操作工具类
  *
- * @author: hongshu
- * @create: 2020-02-29-15:39
+ * @Author hongshu
  */
 @Slf4j
 @Component

@@ -12,10 +12,10 @@ import java.util.Objects;
 /**
  * 抛出异常工具类
  *
- * @author: hongshu
- * @date 2019年12月4日22:47:18
+ * @Author hongshu
  */
 public class ThrowableUtils {
+
     /**
      * 校验参数正确,拼装字段名和值到错误信息
      *

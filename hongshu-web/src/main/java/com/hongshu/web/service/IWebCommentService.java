@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hongshu.web.domain.dto.CommentDTO;
 import com.hongshu.web.domain.entity.WebComment;
-import com.hongshu.web.domain.vo.CommentVo;
+import com.hongshu.web.domain.vo.CommentVO;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * 评论
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public interface IWebCommentService extends IService<WebComment> {
 
@@ -24,7 +24,7 @@ public interface IWebCommentService extends IService<WebComment> {
      * @param pageSize    分页数
      * @param noteId      笔记ID
      */
-    Page<CommentVo> getOneCommentByNoteId(long currentPage, long pageSize, String noteId);
+    Page<CommentVO> getOneCommentByNoteId(long currentPage, long pageSize, String noteId);
 
     /**
      * 根据评论ID获取当前评论
@@ -38,7 +38,7 @@ public interface IWebCommentService extends IService<WebComment> {
      *
      * @param commentDTO 评论
      */
-    CommentVo saveCommentByDTO(CommentDTO commentDTO);
+    CommentVO saveCommentByDTO(CommentDTO commentDTO);
 
     /**
      * 根据评论ID同步评论集
@@ -54,7 +54,7 @@ public interface IWebCommentService extends IService<WebComment> {
      * @param pageSize     分页数
      * @param oneCommentId 一级评论ID
      */
-    Page<CommentVo> getTwoCommentByOneCommentId(long currentPage, long pageSize, String oneCommentId);
+    Page<CommentVO> getTwoCommentByOneCommentId(long currentPage, long pageSize, String oneCommentId);
 
     /**
      * 获取当前用户通知的评论集
@@ -62,7 +62,7 @@ public interface IWebCommentService extends IService<WebComment> {
      * @param currentPage 当前页
      * @param pageSize    分页数
      */
-    IPage<CommentVo> getNoticeComment(long currentPage, long pageSize);
+    IPage<CommentVO> getNoticeComment(long currentPage, long pageSize);
 
     /**
      * 获取所有的一级评论并携带二级评论
@@ -71,7 +71,7 @@ public interface IWebCommentService extends IService<WebComment> {
      * @param pageSize    分页数
      * @param noteId      笔记ID
      */
-    Page<CommentVo> getCommentWithCommentByNoteId(long currentPage, long pageSize, String noteId);
+    Page<CommentVO> getCommentWithCommentByNoteId(long currentPage, long pageSize, String noteId);
 
     /**
      * 自动滚动到当前评论

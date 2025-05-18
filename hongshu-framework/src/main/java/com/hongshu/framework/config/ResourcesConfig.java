@@ -19,10 +19,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * 通用配置
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Configuration
 public class ResourcesConfig implements WebMvcConfigurer {
+
     @Autowired
     private RepeatSubmitInterceptor repeatSubmitInterceptor;
 
@@ -36,7 +37,6 @@ public class ResourcesConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/swagger-ui/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/")
                 .setCacheControl(CacheControl.maxAge(5, TimeUnit.HOURS).cachePublic());
-        ;
     }
 
     /**

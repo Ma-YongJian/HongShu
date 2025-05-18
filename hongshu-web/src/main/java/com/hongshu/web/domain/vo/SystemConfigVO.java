@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * 网站配置VO
  *
- * @author: hongshu
+ * @Author hongshu
  * @since 2018年11月11日14:54:12
  */
 @Data

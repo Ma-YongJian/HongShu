@@ -9,8 +9,7 @@ import java.io.*;
 /**
  * 文件相关工具类
  *
- * @author: hongshu
- * @date 2020/9/14 9:31
+ * @Author hongshu
  */
 @Slf4j
 public class AboutFileUtil {

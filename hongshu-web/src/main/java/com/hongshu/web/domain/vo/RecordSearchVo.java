@@ -7,10 +7,10 @@ import java.io.Serializable;
 /**
  * ES-记录
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
-public class RecordSearchVo implements Serializable {
+public class RecordSearchVO implements Serializable {
 
     private String uid;
 

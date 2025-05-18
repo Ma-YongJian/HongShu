@@ -5,11 +5,7 @@ import lombok.Getter;
 /**
  * 全局返回参数
  *
- * @author: hongshu
- * @date: 2020/8/6
- * @version: 1.0.0
-
-
+ * @Author hongshu
  */
 @Getter
 public enum ResponseEnum {

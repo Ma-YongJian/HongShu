@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hongshu.web.mapper.sys.SysStatisticsMapper">
+<mapper namespace="com.hongshu.web.mapper.SysStatisticsMapper">
 
     <select id="getTotalData" resultType="java.util.Map">
         SELECT (SELECT count(1) FROM sys_user t)     AS allUserCount,
@@ -9,7 +9,7 @@
                (SELECT count(1) FROM sys_dept t)     AS allDeptCount,
                (SELECT count(1) FROM sys_role t)     AS allRoleCount,
                (SELECT count(1) FROM web_album t)    AS allAccessCount,
-               (SELECT count(1) FROM web_category t) AS allModelCount,
+               (SELECT count(1) FROM web_navbar t) AS allModelCount,
                (SELECT count(1) FROM sys_job t)      AS allJobCount
     </select>
 

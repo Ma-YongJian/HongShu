@@ -3,10 +3,10 @@ package com.hongshu.common.enums;
 /**
  * 数据源
  *
- * @author: hongshu
+ * @Author hongshu
  */
-public enum DataSourceType
-{
+public enum DataSourceType {
+
     /**
      * 主库
      */

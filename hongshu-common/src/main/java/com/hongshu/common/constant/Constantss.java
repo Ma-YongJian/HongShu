@@ -3,8 +3,7 @@ package com.hongshu.common.constant;
 /**
  * 字符常量
  *
- * @author: hongshu
- * @date: 2019年12月4日22:47:53
+ * @Author hongshu
  */
 public class Constantss {
 
@@ -33,9 +32,9 @@ public class Constantss {
     /**
      * 文件名后缀-img
      */
-    public final static String FILE_SUFFIX_WEBP="webp";
-    public final static String FILE_SUFFIX_TIF="tif";
-    public final static String FILE_SUFFIX_BMP="bmp";
+    public final static String FILE_SUFFIX_WEBP = "webp";
+    public final static String FILE_SUFFIX_TIF = "tif";
+    public final static String FILE_SUFFIX_BMP = "bmp";
     public final static String FILE_SUFFIX_GIF = "gif";
     public final static String FILE_SUFFIX_JPG = "jpg";
     public final static String FILE_SUFFIX_JPEG = "jpeg";
@@ -47,18 +46,18 @@ public class Constantss {
     public final static String FILE_SUFFIX_XLS = "xls";
     public final static String FILE_SUFFIX_PDF = "pdf";
     public final static String FILE_SUFFIX_DOC = "doc";
-    public final static String FILE_SUFFIX_HLP="hlp";
-    public final static String FILE_SUFFIX_WPS="wps";
-    public final static String FILE_SUFFIX_RTF="rtf";
-    public final static String FILE_SUFFIX_HTML="html";
-    public final static String FILE_SUFFIX_MD="md";
+    public final static String FILE_SUFFIX_HLP = "hlp";
+    public final static String FILE_SUFFIX_WPS = "wps";
+    public final static String FILE_SUFFIX_RTF = "rtf";
+    public final static String FILE_SUFFIX_HTML = "html";
+    public final static String FILE_SUFFIX_MD = "md";
     public final static String FILE_SUFFIX_DOCX = "docx";
 
-    public final static String FILE_SUFFIX_SQL="sql";
-    public final static String FILE_SUFFIX_CSS="css";
-    public final static String FILE_SUFFIX_JS="js";
-    public final static String FILE_SUFFIX_VUE="vue";
-    public final static String FILE_SUFFIX_JAVA="java";
+    public final static String FILE_SUFFIX_SQL = "sql";
+    public final static String FILE_SUFFIX_CSS = "css";
+    public final static String FILE_SUFFIX_JS = "js";
+    public final static String FILE_SUFFIX_VUE = "vue";
+    public final static String FILE_SUFFIX_JAVA = "java";
 
     public final static String FILE_SUFFIX_RAR = "rar";
     public final static String FILE_SUFFIX_ZIP = "zip";

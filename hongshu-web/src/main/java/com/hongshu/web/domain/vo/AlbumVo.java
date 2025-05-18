@@ -9,11 +9,11 @@ import java.io.Serializable;
 /**
  * 专辑
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @Accessors(chain = true)
-public class AlbumVo implements Serializable {
+public class AlbumVO implements Serializable {
 
     /**
      *

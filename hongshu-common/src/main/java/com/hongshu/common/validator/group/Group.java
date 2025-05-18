@@ -5,8 +5,7 @@ import javax.validation.GroupSequence;
 /**
  * 定义校验顺序，如果AddGroup组失败，则UpdateGroup组不会再校验
  *
- * @author: hongshu Mark sunlightcs@gmail.com
- * @since 1.0.0
+ * @Author hongshu
  */
 @GroupSequence({AddGroup.class, UpdateGroup.class})
 public interface Group {

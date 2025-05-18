@@ -3,7 +3,7 @@ package com.hongshu.common.global;
 /**
  * SQL字段常量
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public class BaseSQLConf {
 

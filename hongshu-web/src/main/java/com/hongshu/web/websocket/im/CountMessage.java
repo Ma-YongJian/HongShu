@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 public class CountMessage implements Serializable {

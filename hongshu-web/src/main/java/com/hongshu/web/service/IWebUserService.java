@@ -3,14 +3,14 @@ package com.hongshu.web.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hongshu.web.domain.entity.WebUser;
-import com.hongshu.web.domain.vo.NoteSearchVo;
+import com.hongshu.web.domain.vo.NoteSearchVO;
 
 import java.util.List;
 
 /**
  * 用户
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public interface IWebUserService extends IService<WebUser> {
 
@@ -22,7 +22,7 @@ public interface IWebUserService extends IService<WebUser> {
      * @param userId      用户ID
      * @param type        类型
      */
-    Page<NoteSearchVo> getTrendByUser(long currentPage, long pageSize, String userId, Integer type);
+    Page<NoteSearchVO> getTrendByUser(long currentPage, long pageSize, String userId, Integer type);
 
     WebUser getUserById(String userId);
 

@@ -13,11 +13,12 @@ import java.io.Serializable;
 /**
  * 专辑
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @ApiModel(value = "专辑")
 public class AlbumDTO implements Serializable {
+
     @ApiModelProperty(value = "专辑id")
     private String id;
 

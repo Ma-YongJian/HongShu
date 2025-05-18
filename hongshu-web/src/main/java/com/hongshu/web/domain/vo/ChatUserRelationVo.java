@@ -7,10 +7,10 @@ import java.io.Serializable;
 /**
  * 聊天-用户
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
-public class ChatUserRelationVo implements Serializable {
+public class ChatUserRelationVO implements Serializable {
 
     private String id;
 

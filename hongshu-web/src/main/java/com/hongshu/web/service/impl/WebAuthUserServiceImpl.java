@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 权限
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Slf4j
 @Service

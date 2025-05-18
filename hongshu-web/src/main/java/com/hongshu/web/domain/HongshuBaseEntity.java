@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * 基础实体类
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @ApiModel("基础实体类")
 @Data

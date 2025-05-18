@@ -3,7 +3,7 @@ package com.hongshu.web.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hongshu.web.domain.entity.WebNote;
-import com.hongshu.web.domain.vo.NoteVo;
+import com.hongshu.web.domain.vo.NoteVO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 笔记
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public interface IWebNoteService extends IService<WebNote> {
 
@@ -20,7 +20,7 @@ public interface IWebNoteService extends IService<WebNote> {
      *
      * @param noteId 笔记ID
      */
-    NoteVo getNoteById(String noteId);
+    NoteVO getNoteById(String noteId);
 
     /**
      * 新增笔记
@@ -51,7 +51,7 @@ public interface IWebNoteService extends IService<WebNote> {
      * @param currentPage 当前页
      * @param pageSize    分页数
      */
-    Page<NoteVo> getHotPage(long currentPage, long pageSize);
+    Page<NoteVO> getHotPage(long currentPage, long pageSize);
 
     /**
      * 置顶笔记

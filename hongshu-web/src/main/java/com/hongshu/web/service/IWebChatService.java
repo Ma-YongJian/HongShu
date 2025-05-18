@@ -3,7 +3,7 @@ package com.hongshu.web.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hongshu.web.domain.entity.WebChat;
-import com.hongshu.web.domain.vo.ChatUserRelationVo;
+import com.hongshu.web.domain.vo.ChatUserRelationVO;
 import com.hongshu.web.websocket.im.CountMessage;
 import com.hongshu.web.websocket.im.Message;
 
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 聊天
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public interface IWebChatService extends IService<WebChat> {
 
@@ -35,7 +35,7 @@ public interface IWebChatService extends IService<WebChat> {
     /**
      * 获取当前用户下所有聊天的用户信息
      */
-    List<ChatUserRelationVo> getChatUserList();
+    List<ChatUserRelationVO> getChatUserList();
 
     /**
      * 获取所有聊天记录数量

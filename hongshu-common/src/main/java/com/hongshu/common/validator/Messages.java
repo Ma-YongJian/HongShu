@@ -2,10 +2,11 @@ package com.hongshu.common.validator;
 
 /**
  * 错误消息模板
- * @author: hongshu
- * @date 2020年12月31日21:31:58
+ *
+ * @Author hongshu
  */
 public interface Messages {
+
     /**
      * 类内部使用,自定义reject value
      */

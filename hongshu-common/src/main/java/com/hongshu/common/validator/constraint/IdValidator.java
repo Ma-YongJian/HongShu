@@ -10,8 +10,7 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * ID校验器，主要判断是否为空，并且长度是否为32
  *
- * @author: hongshu
- * @date 2019年12月4日22:48:43
+ * @Author hongshu
  */
 public class IdValidator implements ConstraintValidator<IdValid, String> {
 

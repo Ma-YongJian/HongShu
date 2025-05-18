@@ -15,11 +15,7 @@ import java.util.regex.Pattern;
 /**
  * 日期工具类
  *
- * @author: hongshu
- * @date: 2019/8/29
- * @version: 1.0.0
-
-
+ * @Author hongshu
  */
 public class DateUtil {
 

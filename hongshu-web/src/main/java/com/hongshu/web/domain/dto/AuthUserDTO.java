@@ -11,7 +11,7 @@ import java.io.Serializable;
 /**
  * 权限用户
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @ApiModel("权限用户dto")
 @Data

@@ -13,8 +13,7 @@ import java.util.Map;
 /**
  * 校验工具类
  *
- * @author: hongshu Mark sunlightcs@gmail.com
- * @since 1.0.0
+ * @Author hongshu
  */
 public class AssertUtils {
 

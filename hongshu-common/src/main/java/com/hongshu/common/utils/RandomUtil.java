@@ -6,10 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * 随机工具类
  *
- * @author: hongshu
- * @date: 2020/12/24
- * @version: 1.0.0
- * https://www.panday94.xyz
+ * @Author hongshu
  */
 public class RandomUtil {
 

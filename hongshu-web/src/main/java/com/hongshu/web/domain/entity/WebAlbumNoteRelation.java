@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * 专辑-笔记
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @TableName("web_album_note_relation")

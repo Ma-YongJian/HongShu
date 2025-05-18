@@ -3,8 +3,7 @@ package com.hongshu.common.global;
 /**
  * 操作状态码常量
  *
- * @author: hongshu
- * @create: 2020年9月9日17:17:52
+ * @Author hongshu
  */
 public class ErrorCode {
 

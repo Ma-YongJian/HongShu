@@ -3,10 +3,10 @@ package com.hongshu.common.enums;
 /**
  * 业务操作类型
  *
- * @author: hongshu
+ * @Author hongshu
  */
-public enum BusinessType
-{
+public enum BusinessType {
+
     /**
      * 其它
      */

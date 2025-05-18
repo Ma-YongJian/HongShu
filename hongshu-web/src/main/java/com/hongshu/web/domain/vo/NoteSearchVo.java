@@ -8,11 +8,11 @@ import java.io.Serializable;
 /**
  * ES-笔记
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @Accessors(chain = true)
-public class NoteSearchVo implements Serializable {
+public class NoteSearchVO implements Serializable {
 
     private String id;
 
@@ -21,6 +21,8 @@ public class NoteSearchVo implements Serializable {
     private String content;
 
     private String noteCover;
+
+    private String noteType;
 
     private Integer noteCoverHeight;
 

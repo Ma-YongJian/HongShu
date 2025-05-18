@@ -17,9 +17,7 @@ import java.util.Optional;
 /**
  * 公共查询参数
  *
- * @author: hongshu
- * @date: 2023/8/17
- * @version: 1.0.0
+ * @Author hongshu
  */
 @Data
 public class Query extends LinkedHashMap<String, Object> implements Serializable {

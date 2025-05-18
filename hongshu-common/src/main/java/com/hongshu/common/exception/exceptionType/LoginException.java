@@ -8,8 +8,7 @@ import java.io.Serializable;
 /**
  * 自定义登录相关的异常
  *
- * @author: hongshu
- * @date 2020年9月9日16:41:32
+ * @Author hongshu
  */
 public class LoginException extends RuntimeException implements Serializable {
 

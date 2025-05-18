@@ -5,7 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * token常量
- * @author: hongshu
+ *
+ * @Author hongshu
  */
 @ApiModel("token常量")
 public interface TokenConstant {
@@ -14,5 +15,5 @@ public interface TokenConstant {
     String ACCESS_TOKEN = "accessToken";
 
     @ApiModelProperty("refreshToken")
-    String REFRESH_TOKEN= "refreshToken";
+    String REFRESH_TOKEN = "refreshToken";
 }

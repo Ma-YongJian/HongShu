@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * 聊天用户
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @TableName("web_chat_user_relation")

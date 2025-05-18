@@ -7,7 +7,7 @@ import com.hongshu.web.websocket.im.CountMessage;
 import com.hongshu.web.websocket.im.Message;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 public class ChatCountMessage implements MessageFactory {
 

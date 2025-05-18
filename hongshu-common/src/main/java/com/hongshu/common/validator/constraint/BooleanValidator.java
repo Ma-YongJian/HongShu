@@ -8,8 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * 判断Boolean类型是否为空【校验器】
  *
- * @author: hongshu
- * @date 2019年12月4日13:16:06
+ * @Author hongshu
  */
 public class BooleanValidator implements ConstraintValidator<BooleanNotNULL, Boolean> {
 

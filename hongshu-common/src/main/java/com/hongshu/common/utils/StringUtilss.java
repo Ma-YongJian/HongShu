@@ -12,8 +12,7 @@ import java.util.regex.Pattern;
 /**
  * 对字符串转换的一些操作
  *
- * @author: hongshu
- * @date 2020年9月20日10:56:45
+ * @Author hongshu
  */
 @Slf4j
 public class StringUtilss {

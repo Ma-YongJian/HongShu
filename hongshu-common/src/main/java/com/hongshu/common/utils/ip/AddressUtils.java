@@ -12,9 +12,10 @@ import org.slf4j.LoggerFactory;
 /**
  * 获取地址类
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public class AddressUtils {
+
     private static final Logger log = LoggerFactory.getLogger(AddressUtils.class);
 
     // IP地址查询

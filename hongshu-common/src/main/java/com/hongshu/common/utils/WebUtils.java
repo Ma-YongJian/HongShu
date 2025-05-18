@@ -9,11 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  * web端工具类
  */
 @Slf4j
 public class WebUtils {
+
     private WebUtils() {
     }
 

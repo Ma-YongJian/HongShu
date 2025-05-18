@@ -2,18 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.hongshu</groupId>
     <artifactId>hognshu</artifactId>
-    <version>3.8.7</version>
+    <version>1.0.0</version>
 
     <name>hongshu</name>
     <packaging>pom</packaging>
     <description>红薯系统</description>
 
     <modules>
-        <module>hongshu-admin</module>
+        <module>hongshu-server</module>
         <module>hongshu-common</module>
         <module>hongshu-framework</module>
         <module>hongshu-quartz</module>
@@ -22,7 +22,7 @@
     </modules>
 
     <properties>
-        <hongshu.version>3.8.7</hongshu.version>
+        <hongshu.version>1.0.0</hongshu.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -52,7 +52,6 @@
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
-
             <!-- SpringFramework的依赖配置-->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -61,7 +60,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <!-- SpringBoot的依赖配置-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -70,35 +68,30 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <!-- 阿里数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-
             <!-- 解析客户端操作系统、浏览器等 -->
             <dependency>
                 <groupId>eu.bitwalker</groupId>
                 <artifactId>UserAgentUtils</artifactId>
                 <version>${bitwalker.version}</version>
             </dependency>
-
             <!-- pagehelper 分页插件 -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper.boot.version}</version>
             </dependency>
-
             <!-- 获取系统信息 -->
             <dependency>
                 <groupId>com.github.oshi</groupId>
                 <artifactId>oshi-core</artifactId>
                 <version>${oshi.version}</version>
             </dependency>
-
             <!-- Swagger3依赖 -->
             <dependency>
                 <groupId>io.springfox</groupId>
@@ -111,113 +104,73 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
             <!-- io常用工具类 -->
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons.io.version}</version>
             </dependency>
-
             <!-- excel工具 -->
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
             </dependency>
-
             <!-- velocity代码生成使用模板 -->
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
             </dependency>
-
             <!-- 阿里JSON解析器 -->
             <dependency>
                 <groupId>com.alibaba.fastjson2</groupId>
                 <artifactId>fastjson2</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
-
             <!-- Token生成与解析-->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jwt.version}</version>
             </dependency>
-
             <!-- 验证码 -->
             <dependency>
                 <groupId>pro.fessional</groupId>
                 <artifactId>kaptcha</artifactId>
                 <version>${kaptcha.version}</version>
             </dependency>
-
-            <!-- 定时任务-->
-            <dependency>
-                <groupId>com.hongshu</groupId>
-                <artifactId>hongshu-quartz</artifactId>
-                <version>${hongshu.version}</version>
-            </dependency>
-
-            <!-- 核心模块-->
-            <dependency>
-                <groupId>com.hongshu</groupId>
-                <artifactId>hongshu-framework</artifactId>
-                <version>${hongshu.version}</version>
-            </dependency>
-
-            <!-- 系统模块-->
-            <dependency>
-                <groupId>com.hongshu</groupId>
-                <artifactId>hongshu-system</artifactId>
-                <version>${hongshu.version}</version>
-            </dependency>
-
-            <!-- 通用工具-->
-            <dependency>
-                <groupId>com.hongshu</groupId>
-                <artifactId>hongshu-common</artifactId>
-                <version>${hongshu.version}</version>
-            </dependency>
-
             <!-- lombok-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
-
             <!-- hutool-->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
-
-            <!-- es-->
+            <!-- elasticsearch-->
             <dependency>
                 <groupId>co.elastic.clients</groupId>
                 <artifactId>elasticsearch-java</artifactId>
                 <version>${elasticsearch-version}</version>
             </dependency>
-
             <!-- guava-->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
-
             <!-- gson-->
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
             </dependency>
-
-            <!-- baomidou-->
+            <!-- mybatis-plus-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -229,21 +182,48 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
-            <!-- qiniu-->
+            <!-- 七牛云 -->
             <dependency>
                 <groupId>com.qiniu</groupId>
                 <artifactId>qiniu-java-sdk</artifactId>
                 <version>${qiniu.version}</version>
             </dependency>
-
             <!-- websocket-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-websocket</artifactId>
                 <version>${websocket.version}</version>
             </dependency>
-
+            <!-- 定时任务-->
+            <dependency>
+                <groupId>com.hongshu</groupId>
+                <artifactId>hongshu-quartz</artifactId>
+                <version>${hongshu.version}</version>
+            </dependency>
+            <!-- 核心模块-->
+            <dependency>
+                <groupId>com.hongshu</groupId>
+                <artifactId>hongshu-framework</artifactId>
+                <version>${hongshu.version}</version>
+            </dependency>
+            <!-- 系统模块-->
+            <dependency>
+                <groupId>com.hongshu</groupId>
+                <artifactId>hongshu-system</artifactId>
+                <version>${hongshu.version}</version>
+            </dependency>
+            <!-- web模块-->
+            <dependency>
+                <groupId>com.hongshu</groupId>
+                <artifactId>hongshu-web</artifactId>
+                <version>${hongshu.version}</version>
+            </dependency>
+            <!-- 通用工具-->
+            <dependency>
+                <groupId>com.hongshu</groupId>
+                <artifactId>hongshu-common</artifactId>
+                <version>${hongshu.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -1,24 +1,24 @@
 package com.hongshu.system.service.impl;
 
-import java.util.List;
-
 import com.hongshu.system.domain.SysLogininfor;
+import com.hongshu.system.mapper.SysLogininforMapper;
 import com.hongshu.system.service.ISysLogininforService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.hongshu.system.mapper.SysLogininforMapper;
+
+import java.util.List;
 
 /**
  * 系统访问日志情况信息 服务层处理
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
-public class SysLogininforServiceImpl implements ISysLogininforService
-{
+public class SysLogininforServiceImpl implements ISysLogininforService {
 
     @Autowired
     private SysLogininforMapper logininforMapper;
+
 
     /**
      * 新增系统登录日志
@@ -26,8 +26,7 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * @param logininfor 访问日志对象
      */
     @Override
-    public void insertLogininfor(SysLogininfor logininfor)
-    {
+    public void insertLogininfor(SysLogininfor logininfor) {
         logininforMapper.insertLogininfor(logininfor);
     }
 
@@ -38,8 +37,7 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * @return 登录记录集合
      */
     @Override
-    public List<SysLogininfor> selectLogininforList(SysLogininfor logininfor)
-    {
+    public List<SysLogininfor> selectLogininforList(SysLogininfor logininfor) {
         return logininforMapper.selectLogininforList(logininfor);
     }
 
@@ -50,8 +48,7 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * @return 结果
      */
     @Override
-    public int deleteLogininforByIds(Long[] infoIds)
-    {
+    public int deleteLogininforByIds(Long[] infoIds) {
         return logininforMapper.deleteLogininforByIds(infoIds);
     }
 
@@ -59,8 +56,7 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * 清空系统登录日志
      */
     @Override
-    public void cleanLogininfor()
-    {
+    public void cleanLogininfor() {
         logininforMapper.cleanLogininfor();
     }
 }

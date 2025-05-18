@@ -6,9 +6,7 @@ import lombok.Data;
 /**
  * 参数验证失败异常
  *
- * @author: hongshu
- * @date: 2020/3/4
- * @version: 1.0.0
+ * @Author hongshu
  */
 @Data
 public class ValidateException extends RuntimeException {

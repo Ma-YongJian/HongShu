@@ -3,8 +3,7 @@ package com.hongshu.common.enums;
 /**
  * 七牛云存储空间枚举类
  *
- * @author: hongshu
- * @Date: 2020年1月23日09:18:00
+ * @Author hongshu
  */
 public enum EQiNiuArea {
 

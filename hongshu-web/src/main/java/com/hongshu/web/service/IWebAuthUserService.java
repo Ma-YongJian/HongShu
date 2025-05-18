@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * 权限
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public interface IWebAuthUserService extends IService<WebUser> {
 

@@ -5,8 +5,9 @@ import com.hongshu.web.domain.entity.WebTag;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @Mapper
 public interface WebTagMapper extends BaseMapper<WebTag> {
+
 }

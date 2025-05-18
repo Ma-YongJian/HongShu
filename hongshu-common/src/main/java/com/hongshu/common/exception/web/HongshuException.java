@@ -7,13 +7,14 @@ import lombok.Data;
 /**
  * 异常
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 public class HongshuException extends RuntimeException {
 
     // 异常状态码
     private Integer code;
+
 
     /**
      * 通过状态码和错误消息创建异常对象

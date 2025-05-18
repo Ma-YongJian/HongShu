@@ -9,12 +9,11 @@ import com.hongshu.common.enums.ResultCodeEnum;
 import com.hongshu.common.exception.web.HongshuException;
 import com.hongshu.common.utils.ConvertUtils;
 import com.hongshu.common.utils.WebUtils;
-import com.hongshu.web.auth.AuthContextHolder;
-import com.hongshu.web.domain.entity.WebLikeOrCollection;
+import com.hongshu.web.domain.entity.WebLikeOrCollect;
 import com.hongshu.web.domain.entity.WebNote;
 import com.hongshu.web.domain.entity.WebUser;
-import com.hongshu.web.domain.vo.NoteSearchVo;
-import com.hongshu.web.mapper.WebLikeOrCollectionMapper;
+import com.hongshu.web.domain.vo.NoteSearchVO;
+import com.hongshu.web.mapper.WebLikeOrCollectMapper;
 import com.hongshu.web.mapper.WebNoteMapper;
 import com.hongshu.web.mapper.WebUserMapper;
 import com.hongshu.web.service.IWebEsNoteService;
@@ -29,7 +28,7 @@ import java.util.stream.Collectors;
 /**
  * 用户
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
 public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> implements IWebUserService {
@@ -41,7 +40,7 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
     @Autowired
     private IWebEsNoteService esNoteService;
     @Autowired
-    private WebLikeOrCollectionMapper likeOrCollectionMapper;
+    private WebLikeOrCollectMapper likeOrCollectionMapper;
 
 
     /**
@@ -53,8 +52,8 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
      * @param type        类型
      */
     @Override
-    public Page<NoteSearchVo> getTrendByUser(long currentPage, long pageSize, String userId, Integer type) {
-        Page<NoteSearchVo> resultPage;
+    public Page<NoteSearchVO> getTrendByUser(long currentPage, long pageSize, String userId, Integer type) {
+        Page<NoteSearchVO> resultPage;
         if (type == 1) {
             resultPage = this.getLikeOrCollectionPageByUser(currentPage, pageSize, userId);
         } else {
@@ -123,43 +122,43 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
     /**
      * 用户数据
      */
-    private Page<NoteSearchVo> getLikeOrCollectionPageByUser(long currentPage, long pageSize, String userId, Integer type) {
-        Page<NoteSearchVo> noteSearchVoPage = new Page<>();
-        Page<WebLikeOrCollection> likeOrCollectionPage;
+    private Page<NoteSearchVO> getLikeOrCollectionPageByUser(long currentPage, long pageSize, String userId, Integer type) {
+        Page<NoteSearchVO> noteSearchVoPage = new Page<>();
+        Page<WebLikeOrCollect> likeOrCollectionPage;
         // 得到当前用户发布的所有图片
         if (type == 2) {
             // 所有点赞图片
-            likeOrCollectionPage = likeOrCollectionMapper.selectPage(new Page<>(currentPage, pageSize), new QueryWrapper<WebLikeOrCollection>().eq("uid", userId).eq("type", 1).orderByDesc("create_time"));
+            likeOrCollectionPage = likeOrCollectionMapper.selectPage(new Page<>(currentPage, pageSize), new QueryWrapper<WebLikeOrCollect>().eq("uid", userId).eq("type", 1).orderByDesc("create_time"));
         } else {
             // 所有收藏图片
-            likeOrCollectionPage = likeOrCollectionMapper.selectPage(new Page<>(currentPage, pageSize), new QueryWrapper<WebLikeOrCollection>().eq("uid", userId).eq("type", 3).orderByDesc("create_time"));
+            likeOrCollectionPage = likeOrCollectionMapper.selectPage(new Page<>(currentPage, pageSize), new QueryWrapper<WebLikeOrCollect>().eq("uid", userId).eq("type", 3).orderByDesc("create_time"));
         }
-        List<WebLikeOrCollection> likeOrCollectionList = likeOrCollectionPage.getRecords();
+        List<WebLikeOrCollect> likeOrCollectionList = likeOrCollectionPage.getRecords();
         long total = likeOrCollectionPage.getTotal();
 
         // 是否点赞
-        List<WebLikeOrCollection> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollection>().eq("uid", userId).eq("type", 1));
-        List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollection::getLikeOrCollectionId).collect(Collectors.toList());
+        List<WebLikeOrCollect> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollect>().eq("uid", userId).eq("type", 1));
+        List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollect::getLikeOrCollectionId).collect(Collectors.toList());
 
 
-        Set<String> uids = likeOrCollectionList.stream().map(WebLikeOrCollection::getPublishUid).collect(Collectors.toSet());
+        Set<String> uids = likeOrCollectionList.stream().map(WebLikeOrCollect::getPublishUid).collect(Collectors.toSet());
         Map<String, WebUser> userMap = this.listByIds(uids).stream().collect(Collectors.toMap(WebUser::getId, user -> user));
 
-        Set<String> nids = likeOrCollectionList.stream().map(WebLikeOrCollection::getLikeOrCollectionId).collect(Collectors.toSet());
+        Set<String> nids = likeOrCollectionList.stream().map(WebLikeOrCollect::getLikeOrCollectionId).collect(Collectors.toSet());
         Map<String, WebNote> noteMap = noteMapper.selectBatchIds(nids).stream().collect(Collectors.toMap(WebNote::getId, note -> note));
 
-        List<NoteSearchVo> noteSearchVoList = new ArrayList<>();
+        List<NoteSearchVO> noteSearchVOList = new ArrayList<>();
 
-        for (WebLikeOrCollection model : likeOrCollectionList) {
+        for (WebLikeOrCollect model : likeOrCollectionList) {
             WebNote note = noteMap.get(model.getLikeOrCollectionId());
-            NoteSearchVo noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVo.class);
+            NoteSearchVO noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVO.class);
             WebUser user = userMap.get(model.getPublishUid());
             noteSearchVo.setUsername(user.getUsername())
                     .setIsLike(likeOrCollectionIds.contains(note.getId()))
                     .setAvatar(user.getAvatar());
-            noteSearchVoList.add(noteSearchVo);
+            noteSearchVOList.add(noteSearchVo);
         }
-        noteSearchVoPage.setRecords(noteSearchVoList);
+        noteSearchVoPage.setRecords(noteSearchVOList);
         noteSearchVoPage.setTotal(total);
         return noteSearchVoPage;
     }
@@ -179,8 +178,8 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
     /**
      * 用户数据
      */
-    private Page<NoteSearchVo> getLikeOrCollectionPageByUser(long currentPage, long pageSize, String userId) {
-        Page<NoteSearchVo> noteSearchVoPage = new Page<>();
+    private Page<NoteSearchVO> getLikeOrCollectionPageByUser(long currentPage, long pageSize, String userId) {
+        Page<NoteSearchVO> noteSearchVoPage = new Page<>();
         // 得到当前用户发布的所有专辑
         String currentUserId = WebUtils.getRequestHeader(UserConstant.USER_ID);
         Page<WebNote> notePage;
@@ -192,14 +191,14 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
         Set<String> uids = noteList.stream().map(WebNote::getUid).collect(Collectors.toSet());
 
         // 是否点赞
-        List<WebLikeOrCollection> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollection>().eq("uid", userId).eq("type", 1));
-        List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollection::getLikeOrCollectionId).collect(Collectors.toList());
+        List<WebLikeOrCollect> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollect>().eq("uid", userId).eq("type", 1));
+        List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollect::getLikeOrCollectionId).collect(Collectors.toList());
 
         if (CollectionUtil.isNotEmpty(uids)) {
             Map<String, WebUser> userMap = this.listByIds(uids).stream().collect(Collectors.toMap(WebUser::getId, user -> user));
-            List<NoteSearchVo> noteSearchVoList = new ArrayList<>();
+            List<NoteSearchVO> noteSearchVOList = new ArrayList<>();
             for (WebNote note : noteList) {
-                NoteSearchVo noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVo.class);
+                NoteSearchVO noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVO.class);
                 WebUser user = userMap.get(note.getUid());
                 noteSearchVo.setUsername(user.getUsername())
                         .setAvatar(user.getAvatar())
@@ -208,9 +207,9 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
                 if (!currentUserId.equals(userId)) {
                     noteSearchVo.setViewCount(null);
                 }
-                noteSearchVoList.add(noteSearchVo);
+                noteSearchVOList.add(noteSearchVo);
             }
-            noteSearchVoPage.setRecords(noteSearchVoList);
+            noteSearchVoPage.setRecords(noteSearchVOList);
             noteSearchVoPage.setTotal(total);
         }
         return noteSearchVoPage;

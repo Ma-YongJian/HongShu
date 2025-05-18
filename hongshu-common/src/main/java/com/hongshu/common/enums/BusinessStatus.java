@@ -3,11 +3,10 @@ package com.hongshu.common.enums;
 /**
  * 操作状态
  *
- * @author: hongshu
- *
+ * @Author hongshu
  */
-public enum BusinessStatus
-{
+public enum BusinessStatus {
+
     /**
      * 成功
      */

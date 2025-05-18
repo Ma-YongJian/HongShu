@@ -3,8 +3,7 @@ package com.hongshu.common.global;
 /**
  * 常量的基类
  *
- * @author: hongshu
- * @date 2018年9月25日00:06:54
+ * @Author hongshu
  */
 public class BaseSysConf {
 
@@ -108,7 +107,7 @@ public class BaseSysConf {
     public final static String BLOG_SORT_BY_MONTH = "BLOG_SORT_BY_MONTH";
     /**
      * redis分割符
-      */
+     */
     public final static String REDIS_SEGMENTATION = ":";
     public final static String EQUAL_TO = "=";
     /**

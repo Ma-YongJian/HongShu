@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @Slf4j
 public class JwtUtils {
+
     //定义两个常量，1.设置过期时间 2.密钥（随机，由公司生成）
     public static final String APP_SECRET = "ukc8BDbRigUDaY6pZFfWus2jZWLPHO";
 

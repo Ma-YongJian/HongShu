@@ -3,8 +3,7 @@ package com.hongshu.common.exception.exceptionType;
 /**
  * 自定义业务异常
  *
- * @author: hongshu
- * @date 2019年12月4日22:47:32
+ * @Author hongshu
  */
 public class BusinessException extends RuntimeException {
 

@@ -4,12 +4,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hongshu.web.domain.dto.AlbumDTO;
 import com.hongshu.web.domain.entity.WebAlbum;
-import com.hongshu.web.domain.vo.AlbumVo;
+import com.hongshu.web.domain.vo.AlbumVO;
 
 /**
  * 专辑
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public interface IWebAlbumService extends IService<WebAlbum> {
 
@@ -34,7 +34,7 @@ public interface IWebAlbumService extends IService<WebAlbum> {
      *
      * @param albumId 专辑ID
      */
-    AlbumVo getAlbumById(String albumId);
+    AlbumVO getAlbumById(String albumId);
 
     /**
      * 删除专辑

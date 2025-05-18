@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @Slf4j
 public class UserLoginInterceptor implements HandlerInterceptor {
@@ -27,7 +27,6 @@ public class UserLoginInterceptor implements HandlerInterceptor {
      * @param request  current HTTP request
      * @param response current HTTP response
      * @param handler  chosen handler to execute, for type and/or instance evaluation
-     * @return
      */
     @Override
     public boolean preHandle(HttpServletRequest request,

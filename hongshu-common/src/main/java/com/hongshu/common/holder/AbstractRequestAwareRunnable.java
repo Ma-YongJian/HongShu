@@ -6,8 +6,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 /**
  * RequestAwareRunnable
  *
- * @author: hongshu
- * @create: 2020-03-04-23:04
+ * @Author hongshu
  */
 public abstract class AbstractRequestAwareRunnable implements Runnable {
 

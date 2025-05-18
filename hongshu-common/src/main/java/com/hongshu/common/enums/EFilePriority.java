@@ -3,10 +3,10 @@ package com.hongshu.common.enums;
 /**
  * 文件显示优先级 枚举类
  *
- * @author: hongshu
- * @date 2020年4月7日16:42:29
+ * @Author hongshu
  */
 public class EFilePriority {
+
     /**
      * 本地文件存储
      */

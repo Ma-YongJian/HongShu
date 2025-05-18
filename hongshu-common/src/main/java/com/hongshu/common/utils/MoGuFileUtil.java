@@ -13,8 +13,7 @@ import java.util.List;
 /**
  * 蘑菇文件操作
  *
- * @author: hongshu
- * @create: 2020-06-16-9:33
+ * @Author hongshu
  */
 @Slf4j
 public class MoGuFileUtil {

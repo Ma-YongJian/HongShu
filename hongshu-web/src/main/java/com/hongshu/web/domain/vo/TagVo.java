@@ -3,7 +3,7 @@ package com.hongshu.web.domain.vo;
 /**
  * 标签
  *
- * @author: hongshu
+ * @Author hongshu
  */
-public class TagVo {
+public class TagVO {
 }

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 笔记
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @ApiModel(value = "笔记DTO")

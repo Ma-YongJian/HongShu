@@ -3,8 +3,9 @@ package com.hongshu.web.websocket.factory;
 import com.hongshu.web.websocket.im.Message;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 public interface MessageFactory {
+
     void sendMessage(Message message);
 }

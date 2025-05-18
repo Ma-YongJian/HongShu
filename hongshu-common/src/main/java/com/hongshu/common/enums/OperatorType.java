@@ -3,10 +3,10 @@ package com.hongshu.common.enums;
 /**
  * 操作人类别
  *
- * @author: hongshu
+ * @Author hongshu
  */
-public enum OperatorType
-{
+public enum OperatorType {
+
     /**
      * 其它
      */

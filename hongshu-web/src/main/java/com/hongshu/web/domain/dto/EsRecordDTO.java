@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * ES-笔记
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 public class EsRecordDTO implements Serializable {

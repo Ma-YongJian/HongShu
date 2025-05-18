@@ -7,7 +7,7 @@
     <parent>
         <artifactId>hognshu</artifactId>
         <groupId>com.hongshu</groupId>
-        <version>3.8.7</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>hongshu-framework</artifactId>
@@ -57,7 +57,6 @@
         <dependency>
             <groupId>com.hongshu</groupId>
             <artifactId>hongshu-web</artifactId>
-            <version>3.8.7</version>
         </dependency>
     </dependencies>
 

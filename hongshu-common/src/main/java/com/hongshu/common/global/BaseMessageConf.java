@@ -3,10 +3,10 @@ package com.hongshu.common.global;
 /**
  * 消息通知
  *
- * @author: hongshu
- * @create: 2019-12-29-20:16
+ * @Author hongshu
  */
 public class BaseMessageConf {
+
     public static final String OPERATION_SUCCESS = "操作成功";
     public static final String OPERATION_FAIL = "操作失败";
     public static final String INSERT_SUCCESS = "插入成功";

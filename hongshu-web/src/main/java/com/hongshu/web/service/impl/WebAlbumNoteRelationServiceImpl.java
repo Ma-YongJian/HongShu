@@ -8,7 +8,7 @@ import com.hongshu.web.auth.AuthContextHolder;
 import com.hongshu.web.domain.entity.WebAlbumNoteRelation;
 import com.hongshu.web.domain.entity.WebNote;
 import com.hongshu.web.domain.entity.WebUser;
-import com.hongshu.web.domain.vo.NoteSearchVo;
+import com.hongshu.web.domain.vo.NoteSearchVO;
 import com.hongshu.web.mapper.WebAlbumNoteRelationMapper;
 import com.hongshu.web.mapper.WebNoteMapper;
 import com.hongshu.web.mapper.WebUserMapper;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 /**
  * 专辑-笔记
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
 public class WebAlbumNoteRelationServiceImpl extends ServiceImpl<WebAlbumNoteRelationMapper, WebAlbumNoteRelation> implements IWebAlbumNoteRelationService {
@@ -45,8 +45,8 @@ public class WebAlbumNoteRelationServiceImpl extends ServiceImpl<WebAlbumNoteRel
      * @param userId      用户ID
      */
     @Override
-    public Page<NoteSearchVo> getNoteByAlbumId(long currentPage, long pageSize, String albumId, String userId) {
-        Page<NoteSearchVo> result = new Page<>();
+    public Page<NoteSearchVO> getNoteByAlbumId(long currentPage, long pageSize, String albumId, String userId) {
+        Page<NoteSearchVO> result = new Page<>();
         Page<WebAlbumNoteRelation> albumImgRelationPage = this.page(new Page<>(currentPage, pageSize), new QueryWrapper<WebAlbumNoteRelation>().eq("aid", albumId).orderByDesc("create_time"));
         long total = albumImgRelationPage.getTotal();
         List<WebAlbumNoteRelation> records = albumImgRelationPage.getRecords();
@@ -69,14 +69,14 @@ public class WebAlbumNoteRelationServiceImpl extends ServiceImpl<WebAlbumNoteRel
         noteList.forEach(item -> {
             noteMap.put(String.valueOf(item.getId()), item);
         });
-        List<NoteSearchVo> noteVoList = new ArrayList<>();
+        List<NoteSearchVO> noteVoList = new ArrayList<>();
         WebNote note;
         WebUser user;
-        NoteSearchVo noteSearchVo;
+        NoteSearchVO noteSearchVo;
         for (WebAlbumNoteRelation model : records) {
             note = noteMap.get(model.getNid());
             user = userMap.get(note.getUid());
-            noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVo.class);
+            noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVO.class);
             noteSearchVo.setUsername(user.getUsername())
                     .setAvatar(user.getAvatar());
             noteVoList.add(noteSearchVo);

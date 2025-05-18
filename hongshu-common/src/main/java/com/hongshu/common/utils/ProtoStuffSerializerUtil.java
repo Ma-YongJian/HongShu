@@ -13,10 +13,10 @@ import java.util.List;
 /**
  * ProtoStuffSerializerUtil
  *
- * @author: hongshu Sirius
- * @date 2019-1-8
+ * @Author hongshu
  */
 public class ProtoStuffSerializerUtil {
+
     /**
      * 序列化对象
      *

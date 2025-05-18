@@ -7,10 +7,11 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @Mapper
 public interface WebUserMapper extends BaseMapper<WebUser> {
+
     /**
      * 根据条件分页查询角色数据
      *

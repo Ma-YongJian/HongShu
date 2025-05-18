@@ -9,12 +9,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hongshu.common.constant.NoteConstant;
 import com.hongshu.common.utils.ConvertUtils;
 import com.hongshu.web.domain.dto.BrowseRecordDTO;
-import com.hongshu.web.domain.entity.WebLikeOrCollection;
+import com.hongshu.web.domain.entity.WebLikeOrCollect;
 import com.hongshu.web.domain.entity.WebNote;
 import com.hongshu.web.domain.entity.WebUser;
 import com.hongshu.web.domain.entity.WebUserNoteRelation;
-import com.hongshu.web.domain.vo.NoteSearchVo;
-import com.hongshu.web.mapper.WebLikeOrCollectionMapper;
+import com.hongshu.web.domain.vo.NoteSearchVO;
+import com.hongshu.web.mapper.WebLikeOrCollectMapper;
 import com.hongshu.web.mapper.WebNoteMapper;
 import com.hongshu.web.mapper.WebUserMapper;
 import com.hongshu.web.mapper.WebUserNoteRelationMapper;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 /**
  * 用户
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
 public class WebBrowseRecordServiceImpl extends ServiceImpl<WebNoteMapper, WebNote> implements IWebBrowseRecordService {
@@ -42,7 +42,7 @@ public class WebBrowseRecordServiceImpl extends ServiceImpl<WebNoteMapper, WebNo
     @Autowired
     private WebUserNoteRelationMapper userNoteRelationMapper;
     @Autowired
-    private WebLikeOrCollectionMapper likeOrCollectionMapper;
+    private WebLikeOrCollectMapper likeOrCollectionMapper;
     @Autowired
     private ElasticsearchClient elasticsearchClient;
 
@@ -51,17 +51,17 @@ public class WebBrowseRecordServiceImpl extends ServiceImpl<WebNoteMapper, WebNo
      * 获取浏览记录
      */
     @Override
-    public List<NoteSearchVo> getAllBrowseRecordByUser(long page, long limit, String uid) {
+    public List<NoteSearchVO> getAllBrowseRecordByUser(long page, long limit, String uid) {
         List<WebUserNoteRelation> noteRelationList = userNoteRelationMapper.selectList(new QueryWrapper<WebUserNoteRelation>()
                 .eq("uid", uid)
                 .orderByDesc("update_time"));
 
         // 是否点赞
-        List<WebLikeOrCollection> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollection>().eq("uid", uid).eq("type", 1));
-        List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollection::getLikeOrCollectionId).collect(Collectors.toList());
+        List<WebLikeOrCollect> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollect>().eq("uid", uid).eq("type", 1));
+        List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollect::getLikeOrCollectionId).collect(Collectors.toList());
 
 
-        List<NoteSearchVo> noteSearchVoList = new ArrayList<>();
+        List<NoteSearchVO> noteSearchVOList = new ArrayList<>();
         if (CollectionUtil.isNotEmpty(noteRelationList)) {
 
             Set<String> nids = noteRelationList.stream().map(WebUserNoteRelation::getNid).collect(Collectors.toSet());
@@ -70,14 +70,14 @@ public class WebBrowseRecordServiceImpl extends ServiceImpl<WebNoteMapper, WebNo
             noteRelationList.forEach(item -> {
                 WebNote note = noteMap.get(item.getNid());
                 WebUser user = userMapper.selectById(note.getUid());
-                NoteSearchVo noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVo.class);
+                NoteSearchVO noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVO.class);
                 noteSearchVo.setAvatar(user.getAvatar());
                 noteSearchVo.setIsLike(likeOrCollectionIds.contains(note.getId()));
                 noteSearchVo.setUsername(user.getUsername());
-                noteSearchVoList.add(noteSearchVo);
+                noteSearchVOList.add(noteSearchVo);
             });
         }
-        return noteSearchVoList;
+        return noteSearchVOList;
     }
 
     /**
@@ -118,21 +118,21 @@ public class WebBrowseRecordServiceImpl extends ServiceImpl<WebNoteMapper, WebNo
     private void updateEsNote(BrowseRecordDTO browseRecordDTO) {
         try {
             // Step 1: 获取现有的数据
-            GetResponse<NoteSearchVo> getResponse = elasticsearchClient.get(g ->
+            GetResponse<NoteSearchVO> getResponse = elasticsearchClient.get(g ->
                             g.index(NoteConstant.NOTE_INDEX)
                                     .id(browseRecordDTO.getNid()),
-                    NoteSearchVo.class);
+                    NoteSearchVO.class);
             // 检查是否获取到了数据
             if (getResponse.found()) {
-                NoteSearchVo noteSearchVo = getResponse.source();
+                NoteSearchVO noteSearchVo = getResponse.source();
                 // Step 2: 更新 viewCount 字段
                 noteSearchVo.setViewCount(noteSearchVo.getViewCount() + 1);
                 // Step 3: 将更新后的数据保存回 Elasticsearch
-                UpdateResponse<NoteSearchVo> updateResponse = elasticsearchClient.update(u ->
+                UpdateResponse<NoteSearchVO> updateResponse = elasticsearchClient.update(u ->
                                 u.index(NoteConstant.NOTE_INDEX)
                                         .id(browseRecordDTO.getNid())
                                         .doc(noteSearchVo),
-                        NoteSearchVo.class);
+                        NoteSearchVO.class);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -10,7 +10,7 @@ import com.hongshu.common.utils.WebUtils;
 import com.hongshu.web.auth.AuthContextHolder;
 import com.hongshu.web.domain.dto.CommentDTO;
 import com.hongshu.web.domain.entity.*;
-import com.hongshu.web.domain.vo.CommentVo;
+import com.hongshu.web.domain.vo.CommentVO;
 import com.hongshu.web.mapper.*;
 import com.hongshu.web.service.IWebCommentService;
 import com.hongshu.web.websocket.im.ChatUtils;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 /**
  * 评论
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
 public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComment> implements IWebCommentService {
@@ -36,7 +36,7 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
     @Autowired
     WebCommentSyncMapper commentSyncMapper;
     @Autowired
-    WebLikeOrCollectionMapper likeOrCollectionMapper;
+    WebLikeOrCollectMapper likeOrCollectionMapper;
     @Autowired
     ChatUtils chatUtils;
 
@@ -49,7 +49,7 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
      * @param noteId      笔记ID
      */
     @Override
-    public Page<CommentVo> getOneCommentByNoteId(long currentPage, long pageSize, String noteId) {
+    public Page<CommentVO> getOneCommentByNoteId(long currentPage, long pageSize, String noteId) {
         return null;
     }
 
@@ -70,7 +70,7 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public CommentVo saveCommentByDTO(CommentDTO commentDTO) {
+    public CommentVO saveCommentByDTO(CommentDTO commentDTO) {
         String currentUid = AuthContextHolder.getUserId();
         WebCommentSync commentsync = ConvertUtils.sourceToTarget(commentDTO, WebCommentSync.class);
         commentsync.setUid(currentUid);
@@ -82,7 +82,7 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
         note.setCommentCount(note.getCommentCount() + 1);
         noteMapper.updateById(note);
 
-        CommentVo commentVo = ConvertUtils.sourceToTarget(commentsync, CommentVo.class);
+        CommentVO commentVo = ConvertUtils.sourceToTarget(commentsync, CommentVO.class);
         WebUser user = userMapper.selectById(currentUid);
 
         commentVo.setUsername(user.getUsername())
@@ -138,8 +138,8 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
      * @param oneCommentId 一级评论ID
      */
     @Override
-    public Page<CommentVo> getTwoCommentByOneCommentId(long currentPage, long pageSize, String oneCommentId) {
-        Page<CommentVo> result = new Page<>();
+    public Page<CommentVO> getTwoCommentByOneCommentId(long currentPage, long pageSize, String oneCommentId) {
+        Page<CommentVO> result = new Page<>();
         String currentUid = AuthContextHolder.getUserId();
         Page<WebComment> twoCommentPage = this.page(new Page<>((int) currentPage, (int) pageSize), new QueryWrapper<WebComment>().eq("pid", oneCommentId).orderByDesc("like_count").orderByDesc("create_time"));
         List<WebComment> twoCommentList = twoCommentPage.getRecords();
@@ -156,11 +156,11 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
                 replyUserMap = replyUsers.stream().collect(Collectors.toMap(WebUser::getId, user -> user));
             }
 
-            List<CommentVo> commentVos = new ArrayList<>();
-            List<WebLikeOrCollection> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollection>().eq("uid", currentUid).eq("type", 2));
-            List<String> likeComments = likeOrCollections.stream().map(WebLikeOrCollection::getLikeOrCollectionId).collect(Collectors.toList());
+            List<CommentVO> commentVOS = new ArrayList<>();
+            List<WebLikeOrCollect> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollect>().eq("uid", currentUid).eq("type", 2));
+            List<String> likeComments = likeOrCollections.stream().map(WebLikeOrCollect::getLikeOrCollectionId).collect(Collectors.toList());
             for (WebComment comment : twoCommentList) {
-                CommentVo commentVo = ConvertUtils.sourceToTarget(comment, CommentVo.class);
+                CommentVO commentVo = ConvertUtils.sourceToTarget(comment, CommentVO.class);
                 WebUser user = userMap.get(comment.getUid());
                 commentVo.setUsername(user.getUsername())
                         .setAvatar(user.getAvatar())
@@ -170,9 +170,9 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
                 if (replyUser != null) {
                     commentVo.setReplyUsername(replyUser.getUsername());
                 }
-                commentVos.add(commentVo);
+                commentVOS.add(commentVo);
             }
-            result.setRecords(commentVos);
+            result.setRecords(commentVOS);
         }
         result.setTotal(total);
         return result;
@@ -185,17 +185,16 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
      * @param pageSize    分页数
      */
     @Override
-    public IPage<CommentVo> getNoticeComment(long currentPage, long pageSize) {
-        Page<CommentVo> result = new Page<>();
-        String currentUid = WebUtils.getRequestHeader(UserConstant.USER_ID);
-//        String currentUid = AuthContextHolder.getUserId();
+    public IPage<CommentVO> getNoticeComment(long currentPage, long pageSize) {
+        Page<CommentVO> result = new Page<>();
+        String currentUid = AuthContextHolder.getUserId();
 
         Page<WebComment> commentPage = this.page(new Page<>((int) currentPage, (int) pageSize), new QueryWrapper<WebComment>().or(e -> e.eq("note_uid", currentUid).or().eq("reply_uid", currentUid)).ne("uid", currentUid).orderByDesc("create_time"));
 
         List<WebComment> commentList = commentPage.getRecords();
         long total = commentPage.getTotal();
 
-        List<CommentVo> commentVoList = new ArrayList<>();
+        List<CommentVO> commentVOList = new ArrayList<>();
         if (!commentList.isEmpty()) {
             Set<String> uids = commentList.stream().map(WebComment::getUid).collect(Collectors.toSet());
             Map<String, WebUser> userMap = userMapper.selectBatchIds(uids).stream().collect(Collectors.toMap(WebUser::getId, user -> user));
@@ -210,7 +209,7 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
                 replyCommentMap = this.listByIds(cids).stream().collect(Collectors.toMap(WebComment::getId, comment -> comment));
             }
             for (WebComment comment : commentList) {
-                CommentVo commentVo = ConvertUtils.sourceToTarget(comment, CommentVo.class);
+                CommentVO commentVo = ConvertUtils.sourceToTarget(comment, CommentVO.class);
                 WebUser user = userMap.get(comment.getUid());
                 WebNote note = noteMap.get(comment.getNid());
                 commentVo.setUsername(user.getUsername())
@@ -226,10 +225,10 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
                         commentVo.setReplyUsername(replyUser.getUsername());
                     }
                 }
-                commentVoList.add(commentVo);
+                commentVOList.add(commentVo);
             }
         }
-        result.setRecords(commentVoList);
+        result.setRecords(commentVOList);
         result.setTotal(total);
         return result;
     }
@@ -242,9 +241,9 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
      * @param noteId      笔记ID
      */
     @Override
-    public Page<CommentVo> getCommentWithCommentByNoteId(long currentPage, long pageSize, String noteId) {
+    public Page<CommentVO> getCommentWithCommentByNoteId(long currentPage, long pageSize, String noteId) {
         //先得到所有的一级评论
-        Page<CommentVo> result = new Page<>();
+        Page<CommentVO> result = new Page<>();
         Page<WebComment> oneCommentPage = this.page(new Page<>((int) currentPage, (int) pageSize), new QueryWrapper<WebComment>().eq("nid", noteId).eq("pid", "0").orderByDesc("like_count"));
         List<WebComment> oneCommentList = oneCommentPage.getRecords();
         if (!oneCommentList.isEmpty()) {
@@ -261,8 +260,8 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
             Map<String, WebUser> userMap = users.stream().collect(Collectors.toMap(WebUser::getId, user -> user));
 
             //得到当前用户点赞的评论
-            List<WebLikeOrCollection> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollection>().eq("uid", currentUid).eq("type", 2));
-            List<String> likeComments = likeOrCollections.stream().map(WebLikeOrCollection::getLikeOrCollectionId).collect(Collectors.toList());
+            List<WebLikeOrCollect> likeOrCollections = likeOrCollectionMapper.selectList(new QueryWrapper<WebLikeOrCollect>().eq("uid", currentUid).eq("type", 2));
+            List<String> likeComments = likeOrCollections.stream().map(WebLikeOrCollect::getLikeOrCollectionId).collect(Collectors.toList());
 
             Set<String> replyUids = twoCommentList.stream().map(WebComment::getReplyUid).collect(Collectors.toSet());
             Map<String, WebUser> replyUserMap = new HashMap<>(16);
@@ -270,9 +269,9 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
                 List<WebUser> replyUsers = userMapper.selectBatchIds(replyUids);
                 replyUserMap = replyUsers.stream().collect(Collectors.toMap(WebUser::getId, user -> user));
             }
-            List<CommentVo> twoCommentVos = new ArrayList<>();
+            List<CommentVO> twoCommentVOS = new ArrayList<>();
             for (WebComment twoComment : twoCommentList) {
-                CommentVo commentVo = ConvertUtils.sourceToTarget(twoComment, CommentVo.class);
+                CommentVO commentVo = ConvertUtils.sourceToTarget(twoComment, CommentVO.class);
                 WebUser user = userMap.get(twoComment.getUid());
                 commentVo.setUsername(user.getUsername())
                         .setAvatar(user.getAvatar())
@@ -282,27 +281,27 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
                 if (replyUser != null) {
                     commentVo.setReplyUsername(replyUser.getUsername());
                 }
-                twoCommentVos.add(commentVo);
+                twoCommentVOS.add(commentVo);
             }
 
-            Map<String, List<CommentVo>> twoCommentVoMap = twoCommentVos.stream().collect(Collectors.groupingBy(CommentVo::getPid));
-            List<CommentVo> commentVoList = new ArrayList<>();
+            Map<String, List<CommentVO>> twoCommentVoMap = twoCommentVOS.stream().collect(Collectors.groupingBy(CommentVO::getPid));
+            List<CommentVO> commentVOList = new ArrayList<>();
             for (WebComment oneComment : oneCommentList) {
-                CommentVo commentVo = ConvertUtils.sourceToTarget(oneComment, CommentVo.class);
+                CommentVO commentVo = ConvertUtils.sourceToTarget(oneComment, CommentVO.class);
                 WebUser user = userMap.get(oneComment.getUid());
                 commentVo.setUsername(user.getUsername())
                         .setAvatar(user.getAvatar())
                         .setTime(oneComment.getCreateTime().getTime())
                         .setIsLike(likeComments.contains(oneComment.getId()));
-                List<CommentVo> children = twoCommentVoMap.get(oneComment.getId());
+                List<CommentVO> children = twoCommentVoMap.get(oneComment.getId());
 
                 if (children != null && children.size() > 3) {
                     children = children.subList(0, 3);
                 }
                 commentVo.setChildren(children);
-                commentVoList.add(commentVo);
+                commentVOList.add(commentVo);
             }
-            result.setRecords(commentVoList);
+            result.setRecords(commentVOList);
             result.setTotal(onetotal);
         }
         return result;
@@ -324,43 +323,43 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
         int limit2 = 10;
         long total = 0;
         boolean flag = false;
-        List<CommentVo> comments = new ArrayList<>();
+        List<CommentVO> comments = new ArrayList<>();
         if ("0".equals(pid)) {
             while (!flag) {
-                Page<CommentVo> allOneCommentPage = this.getCommentWithCommentByNoteId(page1, limit1, comment.getNid());
-                List<CommentVo> commentVoList = allOneCommentPage.getRecords();
-                List<String> pids = commentVoList.stream().map(CommentVo::getId).collect(Collectors.toList());
+                Page<CommentVO> allOneCommentPage = this.getCommentWithCommentByNoteId(page1, limit1, comment.getNid());
+                List<CommentVO> commentVOList = allOneCommentPage.getRecords();
+                List<String> pids = commentVOList.stream().map(CommentVO::getId).collect(Collectors.toList());
                 if (pids.contains(commentId)) {
                     flag = true;
                     total = allOneCommentPage.getTotal();
                 } else {
                     page1++;
                 }
-                comments.addAll(commentVoList);
+                comments.addAll(commentVOList);
             }
         } else {
             boolean flag2 = false;
 
             while (!flag) {
-                IPage<CommentVo> allOneCommentPage = this.getCommentWithCommentByNoteId(page1, limit1, comment.getNid());
-                List<CommentVo> commentVoList = allOneCommentPage.getRecords();
-                List<String> pids = commentVoList.stream().map(CommentVo::getId).collect(Collectors.toList());
+                IPage<CommentVO> allOneCommentPage = this.getCommentWithCommentByNoteId(page1, limit1, comment.getNid());
+                List<CommentVO> commentVOList = allOneCommentPage.getRecords();
+                List<String> pids = commentVOList.stream().map(CommentVO::getId).collect(Collectors.toList());
                 if (pids.contains(pid)) {
-                    for (CommentVo commentVo : commentVoList) {
+                    for (CommentVO commentVo : commentVOList) {
                         if (Objects.equals(commentVo.getId(), pid)) {
-                            List<CommentVo> comments2 = new ArrayList<>();
+                            List<CommentVO> comments2 = new ArrayList<>();
                             flag = true;
                             total = allOneCommentPage.getTotal();
                             while (!flag2) {
-                                IPage<CommentVo> allTwoCommentPage = this.getTwoCommentByOneCommentId(page2, limit2, pid);
-                                List<CommentVo> commentVoList2 = allTwoCommentPage.getRecords();
-                                List<String> ids = commentVoList2.stream().map(CommentVo::getId).collect(Collectors.toList());
+                                IPage<CommentVO> allTwoCommentPage = this.getTwoCommentByOneCommentId(page2, limit2, pid);
+                                List<CommentVO> commentVOList2 = allTwoCommentPage.getRecords();
+                                List<String> ids = commentVOList2.stream().map(CommentVO::getId).collect(Collectors.toList());
                                 if (ids.contains(commentId)) {
                                     flag2 = true;
                                 } else {
                                     page2++;
                                 }
-                                comments2.addAll(commentVoList2);
+                                comments2.addAll(commentVOList2);
                             }
                             commentVo.setChildren(comments2);
                         }
@@ -368,7 +367,7 @@ public class WebCommentServiceImpl extends ServiceImpl<WebCommentMapper, WebComm
                 } else {
                     page1++;
                 }
-                comments.addAll(commentVoList);
+                comments.addAll(commentVOList);
             }
         }
         resMap.put("records", comments);

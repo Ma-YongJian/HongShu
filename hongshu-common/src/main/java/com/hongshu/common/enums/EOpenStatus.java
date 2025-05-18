@@ -3,10 +3,10 @@ package com.hongshu.common.enums;
 /**
  * 开启状态枚举类
  *
- * @author: hongshu
- * @date 2020年4月7日16:42:29
+ * @Author hongshu
  */
 public class EOpenStatus {
+
     /**
      * 关闭
      */

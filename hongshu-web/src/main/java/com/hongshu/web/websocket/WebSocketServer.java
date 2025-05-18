@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @ServerEndpoint(value = "/web/ws/{uid}", encoders = {ServerEncoder.class})
 @Component

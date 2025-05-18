@@ -14,10 +14,9 @@ import com.hongshu.web.domain.entity.WebPicture;
 import com.hongshu.web.domain.entity.WebPictureSort;
 import com.hongshu.web.domain.vo.PictureVO;
 import com.hongshu.web.mapper.WebPictureMapper;
+import com.hongshu.web.service.IPictureService;
+import com.hongshu.web.service.IPictureSortService;
 import com.hongshu.web.service.IWebFileService;
-import com.hongshu.web.service.sys.IPictureService;
-import com.hongshu.web.service.sys.IPictureSortService;
-import com.hongshu.web.service.sys.impl.SuperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ import java.util.*;
 /**
  * 图片表 服务实现类
  *
- * @author: hongshu
+ * @Author hongshu
  * @since 2018-09-04
  */
 @Service

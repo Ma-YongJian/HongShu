@@ -19,9 +19,10 @@ import java.util.Objects;
 /**
  * 文件上传工具类
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public class FileUploadUtils {
+
     /**
      * 默认大小 50M
      */

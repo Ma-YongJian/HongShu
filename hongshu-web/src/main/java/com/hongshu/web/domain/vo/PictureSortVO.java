@@ -9,7 +9,7 @@ import lombok.ToString;
 /**
  * 相册分类实体类
  *
- * @author: hongshu
+ * @Author hongshu
  * @date 2018年9月17日16:10:38
  */
 @ToString

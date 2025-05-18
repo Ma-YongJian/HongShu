@@ -6,12 +6,9 @@ import com.hongshu.web.domain.HongshuBaseEntity;
 import lombok.Data;
 
 /**
- * <p>
  * Web访问记录表
- * </p>
  *
- * @author: hongshu
- * @since 2018年12月8日09:27:17
+ * @Author hongshu
  */
 @Data
 @TableName("web_visit")

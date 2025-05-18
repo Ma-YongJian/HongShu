@@ -8,8 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * 判断Integer是否为空【校验器】
  *
- * @author: hongshu
- * @date 2019年12月4日13:16:06
+ * @Author hongshu
  */
 public class IntegerValidator implements ConstraintValidator<IntegerNotNull, Integer> {
 

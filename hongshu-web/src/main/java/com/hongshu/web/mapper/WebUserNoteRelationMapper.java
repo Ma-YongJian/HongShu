@@ -5,7 +5,7 @@ import com.hongshu.web.domain.entity.WebUserNoteRelation;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 @Mapper
 public interface WebUserNoteRelationMapper extends BaseMapper<WebUserNoteRelation> {

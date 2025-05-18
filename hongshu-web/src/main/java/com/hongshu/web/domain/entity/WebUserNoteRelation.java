@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * 用户-笔记
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @TableName("web_user_note_relation")

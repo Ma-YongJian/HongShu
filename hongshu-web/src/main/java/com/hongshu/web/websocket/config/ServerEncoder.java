@@ -11,7 +11,7 @@ import javax.websocket.EndpointConfig;
 /**
  * websocket配置
  *
- * @author: hongshu
+ * @Author hongshu
  */
 public class ServerEncoder implements Encoder.Text<Message> {
 

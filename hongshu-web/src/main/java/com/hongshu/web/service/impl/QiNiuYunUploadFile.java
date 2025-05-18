@@ -19,7 +19,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 public class QiNiuYunUploadFile implements OssFactory {
 

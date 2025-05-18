@@ -3,10 +3,10 @@ package com.hongshu.common.constant;
 /**
  * 缓存的key 常量
  *
- * @author: hongshu
+ * @Author hongshu
  */
-public class CacheConstants
-{
+public class CacheConstants {
+
     /**
      * 登录用户 redis key
      */

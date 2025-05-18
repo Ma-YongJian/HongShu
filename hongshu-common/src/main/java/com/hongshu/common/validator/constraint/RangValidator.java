@@ -9,10 +9,10 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * 字符串范围约束，限制长度【校验器】
  *
- * @author: hongshu
- * @date 2019年12月4日13:17:03
+ * @Author hongshu
  */
 public class RangValidator implements ConstraintValidator<Range, String> {
+
     private long min;
     private long max;
 

@@ -17,8 +17,7 @@ import javax.servlet.http.HttpSession;
 /**
  * RequestHolder
  *
- * @author: hongshu
- * @date 2020年2月27日08:44:28
+ * @Author hongshu
  */
 @Slf4j
 public class RequestHolder {

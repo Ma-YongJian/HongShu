@@ -1,8 +1,7 @@
 package com.hongshu.web.auth;
 
-
 /**
- * @author: hongshu
+ * @Author hongshu
  */
 public class AuthContextHolder {
 
@@ -10,7 +9,6 @@ public class AuthContextHolder {
 
     }
 
-    //用户id
     private static final ThreadLocal<String> userId = new ThreadLocal<>();
 
     public static void setUserId(String _userId) {

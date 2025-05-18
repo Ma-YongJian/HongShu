@@ -6,7 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 消息通知数量设置
- * @author: hongshu
+ *
+ * @Author hongshu
  */
 @ApiModel("消息通知数量")
 public interface ImConstant {

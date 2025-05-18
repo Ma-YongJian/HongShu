@@ -13,7 +13,7 @@ import com.hongshu.web.auth.AuthContextHolder;
 import com.hongshu.web.domain.entity.WebChat;
 import com.hongshu.web.domain.entity.WebChatUserRelation;
 import com.hongshu.web.domain.entity.WebUser;
-import com.hongshu.web.domain.vo.ChatUserRelationVo;
+import com.hongshu.web.domain.vo.ChatUserRelationVO;
 import com.hongshu.web.mapper.WebChatMapper;
 import com.hongshu.web.mapper.WebChatUserRelationMapper;
 import com.hongshu.web.mapper.WebUserMapper;
@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 /**
  * 聊天
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Service
 public class WebChatServiceImpl extends ServiceImpl<WebChatMapper, WebChat> implements IWebChatService {
@@ -96,10 +96,9 @@ public class WebChatServiceImpl extends ServiceImpl<WebChatMapper, WebChat> impl
      * 获取当前用户下所有聊天的用户信息
      */
     @Override
-    public List<ChatUserRelationVo> getChatUserList() {
-        String currentUid = WebUtils.getRequestHeader(UserConstant.USER_ID);
-//        String currentUid = AuthContextHolder.getUserId();
-        List<ChatUserRelationVo> result = new ArrayList<>();
+    public List<ChatUserRelationVO> getChatUserList() {
+        String currentUid = AuthContextHolder.getUserId();
+        List<ChatUserRelationVO> result = new ArrayList<>();
         List<WebChatUserRelation> chatUserRelationList = chatUserRelationMapper.selectList(new QueryWrapper<WebChatUserRelation>().eq("accept_uid", currentUid).orderByDesc("timestamp"));
         if (chatUserRelationList.isEmpty()) {
             return result;
@@ -108,7 +107,7 @@ public class WebChatServiceImpl extends ServiceImpl<WebChatMapper, WebChat> impl
         Map<String, WebUser> userMap = userMapper.selectBatchIds(uids).stream().collect(Collectors.toMap(WebUser::getId, user -> user));
 
         chatUserRelationList.forEach(item -> {
-            ChatUserRelationVo chatUserRelationVo = ConvertUtils.sourceToTarget(item, ChatUserRelationVo.class);
+            ChatUserRelationVO chatUserRelationVo = ConvertUtils.sourceToTarget(item, ChatUserRelationVO.class);
             WebUser user = userMap.get(item.getSendUid());
             chatUserRelationVo.setUid(String.valueOf(user.getId()));
             chatUserRelationVo.setUsername(user.getUsername());

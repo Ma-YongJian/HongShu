@@ -7,7 +7,7 @@ import com.hongshu.common.utils.ConvertUtils;
 import com.hongshu.web.domain.dto.AlbumDTO;
 import com.hongshu.web.domain.entity.WebAlbum;
 import com.hongshu.web.domain.entity.WebUser;
-import com.hongshu.web.domain.vo.AlbumVo;
+import com.hongshu.web.domain.vo.AlbumVO;
 import com.hongshu.web.mapper.WebAlbumMapper;
 import com.hongshu.web.mapper.WebUserMapper;
 import com.hongshu.web.service.IWebAlbumService;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 /**
  * 专辑
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Slf4j
 @Service
@@ -57,9 +57,9 @@ public class WebAlbumServiceImpl extends ServiceImpl<WebAlbumMapper, WebAlbum> i
      * @param albumId 专辑ID
      */
     @Override
-    public AlbumVo getAlbumById(String albumId) {
+    public AlbumVO getAlbumById(String albumId) {
         WebAlbum album = this.getById(albumId);
-        AlbumVo albumVo = ConvertUtils.sourceToTarget(album, AlbumVo.class);
+        AlbumVO albumVo = ConvertUtils.sourceToTarget(album, AlbumVO.class);
         WebUser user = userMapper.selectById(album.getUid());
         albumVo.setUsername(user.getUsername());
         albumVo.setAvatar(user.getAvatar());

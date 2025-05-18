@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * 标签
  *
- * @author: hongshu
+ * @Author hongshu
  */
 @Data
 @TableName("web_tag")

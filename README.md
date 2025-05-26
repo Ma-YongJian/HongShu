@@ -241,14 +241,14 @@
   <tr>
     <td><img src="doc/images/app/app-idle.png" width="300"/></td>
     <td><img src="doc/images/app/app-user.png" width="300"/></td>
+    <td><img src="doc/images/app/app-main.png" width="300"/></td>
     <td><img src="doc/images/app/app-user-mine.png" width="300"/></td>
-    <td><img src="doc/images/app/app-message.png" width="300"/></td>
   </tr>
   <tr>
-    <td><img src="doc/images/app/app-search.png" width="300"/></td>
-    <td><img src="doc/images/app/app-main.png" width="300"/></td>
-    <td><img src="doc/images/app/app-comment.png" width="300"/></td>
-    <td><img src="doc/images/app/app-like.png" width="300"/></td>
+    <td><img src="doc/images/app/app-message.png" width="300"/></td>
+    <td><img src="doc/images/app/app-message-follow.png" width="300"/></td>
+    <td><img src="doc/images/app/app-message-comment.png" width="300"/></td>
+    <td><img src="doc/images/app/app-message-like.png" width="300"/></td>
   </tr>
 </table>
 

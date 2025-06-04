@@ -36,12 +36,12 @@
 
 ### 📂 项目组成
 
-| 模块 | 技术栈 | 地址                                                                                                |
-|------|--------|---------------------------------------------------------------------------------------------------|
-| **[HongShu](https://gitee.com/Maverick_Ma/hongshu)** | SpringBoot | [Gitee](https://gitee.com/Maverick_Ma/hongshu) 、 [github](https://github.com/Ma-YongJian/HongShu) |
-| **[HongShu-Web](https://gitee.com/Maverick_Ma/hongshu-web)** | Vue3 + Element Plus | [Gitee](https://gitee.com/Maverick_Ma/hongshu-web) 、 [github](https://github.com/Ma-YongJian/HongShu-Web) |
-| **[HongShu-Admin](https://gitee.com/Maverick_Ma/hongshu-admin)**  | Vue3 + Vite | [Gitee](https://gitee.com/Maverick_Ma/hongshu-admin) 、 [github](https://github.com/Ma-YongJian/HongShu-Admin) |
-| **[HongShu-App](https://gitee.com/Maverick_Ma/hongshu-app)** | Uniapp | [Gitee](https://gitee.com/Maverick_Ma/hongshu-app) 、 [github](https://github.com/Ma-YongJian/HongShu-App) |
+| 模块 | 模块说明  | 技术栈 | 项目地址                                                                                                          |
+|------|-------|--------|---------------------------------------------------------------------------------------------------------------|
+| **[HongShu](https://gitee.com/Maverick_Ma/hongshu)** | 后端服务代码（Java） | SpringBoot | [Gitee](https://gitee.com/Maverick_Ma/hongshu) 、 [github](https://github.com/Ma-YongJian/HongShu)             |
+| **[HongShu-Web](https://gitee.com/Maverick_Ma/hongshu-web)** | web端代码（vue） | Vue3 + Element Plus | [Gitee](https://gitee.com/Maverick_Ma/hongshu-web) 、 [github](https://github.com/Ma-YongJian/HongShu-Web)     |
+| **[HongShu-Admin](https://gitee.com/Maverick_Ma/hongshu-admin)**  | 管理端代码（vue） | Vue3 + Vite | [Gitee](https://gitee.com/Maverick_Ma/hongshu-admin) 、 [github](https://github.com/Ma-YongJian/HongShu-Admin) |
+| **[HongShu-App](https://gitee.com/Maverick_Ma/hongshu-app)** | 移动端uniapp代码，<br/>支持app、小程序、H5 | Uniapp | [Gitee](https://gitee.com/Maverick_Ma/hongshu-app) 、 [github](https://github.com/Ma-YongJian/HongShu-App)     |
 
 ### 🏗️ 技术选型
 
@@ -107,18 +107,20 @@
 
 `小龟速服务器正在奔跑中...`
 
-| 端口   | 入口链接                                   | 二维码                                        |
-|--------|--------------------------------------------|--------------------------------------------|
-| Web端  | [点我进入](http://115.190.73.103)         | -                                          |
-| 管理端 | [点我进入](http://115.190.73.103/admin/)  | -                                          |
-| 移动端 | [点我进入](http://115.190.73.103/app/)    | <img src="doc/images/h5.png" width="120"/> |
+| 端口   | 入口链接 | 二维码                                                   |
+|--------|------|-------------------------------------------------------|
+| Web端  | [点我查看](http://115.190.73.103) | -                                                     |
+| 管理端 | [点我查看](http://115.190.73.103/admin/) | -                                                     |
+| 移动端 | [点我查看](http://115.190.73.103/app/) | 扫码查看👇<br/><img src="doc/images/h5.png" width="120"/> |
 
-> 🌟 Pro版源码暂未开源，如需可点击 [获取源码](https://www.yuque.com/xiaomage-ippj7/kaoqwn/rqslw69egcbgx7v7?singleDoc#)
-> 或 `添加微信` 获取👇 
+> 如需`Pro版源码`，可点击👉 [获取源码](https://www.yuque.com/xiaomage-ippj7/kaoqwn/rqslw69egcbgx7v7?singleDoc#) 👈 获取 
+>
+
+> 🌟 如有`项目问题`、`项目部署`或`定制需求`可微信联系👇
 > 
 > <img src="doc/images/wx.png" width="200"/>
 
-> 💡 遇到问题？想获取最新动态？扫码加入临时交流群，我们一起讨论优化~
+> 💡 遇到问题？想获取最新动态？可扫码加入临时交流群，我们一起讨论优化~
 > 
 > <img src="doc/images/wx.jpg" width="200"/>
 
@@ -129,32 +131,34 @@
 - Gitee: [https://gitee.com/Maverick_Ma/hongshu](https://gitee.com/Maverick_Ma/hongshu)
 - Github: [https://github.com/Ma-YongJian/HongShu](https://github.com/Ma-YongJian/HongShu)
 
-> **欢迎 Star & Fork 支持项目！如有`项目问题`、`部署`或`定制需求`可微信联系作者**
+> **欢迎 Star & Fork 支持项目！**
 
 ---
 
 ## 📚 项目文档
 
-- 文档及资料：[博客](https://www.yuque.com/xiaomage-ippj7/kaoqwn/zdgtgrco82vftbot?singleDoc#)
+- [部署文档](https://www.yuque.com/xiaomage-ippj7/kaoqwn/zdgtgrco82vftbot?singleDoc#)
 
 ---
 
 ## 🎬 视频演示
 
-- [Bilibili 演示视频](https://www.bilibili.com/video/BV1QP8dekEGq/?spm_id_from=333.999.list.card_archive.click&vd_source=ec9224821314432ac6e12dc7d500d74b)
+- [Bilibili 演示视频](https://www.bilibili.com/video/BV1dr7Gz9E53/?vd_source=ec9224821314432ac6e12dc7d500d74b)
 
 ---
 
 ## 💖 打赏支持
 
-感谢小伙伴们打赏支持！当前服务器配置有限（2核4G），偶尔会有加载缓慢的情况。
+当前服务器配置有限（2核4G），偶尔会有加载缓慢的情况。
+感谢小伙伴们打赏支持❤️
+
 <img src="doc/images/pay.png" width="300"/>
 
 ---
 
 ## 🛠️ 快速开始
 
-详见[项目文档](https://www.yuque.com/xiaomage-ippj7/kaoqwn/zdgtgrco82vftbot?singleDoc# )，或参考各子项目 README 进行本地部署体验。
+详见 [项目文档](https://www.yuque.com/xiaomage-ippj7/kaoqwn/zdgtgrco82vftbot?singleDoc# )，或参考各子项目 README 进行本地部署体验。
 
 ---
 

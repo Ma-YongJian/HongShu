@@ -4,10 +4,10 @@
 
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">HongShu</h1>
 <p align="center">
-  <b>基于 SpringBoot + Vue 前后端分离的仿小红书项目</b>
+  <b>基于 SpringBoot + Vue + Uniapp + AI 大模型的仿小红书全栈项目</b>
 </p>
 <p align="center">
-  <i>一款高仿小红书的全栈开源项目，支持内容发布、社交互动、即时通讯等核心功能，适合全栈学习与实战。</i>
+  <i>一款高仿小红书的全栈开源项目，支持内容发布、商品交易、社交互动、即时通讯等核心功能，适合全栈学习与实战。</i>
 </p>
 
 <p align="center">
@@ -30,9 +30,7 @@
 
 ## 🚀 项目简介
 
-基于 **SpringBoot + Vue + TypeScript** 前后端分离的**全栈仿小红书系统**，
-1:1 还原小红书页面及核心功能，微服务架构演进版本。  
-涵盖内容发布、社交互动、私信聊天、搜索发现等模块，致力于打造一个功能完善、体验流畅的社交分享平台。
+HongShu - 一款深度融合 AI 大模型能力的现代化社交电商平台，采用 SpringBoot + Vue + Uniapp 前后端分离架构，完整复刻小红书核心功能，并创新性集成多模态 AI 技术，打造智能化的内容创作与社交体验。
 
 ### 📂 项目组成
 
@@ -51,24 +49,26 @@
 - 存储：本地、Minio、七牛云、腾讯云、阿里云
 - 短信：阿里云、腾讯云、云片
 - 地图：高德地图
+- AI大模型：ChatGPT、DeepSeek、豆包、文心一言、通义千问、Kimi、讯飞星火等
 ---
 
 ## 🌟 项目特色
 
-| 功能模块      | 技术实现                     |
-|-----------|--------------------------|
-| 智能推荐      | ElasticSearch + 协同过滤算法   |
-| 即时通讯      | WebSocket + Netty        |
-| 多端存储方案    | Minio/七牛云/阿里云/腾讯云OSS动态切换 |
-| 高并发优化     | Redis + MQ 消息队列          |
-| 安全认证      | 双Token无感刷新机制             |
-| 数据双通道同步机制 | 实时写入机制、定时更新机制            |
-| 社交与电商融入   | 打通商品和社交通道，实现种草分享，链接购买             |
+| 功能模块      | 技术实现                       |
+|-----------|----------------------------|
+| 智能推荐      | ElasticSearch + 协同过滤算法     |
+| 即时通讯      | WebSocket + Netty          |
+| 多端存储方案    | Minio/七牛云/阿里云/腾讯云OSS动态切换   |
+| 高并发优化     | Redis + MQ 消息队列            |
+| 安全认证      | 双Token无感刷新机制               |
+| 数据双通道同步机制 | 实时写入机制、定时更新机制              |
+| 社交与电商融入   | 打通商品和社交通道，实现种草分享，链接购买      |
+| AI大模型交互   | 融入ChatGPT、DeepSeek等主流AI大模型 |
 
 ---
 
 ## 📅 版本演进
-> 💡 点击下方版本号可展开查看详细内容
+> 💡 点击下方版本号可展开查看演进详情
 <details>
 <summary><b>v1.0（Lite版）</b></summary>
 
@@ -93,7 +93,6 @@
 <summary><b>v3.0（Pro版）</b></summary>
 
 - 重构为 springCloud 微服务架构，Nacos 配置中心
-- 新后台管理页面（Arco-Design）
 - 引入高德地图
 - 闲置商城购物功能
 - Netty 重构消息聊天
@@ -101,28 +100,51 @@
 
 </details>
 
+<details>
+<summary><b>v4.0（Pro版）</b></summary>
+
+- 新增AI大模型
+- 上线微信小程序
+- Arco-Design实现新的后台管理系统
+
+</details>
+
+> 👉 [点击获取 Pro 版完整源码](https://www.yuque.com/xiaomage-ippj7/kaoqwn/rqslw69egcbgx7v7?singleDoc#)
+
 ---
 
-## 🌐 演示站（微服务版本-持续更新）
+## 🌐 演示站（微服务版本 - 演进更新）
 
-`小龟速服务器正在奔跑中...`
+> 💡 **温馨提示**: 服务器配置有限，如遇访问缓慢请耐心等待
+> `小龟速服务器正在奔跑中...`
 
-| 端口   | 入口链接 | 二维码                                                   |
-|--------|------|-------------------------------------------------------|
-| Web端  | [点我查看](http://115.190.73.103) | -                                                     |
-| 管理端 | [点我查看](http://115.190.73.103/admin/) | -                                                     |
-| 移动端 | [点我查看](http://115.190.73.103/app/) | 扫码查看👇<br/><img src="doc/images/h5.png" width="120"/> |
+| 端类型 | 访问方式                                                                           | 备注 |
+|--------|--------------------------------------------------------------------------------|------|
+| Web端 | [点击访问](http://115.190.73.103)                                                  | 完整功能体验 |
+| 管理端 | [点击访问](http://115.190.73.103/admin/)                                           | 后台管理系统 |
+| Arco管理端 | [点击访问](http://115.190.73.103/arco-admin/)                                      | 新版管理界面 |
+| 移动端(H5) | [点击访问](http://115.190.73.103/app/) 或 <img src="doc/images/h5.png" width="80"/> | 扫码体验 |
+| 微信小程序 | 体验版 <img src="doc/images/wxamp.png" width="80"/>                               | 扫码体验 |
+---
 
-> 如需`Pro版源码`，可点击👉 [获取源码](https://www.yuque.com/xiaomage-ippj7/kaoqwn/rqslw69egcbgx7v7?singleDoc#) 👈 获取 
->
+## 📞 联系与支持
 
-> 🌟 如有`项目问题`、`项目部署`或`定制需求`可微信联系👇
-> 
-> <img src="doc/images/wx.png" width="200"/>
+<table>
+<tr>
+<td align="center" width="50%">
 
-> 💡 遇到问题？想获取最新动态？可扫码加入临时交流群，我们一起讨论优化~
-> 
-> <img src="doc/images/wx.jpg" width="200"/>
+#### 🤝 项目定制 & 部署
+<img src="doc/images/wx.png" width="200"/>
+<p>微信联系</p>
+</td>
+<td align="center" width="50%">
+
+#### 💬 技术交流
+<img src="doc/images/qq.png" width="200"/>
+<p>QQ交流群</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -131,7 +153,7 @@
 - Gitee: [https://gitee.com/Maverick_Ma/hongshu](https://gitee.com/Maverick_Ma/hongshu)
 - Github: [https://github.com/Ma-YongJian/HongShu](https://github.com/Ma-YongJian/HongShu)
 
-> **欢迎 Star & Fork 支持项目！**
+> **欢迎 Star & Fork 支持项目一下！**
 
 ---
 
@@ -150,7 +172,7 @@
 ## 💖 打赏支持
 
 当前服务器配置有限（2核4G），偶尔会有加载缓慢的情况。
-感谢小伙伴们打赏支持❤️
+感谢小伙伴们打赏支持用于升级服务器❤️
 
 <img src="doc/images/pay.png" width="300"/>
 
@@ -160,14 +182,10 @@
 
 详见 [项目文档](https://www.yuque.com/xiaomage-ippj7/kaoqwn/zdgtgrco82vftbot?singleDoc# )，或参考各子项目 README 进行本地部署体验。
 
----
-
-## ❓ FAQ
-
 - Q: 如何本地运行？
   A: 详见各子项目 README 或 [项目文档](https://www.yuque.com/xiaomage-ippj7/kaoqwn/zdgtgrco82vftbot?singleDoc# )。
 - Q: 依赖环境有哪些？
-  A: JDK 8+、Node 16+、MySQL 8+、Redis 6+ 、Elasticsearch 7+等。
+  A: JDK 8+、Node 16+、MySQL 8+、Redis 7+ 、Elasticsearch 8+等。
 - Q: 数据库脚本在哪里？
   A: 见后端项目 `doc/sql` 目录。
 
@@ -184,33 +202,21 @@
     <td><img src="doc/images/web/web-idle.png" width="500"/></td>
   </tr>
   <tr>
-    <td><img src="doc/images/web/web-search.png" width="500"/></td>
     <td><img src="doc/images/web/web-trends-note.png" width="500"/></td>
     <td><img src="doc/images/web/web-trends-idle.png" width="500"/></td>
+    <td><img src="doc/images/web/web-publish.png" width="500"/></td>
   </tr>
   <tr>
-    <td><img src="doc/images/web/web-publish.png" width="500"/></td>
+    <td><img src="doc/images/web/web-publish-map.png" width="500"/></td>
     <td><img src="doc/images/web/web-publish-img.png" width="500"/></td>
     <td><img src="doc/images/web/web-publish-video.png" width="500"/></td>
   </tr>
   <tr>
-    <td><img src="doc/images/web/web-publish-map.png" width="500"/></td>
-    <td><img src="doc/images/web/web-main-img.png" width="500"/></td>
-    <td><img src="doc/images/web/web-main-video.png" width="500"/></td>
-  </tr>
-  <tr>
-    <td><img src="doc/images/web/web-message-note.png" width="500"/></td>
-    <td><img src="doc/images/web/web-message-idle.png" width="500"/></td>
-    <td><img src="doc/images/web/web-message-comment.png" width="500"/></td>
-  </tr>
-  <tr>
+    <td><img src="doc/images/web/web-message-comment.png" width="500"/></td>  
     <td><img src="doc/images/web/web-message-like.png" width="500"/></td>
-    <td><img src="doc/images/web/web-message-follow.png" width="500"/></td>
     <td><img src="doc/images/web/web-user.png" width="500"/></td>
   </tr>
   <tr>
-    <td><img src="doc/images/web/web-user-mine.png" width="500"/></td>
-    <td><img src="doc/images/web/web-user-idle.png" width="500"/></td>
   </tr>
 </table>
 
@@ -223,13 +229,19 @@
     <td><img src="doc/images/admin/admin-data-map.png" width="500"/></td>
   </tr>
   <tr>
+    <td><img src="doc/images/admin/admin-navbar.png" width="500"/></td>
     <td><img src="doc/images/admin/admin-note.png" width="500"/></td>
     <td><img src="doc/images/admin/admin-idle.png" width="500"/></td>
-    <td><img src="doc/images/admin/admin-member.png" width="500"/></td>
   </tr>
   <tr>
+    <td><img src="doc/images/admin/admin-member.png" width="500"/></td>
     <td><img src="doc/images/admin/admin-album.png" width="500"/></td>
-    <td><img src="doc/images/admin/admin-comment.png" width="500"/></td>
+    <td><img src="doc/images/admin/admin-config.png" width="500"/></td>
+  </tr>
+  <tr>
+    <td><img src="doc/images/admin/admin-gpt.png" width="500"/></td>
+    <td><img src="doc/images/admin/admin-gpt-login.png" width="500"/></td>
+    <td><img src="doc/images/admin/admin-gpt-chat.png" width="500"/></td>
   </tr>
 </table>
 
@@ -262,5 +274,6 @@
 - [若依 RuoYi](https://gitee.com/y_project/RuoYi)
 - [蘑菇博客](https://gitee.com/moxi159753/mogu_blog_v2)
 - [xiaozhao 仿小红书前端](https://gitee.com/xzjsccz/xiaohongshu)
+- [Chat MASTER](https://gitee.com/panday94/chat-master)
 - <img src="./doc/images/qiniu.jpg" width="80" />感谢 [七牛云](https://portal.qiniu.com/signup?utm_source=kaiyuan&utm_media=mogu) 提供的免费云存储和CDN服务
 - <img src="./doc/images/jetbrains.png" width="40" />感谢 [jetbrains](https://www.jetbrains.com/?from=mogu_blog_v2) 提供的开源License

@@ -4,10 +4,10 @@
 
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">HongShu</h1>
 <p align="center">
-  <b>基于 SpringBoot + Vue + Uniapp + AI 大模型的仿小红书全栈项目</b>
+  <b>基于 SpringBoot + Vue + Uniapp + AI大模型 的仿小红书全栈项目</b>
 </p>
 <p align="center">
-  <i>一款高仿小红书的全栈开源项目，支持内容发布、商品交易、社交互动、即时通讯等核心功能，适合全栈学习与实战。</i>
+  <i>1:1 高仿小红书，具备内容发布、商品交易、社交互动、算法推荐、即时通讯等核心功能，适合全栈学习与实战。</i>
 </p>
 
 <p align="center">
@@ -32,84 +32,139 @@
 
 HongShu - 一款深度融合 AI 大模型能力的现代化社交电商平台，采用 SpringBoot + Vue + Uniapp 前后端分离架构，完整复刻小红书核心功能，并创新性集成多模态 AI 技术，打造智能化的内容创作与社交体验。
 
+### 🎓 适合人群
+
+| 👨‍💻 **全栈开发者** | 🎯 **求职者** | 🏢 **创业团队** | 📚 **学生党** |
+|:---:|:---:|:---:|:---:|
+| 学习 SpringBoot + Vue 全栈开发<br>了解微服务架构设计<br>掌握前后端分离开发 | 简历项目经验<br>面试技术亮点<br>实战能力证明 | 快速搭建社交平台<br>二次开发定制<br>商业化落地 | 毕业设计项目<br>技术栈学习<br>实战经验积累 |
+
+
 ### 📂 项目组成
 
 | 模块 | 模块说明  | 技术栈 | 项目地址                                                                                                          |
 |------|-------|--------|---------------------------------------------------------------------------------------------------------------|
-| **[HongShu](https://gitee.com/Maverick_Ma/hongshu)** | 后端服务代码（Java） | SpringBoot | [Gitee](https://gitee.com/Maverick_Ma/hongshu) 、 [github](https://github.com/Ma-YongJian/HongShu)             |
-| **[HongShu-Web](https://gitee.com/Maverick_Ma/hongshu-web)** | web端代码（vue） | Vue3 + Element Plus | [Gitee](https://gitee.com/Maverick_Ma/hongshu-web) 、 [github](https://github.com/Ma-YongJian/HongShu-Web)     |
-| **[HongShu-Admin](https://gitee.com/Maverick_Ma/hongshu-admin)**  | 管理端代码（vue） | Vue3 + Vite | [Gitee](https://gitee.com/Maverick_Ma/hongshu-admin) 、 [github](https://github.com/Ma-YongJian/HongShu-Admin) |
-| **[HongShu-App](https://gitee.com/Maverick_Ma/hongshu-app)** | 移动端uniapp代码，<br/>支持app、小程序、H5 | Uniapp | [Gitee](https://gitee.com/Maverick_Ma/hongshu-app) 、 [github](https://github.com/Ma-YongJian/HongShu-App)     |
+| **[HongShu](https://gitee.com/Maverick_Ma/hongshu)** | 后端服务代码（Java） | SpringBoot + SpringCloud | [gitee](https://gitee.com/Maverick_Ma/hongshu) 、 [github](https://github.com/Ma-YongJian/HongShu)             |
+| **[HongShu-Web](https://gitee.com/Maverick_Ma/hongshu-web)** | Web端代码（Vue） | Vue3 + Element Plus + TypeScript | [gitee](https://gitee.com/Maverick_Ma/hongshu-web) 、 [github](https://github.com/Ma-YongJian/HongShu-Web)     |
+| **[HongShu-Admin](https://gitee.com/Maverick_Ma/hongshu-admin)**  | 管理端代码（Vue） | Vue3 + Arco Design + Vite | [gitee](https://gitee.com/Maverick_Ma/hongshu-admin) 、 [github](https://github.com/Ma-YongJian/HongShu-Admin) |
+| **[HongShu-App](https://gitee.com/Maverick_Ma/hongshu-app)** | 移动端Uniapp代码 | Uniapp + Vue3（支持App/小程序/H5） | [gitee](https://gitee.com/Maverick_Ma/hongshu-app) 、 [github](https://github.com/Ma-YongJian/HongShu-App)     |
 
 ### 🏗️ 技术选型
 
-- 后端：SpringBoot、SpringCloud、Nacos、Redis、ElasticSearch、MySQL
-- 前端：Vue3、TypeScript、Element UI、Vite、uniapp
-- 消息：WebSocket、Netty、MQ
-- 存储：本地、Minio、七牛云、腾讯云、阿里云
-- 短信：阿里云、腾讯云、云片
-- 地图：高德地图
-- AI大模型：ChatGPT、DeepSeek、豆包、文心一言、通义千问、Kimi、讯飞星火等
+<table>
+<tr>
+<td width="33%">
+
+#### 后端技术栈
+- **框架**：SpringBoot 3.x、SpringCloud
+- **注册中心**：Nacos
+- **数据库**：MySQL 8.x、MyBatis-Plus
+- **缓存**：Redis 7.x
+- **搜索**：ElasticSearch 8.x
+- **消息队列**：RocketMQ
+- **即时通讯**：WebSocket、Netty
+- **AI集成**：OpenAI SDK、多模型适配
+
+</td>
+<td width="33%">
+
+#### 前端技术栈
+- **框架**：Vue3 + TypeScript
+- **构建工具**：Vite 4.x
+- **UI组件**：Element Plus、Arco Design
+- **移动端**：Uniapp（支持微信小程序）
+- **状态管理**：Pinia
+- **网络请求**：Axios
+- **富文本**：WangEditor
+- **地图**：高德地图
+
+</td>
+<td width="33%">
+
+#### 基础设施
+- **容器化**：Docker、Docker Compose
+- **反向代理**：Nginx
+- **对象存储**：Minio、七牛云、阿里云、腾讯云
+- **短信服务**：阿里云、腾讯云、云片
+- **支付**：支付宝沙箱
+- **监控**：SpringBoot Admin
+- **文档**：Swagger
+
+</td>
+</tr>
+</table>
+
 ---
 
 ## 🌟 项目特色
 
-| 功能模块      | 技术实现                       |
-|-----------|----------------------------|
-| 智能推荐      | ElasticSearch + 协同过滤算法     |
-| 即时通讯      | WebSocket + Netty          |
-| 多端存储方案    | Minio/七牛云/阿里云/腾讯云OSS动态切换   |
-| 高并发优化     | Redis + MQ 消息队列            |
-| 安全认证      | 双Token无感刷新机制               |
-| 数据双通道同步机制 | 实时写入机制、定时更新机制              |
-| 社交与电商融入   | 打通商品和社交通道，实现种草分享，链接购买      |
-| AI大模型交互   | 融入ChatGPT、DeepSeek等主流AI大模型 |
+| 功能模块      | 技术实现                                                            | 创新点                             |
+|-----------|-----------------------------------------------------------------|---------------------------------|
+| 🎯 智能推荐   | 轻量级推荐 + 协同过滤 + ES检索 动态切换                                       | ✅ 三套算法、新用户优化、性能<100ms         |
+| 💬 即时通讯   | WebSocket + Netty + RocketMQ                                    | ✅ 离线消息、多端同步、高并发支持             |
+| 🏪 社交电商   | 笔记种草 + 商品转化 + 在线支付                                             | ✅ 价格区间推荐、同城优先、闭环转化           |
+| 🔥 高并发优化  | Redis + RocketMQ 双通道 + 批量落库                                    | ✅ 性能提升20倍、数据库压力降低90%          |
+| 🤖 AI大模型  | ChatGPT + DeepSeek + 多模型适配                                     | ✅ 8+模型支持、智能创作、对话系统            |
+| 🔐 安全认证   | 双Token无感刷新 + JWT                                               | ✅ 用户无感知、安全可靠                  |
+| ☁️ 多云存储   | 本地 + Minio + 七牛云 + 阿里云 + 腾讯云                                   | ✅ 动态切换、后台配置                    |
+| 🔍 智能搜索   | ElasticSearch + MySQL 双引擎                                      | ✅ 多字段权重、模糊匹配                  |
+| 📍 LBS定位  | 高德地图 + IP定位                                                    | ✅ 同城推荐、附近内容                    |
+| 💳 在线支付   | 支付宝沙箱支付                                                         | ✅ 完整支付流程                       |
+| 📱 多端适配   | Web + App + 小程序                                                | ✅ 代码复用、统一API                   |
+| 📊 数据统计   | 用户增长、内容统计、交易分析                                                  | ✅ 可视化图表、实时监控                  |
 
 ---
 
 ## 📅 版本演进
-> 💡 点击下方版本号可展开查看演进详情
+> `💡 点击下方版本号可展开查看版本详情`
+>  [如需 Pro 版源码，👉点击获取](https://www.yuque.com/xiaomage-ippj7/kaoqwn/rqslw69egcbgx7v7?singleDoc#)
 <details>
-<summary><b>v1.0（Lite版）</b></summary>
+<summary><b>v1.0（Lite版）</b>- 基础功能</summary>
 
-- ES 智能查询、笔记随机推荐
-- 笔记支持图文类型
-- 本地存储、七牛云存储
-- 审核机制
+- ✅ ES 智能查询
+- ✅ 笔记随机推荐
+- ✅ 图文笔记发布
+- ✅ 本地存储、七牛云存储
+- ✅ 基础审核机制
 
 </details>
 
 <details>
-<summary><b>v2.0（Pro版）</b></summary>
+<summary><b>v2.0（Pro版）</b>- 移动端 + 协同过滤</summary>
 
-- 新增 uniapp 移动端
-- 笔记支持视频和 live 图类型
-- 新增多种 OSS 存储方式，可动态配置
-- 协同过滤算法推荐
-
-</details>
-
-<details>
-<summary><b>v3.0（Pro版）</b></summary>
-
-- 重构为 springCloud 微服务架构，Nacos 配置中心
-- 引入高德地图
-- 闲置商城购物功能
-- Netty 重构消息聊天
-- MQ+Redis 优化点赞、收藏、浏览
+- ✅ Uniapp 移动端（App + H5）
+- ✅ 视频笔记支持
+- ✅ Live Photo（动态图片）
+- ✅ 多云存储方案（动态配置）
+- ✅ 协同过滤推荐
 
 </details>
 
 <details>
-<summary><b>v4.0（Pro版）</b></summary>
+<summary><b>v3.0（Pro版）</b>- 微服务 + 社交电商</summary>
 
-- 新增AI大模型
-- 上线微信小程序
-- Arco-Design实现新的后台管理系统
+- ✅ SpringCloud 微服务架构
+- ✅ Nacos 配置中心
+- ✅ Netty 即时通讯系统
+- ✅ 闲置商城（社交电商融合）
+- ✅ 高德地图 LBS 定位
+- ✅ Redis + RocketMQ 高并发优化
+- ✅ WebSocket 离线消息推送
 
 </details>
 
-> 👉 [点击获取 Pro 版完整源码](https://www.yuque.com/xiaomage-ippj7/kaoqwn/rqslw69egcbgx7v7?singleDoc#)
+<details>
+<summary><b>v4.0（Pro版）</b>- AI + 小程序 + 轻量级推荐</summary>
+
+- ✅ 8+ 主流AI大模型集成
+- ✅ 智能对话系统
+- ✅ AI辅助创作
+- ✅ 微信小程序上线
+- ✅ Arco Design 新版管理后台
+- ✅ **轻量级推荐算法**（自研）
+    - 四维度混合召回
+    - 性能<100ms
+
+</details>
 
 ---
 
@@ -118,30 +173,53 @@ HongShu - 一款深度融合 AI 大模型能力的现代化社交电商平台，
 > 💡 **温馨提示**: 服务器配置有限，如遇访问缓慢请耐心等待
 > `小龟速服务器正在奔跑中...`
 
-| 端类型 | 访问方式                                                                           | 备注 |
-|--------|--------------------------------------------------------------------------------|------|
-| Web端 | [点击访问](http://115.190.73.103)                                                  | 完整功能体验 |
-| 管理端 | [点击访问](http://115.190.73.103/admin/)                                           | 后台管理系统 |
-| Arco管理端 | [点击访问](http://115.190.73.103/arco-admin/)                                      | 新版管理界面 |
-| 移动端(H5) | [点击访问](http://115.190.73.103/app/) 或 <img src="doc/images/h5.png" width="80"/> | 扫码体验 |
-| 微信小程序 | 体验版 <img src="doc/images/wxamp.png" width="80"/>                               | 扫码体验 |
+| 端类型 | 访问方式                                                                           | 功能说明 | 推荐指数 |
+|--------|--------------------------------------------------------------------------------|--------|---------|
+| **Web端** | [点击访问](https://hongshu.website/) | 完整功能体验，PC最佳 | ⭐⭐⭐⭐⭐ |
+| **管理端** | [点击访问](https://hongshu.website/admin/) | 传统后台管理 | ⭐⭐⭐⭐ |
+| **Arco管理端** | [点击访问](https://hongshu.website/arco-admin/) | 现代化管理界面 | ⭐⭐⭐⭐⭐ |
+| **移动端(H5)** | [点击访问](https://hongshu.website/app/) 或 <img src="doc/images/h5.png" width="80"/> | 移动端最佳体验 | ⭐⭐⭐⭐⭐ |
+| **微信小程序** | 体验版 <img src="doc/images/wxamp.png" width="80"/> | 小程序生态 | ⭐⭐⭐⭐⭐ |
+
 ---
 
 ## 📞 联系与支持
 
 <table>
 <tr>
-<td align="center" width="50%">
+<td align="center" width="33%">
 
 #### 🤝 项目定制 & 部署
 <img src="doc/images/wx.png" width="200"/>
-<p>微信联系</p>
-</td>
-<td align="center" width="50%">
 
-#### 💬 技术交流
+- 项目部署指导
+- 功能定制开发
+- 技术咨询支持
+- Bug修复服务
+
+</td>
+<td align="center" width="33%">
+
+#### 💬 技术交流群
 <img src="doc/images/qq.png" width="200"/>
-<p>QQ交流群</p>
+
+- 技术问题解答
+- 学习资料分享
+- 项目更新通知
+- 优先内测资格
+
+</td>
+<td align="center" width="33%">
+
+#### 💖 打赏支持
+<img src="doc/images/pay.png" width="200"/>
+
+**您的支持是我前进的动力！**
+- 升级服务器配置
+- 持续功能开发
+- 提升访问速度
+- 更好的开源体验
+
 </td>
 </tr>
 </table>
@@ -150,44 +228,20 @@ HongShu - 一款深度融合 AI 大模型能力的现代化社交电商平台，
 
 ## 📦 项目地址
 
-- Gitee: [https://gitee.com/Maverick_Ma/hongshu](https://gitee.com/Maverick_Ma/hongshu)
-- Github: [https://github.com/Ma-YongJian/HongShu](https://github.com/Ma-YongJian/HongShu)
+- **Gitee**: [https://gitee.com/Maverick_Ma/hongshu](https://gitee.com/Maverick_Ma/hongshu) （⭐ Star支持）
+- **Github**: [https://github.com/Ma-YongJian/HongShu](https://github.com/Ma-YongJian/HongShu) （⭐ Star支持）
 
-> **欢迎 Star & Fork 支持项目一下！**
+> **❤️ 如果这个项目对您有帮助，欢迎 Star & Fork 支持一下！** **您的 Star 是对我最大的鼓励！** 🌟
 
----
 
 ## 📚 项目文档
 
 - [部署文档](https://www.yuque.com/xiaomage-ippj7/kaoqwn/zdgtgrco82vftbot?singleDoc#)
-
----
+- [核心亮点文档](https://www.yuque.com/xiaomage-ippj7/kaoqwn/chm8w6thvrmtnmbk)
 
 ## 🎬 视频演示
 
-- [Bilibili 演示视频](https://www.bilibili.com/video/BV1dr7Gz9E53/?vd_source=ec9224821314432ac6e12dc7d500d74b)
-
----
-
-## 💖 打赏支持
-
-当前服务器配置有限（2核4G），偶尔会有加载缓慢的情况。
-感谢小伙伴们打赏支持用于升级服务器❤️
-
-<img src="doc/images/pay.png" width="300"/>
-
----
-
-## 🛠️ 快速开始
-
-详见 [项目文档](https://www.yuque.com/xiaomage-ippj7/kaoqwn/zdgtgrco82vftbot?singleDoc# )，或参考各子项目 README 进行本地部署体验。
-
-- Q: 如何本地运行？
-  A: 详见各子项目 README 或 [项目文档](https://www.yuque.com/xiaomage-ippj7/kaoqwn/zdgtgrco82vftbot?singleDoc# )。
-- Q: 依赖环境有哪些？
-  A: JDK 8+、Node 16+、MySQL 8+、Redis 7+ 、Elasticsearch 8+等。
-- Q: 数据库脚本在哪里？
-  A: 见后端项目 `doc/sql` 目录。
+- [演示视频](https://www.bilibili.com/video/BV1dr7Gz9E53/?vd_source=ec9224821314432ac6e12dc7d500d74b)
 
 ---
 

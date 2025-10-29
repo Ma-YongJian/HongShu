@@ -1,5 +1,6 @@
 package com.hongshu.web.domain.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * @Author hongshu
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RecordSearchVO implements Serializable {
 
     private String uid;

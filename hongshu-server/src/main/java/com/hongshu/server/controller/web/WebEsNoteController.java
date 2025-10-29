@@ -64,6 +64,12 @@ public class WebEsNoteController {
         return Result.ok(page);
     }
 
+    @GetMapping("getHotNote/{currentPage}/{pageSize}")
+    public Result<?> getHotNote(@PathVariable long currentPage, @PathVariable long pageSize) {
+        Page<NoteSearchVO> page = esNoteService.getHotNote(currentPage, pageSize);
+        return Result.ok(page);
+    }
+
     /**
      * 增加笔记
      *

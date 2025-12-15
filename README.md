@@ -39,12 +39,10 @@
 
 ### 📂 项目组成
 
-| 模块 | 模块说明  | 技术栈 | 项目地址                                                                                                          |
-|------|-------|--------|---------------------------------------------------------------------------------------------------------------|
-| **[HongShu](https://gitee.com/Maverick_Ma/hongshu)** | 后端服务代码（Java） | SpringBoot + SpringCloud | [gitee](https://gitee.com/Maverick_Ma/hongshu) 、 [github](https://github.com/Ma-YongJian/HongShu)             |
-| **[HongShu-Web](https://gitee.com/Maverick_Ma/hongshu-web)** | Web端代码（Vue） | Vue3 + Element Plus + TypeScript | [gitee](https://gitee.com/Maverick_Ma/hongshu-web) 、 [github](https://github.com/Ma-YongJian/HongShu-Web)     |
-| **[HongShu-Admin](https://gitee.com/Maverick_Ma/hongshu-admin)**  | 管理端代码（Vue） | Vue3 + Arco Design + Vite | [gitee](https://gitee.com/Maverick_Ma/hongshu-admin) 、 [github](https://github.com/Ma-YongJian/HongShu-Admin) |
-| **[HongShu-App](https://gitee.com/Maverick_Ma/hongshu-app)** | 移动端Uniapp代码 | Uniapp + Vue3（支持App/小程序/H5） | [gitee](https://gitee.com/Maverick_Ma/hongshu-app) 、 [github](https://github.com/Ma-YongJian/HongShu-App)     |
+| 模块                                                               | 模块说明             | 技术栈                                            | 项目地址                                                                                                          |
+|------------------------------------------------------------------|------------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| **[HongShu](https://gitee.com/Maverick_Ma/hongshu)**             | 后端服务代码（Java）     | SpringBoot、SpringCloud                         | [gitee](https://gitee.com/Maverick_Ma/hongshu) 、 [github](https://github.com/Ma-YongJian/HongShu)             |
+| **[HongShu-Ui](https://gitee.com/Maverick_Ma/hongshu-ui)**      | 前端代码（Vue、Uniapp） | Vue3、Element Plus、TypeScript、Uniapp | [gitee](https://gitee.com/Maverick_Ma/hongshu-ui) 、 [github](https://github.com/Ma-YongJian/HongShu-Ui)     |
 
 ### 🏗️ 技术选型
 
@@ -164,12 +162,19 @@
 </details>
 
 <details>
-<summary><b>v5.0（Pro版）</b>- 微信相关功能开发中</summary>
+<summary><b>v5.0（Pro版）</b></summary>
 
 - ✅ 移动端支持大模型对话
 - ✅ 微信一键登录
 - ✅ 微信支付
-- ✅ 支持微信分享对话、朋友圈
+- ✅ 支持微信分享（对话、朋友圈）
+
+</details>
+
+<details>
+<summary><b>v6.0（Pro版）</b></summary>
+
+-  使用ruoyi-plus重构单体版/微服务版
 
 </details>
 
@@ -180,13 +185,12 @@
 > 💡 **温馨提示**: 因服务器配置有限，如遇访问缓慢请耐心等待
 > `小龟速服务器正在奔跑中...`
 
-| 端类型 | 访问方式                                                                                     | 功能说明           | 推荐指数 |
-|--------|------------------------------------------------------------------------------------------|----------------|---------|
-| **Web端** | [👉 点击查看（电脑）](https://hongshu.website/)                                                  | 完整功能，PC体验最佳    | ⭐⭐⭐⭐⭐ |
-| **管理端** | [👉 点击查看（电脑）](https://hongshu.website/admin/)                                            | 传统后台管理，PC体验最佳  | ⭐⭐⭐⭐ |
-| **Arco管理端** | [👉 点击查看（电脑）](https://hongshu.website/arco-admin/)                                       | 现代化管理界面，PC体验最佳 | ⭐⭐⭐⭐⭐ |
-| **移动端(H5)** | [👉 点击查看](https://hongshu.website/app/) 或 扫码体验 <img src="doc/images/h5.png" width="80"/> | 移动端体验最佳        | ⭐⭐⭐⭐⭐ |
-| **微信小程序** | 体验版 <img src="doc/images/wxamp.png" width="80"/>                                         | 小程序生态          | ⭐⭐⭐⭐⭐ |
+| 端类型           | 访问方式                                                                                | 功能说明           | 
+|---------------|-------------------------------------------------------------------------------------|----------------|
+| **Web端（响应式）** | [👉 点击查看（电脑）](https://hongshu.website/)                                             | 完整功能，PC体验最佳    |
+| **Arco管理端**   | [👉 点击查看（电脑）](https://hongshu.website/arco-admin/)                                  | 现代化管理界面，PC体验最佳 |
+| **移动端(H5)**   | [👉 点击查看](https://hongshu.website/app/) 或 扫码体验 <img src="doc/images/h5.png" width="80"/> | 移动端体验最佳        |
+| **微信小程序**     | 体验版 <img src="doc/images/wxamp.png" width="80"/>                                    | 小程序生态          |
 
 ---
 
@@ -207,17 +211,6 @@
 </td>
 <td align="center" width="25%">
 
-#### 💬 技术交流群
-<img src="doc/images/qq.png" width="150"/>
-
-- 技术问题解答
-- 学习资料分享
-- 项目更新通知
-- 优先内测资格
-
-</td>
-<td align="center" width="25%">
-
 #### 📂 项目资料
 <img src="doc/images/gongzhonghao.jpg" width="150"/>
 
@@ -232,7 +225,7 @@
 #### 💖 打赏支持
 <img src="doc/images/pay.png" width="200"/>
 
-**您的支持是我前进的动力！**
+（ ps: 小伙伴赞赏的时候可以备注一下下~）
 - 升级服务器配置
 - 持续功能开发
 - 提升访问速度
@@ -340,11 +333,13 @@
 
 
 ## 🙏 致谢
+**小蓝书** 项目参考了很多开源项目的解决方案，开源不易，感谢分享
 
-- [若依 RuoYi](https://gitee.com/y_project/RuoYi)
-- [蘑菇博客](https://gitee.com/moxi159753/mogu_blog_v2)
-- [RuoYi-ArcoDesignVue](https://gitee.com/renneseme/ruoyi-arco-design-vue)
-- [xiaozhao 仿小红书前端](https://gitee.com/xzjsccz/xiaohongshu)
-- [Chat MASTER](https://gitee.com/panday94/chat-master)
+- 感谢 **若依** 提供的RuoYi项目：[RuoYi-Vue](https://gitee.com/y_project/RuoYi-Vue) 、 [RuoYi-Cloud](https://gitee.com/y_project/RuoYi-Cloud)
+- 感谢 **dromara** 提供的RuoYi-plus项目：[RuoYi-Vue-Plus](https://gitee.com/dromara/RuoYi-Vue-Plus) 、 [RuoYi-Cloud-Plus](https://gitee.com/dromara/RuoYi-Cloud-Plus)
+- 感谢 **陌溪** 提供的博客项目：[蘑菇博客](https://gitee.com/moxi159753/mogu_blog_v2)
+- 感谢 **xiaozhao** 提供的：[仿小红书前端](https://gitee.com/xzjsccz/xiaohongshu) 、 [yanhuo后端](https://gitee.com/xzjsccz/yanhuo-springboot-vue)
+- 感谢 **panday** 提供的：[Chat MASTER](https://gitee.com/panday94/chat-master)
+- 感谢 **belief-team** 提供的：[AJ-Captcha](https://gitee.com/belief-team/captcha)
 - <img src="./doc/images/qiniu.jpg" width="80" />感谢 [七牛云](https://portal.qiniu.com/signup?utm_source=kaiyuan&utm_media=mogu) 提供的免费云存储和CDN服务
 - <img src="./doc/images/jetbrains.png" width="40" />感谢 [jetbrains](https://www.jetbrains.com/?from=mogu_blog_v2) 提供的开源License

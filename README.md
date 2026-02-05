@@ -1,13 +1,13 @@
 <p align="center">
-  <img alt="logo" src="https://image.mayongjian.cn/2025/11/11/d6ab67fa0291468ea68afdfb18217ae4.png" width="100"/>
+  <img alt="logo" src="https://image.mayongjian.cn/2026/02/04/988b7ef2e1d243fbb9c5f40d7ac76d8b.png" width="100"/>
 </p>
 
-<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">HongShu</h1>
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">LiveIn</h1>
 <p align="center">
   <b>基于 SpringBoot + Vue + Uniapp + AI大模型 的仿小红书全栈项目</b>
 </p>
 <p align="center">
-  <i>1:1 高仿小红书，具备内容发布、商品交易、社交互动、算法推荐、即时通讯、AI对话等核心功能，适合全栈学习与项目实战。</i>
+  <i>1:1 高仿小红书，具备内容发布、商品交易、社交互动、算法推荐、即时通讯、AI创作等核心功能，适合全栈学习与项目实战。</i>
 </p>
 
 <p align="center">
@@ -25,7 +25,7 @@
 
 > **🌟声明**  
 > 本项目基于 [MIT](https://opensource.org/licenses/MIT) 协议开源，免费用于学习交流，禁止转售，请提高警惕，谨防受骗。
-> 项目名称“小蓝书”为开发代号与“小红书”无任何商业关联，仅为个人学习研究目的使用。演示环境使用的图片/视频素材均来源于网络，如有侵权请联系删除。
+> 项目名称“来因LiveIn”为开发代号与“小红书”无任何商业关联，仅为个人学习研究目的使用。演示环境使用的图片/视频素材均来源于网络，如有侵权请联系删除。
 > 如需商用请确保合法合规使用，自行承担运营风险，与项目作者无关。
 
 ---
@@ -33,7 +33,7 @@
 
 ### 👨‍💻 适合人群
 
-|                               **全栈开发者**                              |         **求职者**          |         **创业团队**          |         **学生党**         |
+|                               **全栈开发者**                              |         **求职者**          |         **创业团队**          |          **学生**           |
 |:------------------------------------------------------------------------:|:--------------------------:|:---------------------------:|:-------------------------:|
 | 学习 SpringBoot + Vue + Uniapp 全栈开发<br>了解微服务架构设计<br>了解高并发业务场景<br>掌握前后端分离开发 | 简历项目经验<br>面试技术亮点<br>实战能力证明 | 快速搭建社交平台<br>二次开发定制<br>商业化落地 | 毕业设计项目<br>技术栈学习<br>实战经验积累 |
 
@@ -122,7 +122,8 @@
 | **Arco管理端**   | [👉 点击查看（电脑）](https://hongshu.website/arco-admin/)                                       | 现代化管理界面，PC体验最佳 |
 | **移动端(H5)**   | [👉 点击查看](https://hongshu.website/app/) 或 扫码体验：<img src="doc/images/h5.png" width="80"/> | 移动端体验最佳        |
 | **微信小程序**     | 体验版：<img src="doc/images/wxamp.png" width="80"/>                                         | 小程序生态          |
-| **安卓**        | 扫码下载：<img src="doc/images/Android.png" width="80"/>                                        | 安卓端测试          |
+| **安卓**        | 扫码下载：<img src="doc/images/Android.png" width="80"/>                                      | 安卓端测试          |
+| **IOS**       | 暂无                                                                                       | IOS端测试         |
 
 ---
 
@@ -180,7 +181,7 @@
 ## 📚 项目文档
 > 都放在公众号里了，自取即可<br>
 > 
-<img src="doc/images/gongzhonghao-search.png" width="300"/>
+<img src="doc/images/gongzhonghao-search.png" width="400"/>
 <br><img src="doc/images/doc.png" width="400"/>
 
 ## 🎬 视频演示
@@ -279,7 +280,7 @@
 
 
 ## 🙏 致谢
-**小蓝书** 项目参考了很多开源项目的解决方案，开源不易，感谢分享
+**来因LiveIn** 项目参考了很多开源项目的解决方案，开源不易，感谢分享
 
 - 感谢 **若依** 提供的RuoYi项目：[RuoYi-Vue](https://gitee.com/y_project/RuoYi-Vue) 、 [RuoYi-Cloud](https://gitee.com/y_project/RuoYi-Cloud)
 - 感谢 **dromara** 提供的RuoYi-plus项目：[RuoYi-Vue-Plus](https://gitee.com/dromara/RuoYi-Vue-Plus) 、 [RuoYi-Cloud-Plus](https://gitee.com/dromara/RuoYi-Cloud-Plus)

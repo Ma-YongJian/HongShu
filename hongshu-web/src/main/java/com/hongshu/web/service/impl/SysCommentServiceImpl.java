@@ -51,9 +51,9 @@ public class SysCommentServiceImpl implements ISysCommentService {
         QueryWrapper<WebComment> qw = new QueryWrapper<>();
         qw.lambda()
                 .eq(ValidatorUtil.isNotNull(query.getUid()), WebComment::getUid, query.getUid())
-//                .like(ValidatorUtil.isNotNull(query.getNoteUid()), WebComment::getNoteUid, query.getNoteUid())
-//                .like(ValidatorUtil.isNotNull(query.getContent()), WebComment::getContent, query.getContent())
-                .eq(WebComment::getLevel, 1)
+                .eq(ValidatorUtil.isNotNull(query.get("nid")), WebComment::getNid, query.get("nid"))
+                .like(ValidatorUtil.isNotNull(query.get("content")), WebComment::getContent, query.get("content"))
+                .eq(ValidatorUtil.isNull(query.get("nid")), WebComment::getLevel, 1)
                 .ge(ValidatorUtil.isNotNull(query.get("params[beginTime]")), WebComment::getCreateTime, query.get("params[beginTime]"))
                 .le(ValidatorUtil.isNotNull(query.get("params[endTime]")), WebComment::getCreateTime, query.get("params[endTime]"))
                 .orderByDesc(WebComment::getCreateTime);
@@ -171,9 +171,9 @@ public class SysCommentServiceImpl implements ISysCommentService {
      * @param nid 笔记ID
      */
     @Override
-    public List<WebComment> selectCommentByNid(Long nid) {
+    public List<WebComment> selectCommentByNid(String nid) {
         QueryWrapper<WebComment> qw = new QueryWrapper<>();
-        qw.lambda().like(ValidatorUtil.isNotNull(nid), WebComment::getNid, nid);
+        qw.lambda().eq(ValidatorUtil.isNotNull(nid), WebComment::getNid, nid);
         return commentMapper.selectList(qw);
     }
 

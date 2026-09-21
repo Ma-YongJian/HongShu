@@ -39,7 +39,7 @@ public interface ISysCommentService {
      *
      * @param nid 笔记ID
      */
-    List<WebComment> selectCommentByNid(Long nid);
+    List<WebComment> selectCommentByNid(String nid);
 
     /**
      * 批量删除评论信息

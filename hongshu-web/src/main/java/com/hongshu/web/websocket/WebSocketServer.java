@@ -1,13 +1,18 @@
 package com.hongshu.web.websocket;
 
+import com.hongshu.common.utils.JwtUtils;
 import com.hongshu.web.websocket.config.ServerEncoder;
 import com.hongshu.web.websocket.im.Message;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -65,9 +70,43 @@ public class WebSocketServer {
     //建立连接成功调用
     @OnOpen
     public void onOpen(Session session, @PathParam(value = "uid") String uid) {
+        if (!authHandshake(session, uid)) {
+            try {
+                session.close();
+            } catch (IOException e) {
+                log.debug("拒绝未授权 WebSocket: {}", e.getMessage());
+            }
+            return;
+        }
         SESSION_POOLS.put(uid, session);
         addOnlineCount();
         log.info("{}加入webSocket！当前人数为={}", uid, ONLINE_NUM);
+    }
+
+    private boolean authHandshake(Session session, String uid) {
+        if (StringUtils.isBlank(uid) || session == null) {
+            return false;
+        }
+        Map<String, List<String>> params = session.getRequestParameterMap();
+        String token = firstParam(params, "token");
+        if (StringUtils.isBlank(token)) {
+            token = firstParam(params, "accessToken");
+        }
+        if (!JwtUtils.checkToken(token)) {
+            return false;
+        }
+        return uid.equals(JwtUtils.getUserId(token));
+    }
+
+    private String firstParam(Map<String, List<String>> params, String key) {
+        if (params == null || key == null) {
+            return null;
+        }
+        List<String> values = params.get(key);
+        if (values == null || values.isEmpty()) {
+            return null;
+        }
+        return values.get(0);
     }
 
     //关闭连接时调用
@@ -89,8 +128,30 @@ public class WebSocketServer {
     //错误时调用
     @OnError
     public void onError(Session session, Throwable throwable) {
-        log.error("发生错误", throwable);
-        throwable.printStackTrace();
+        if (isClientDisconnect(throwable)) {
+            log.debug("WebSocket 客户端断开: {}", throwable.getMessage());
+            return;
+        }
+        log.error("WebSocket 发生错误", throwable);
+    }
+
+    private boolean isClientDisconnect(Throwable throwable) {
+        Throwable current = throwable;
+        while (current != null) {
+            String message = current.getMessage();
+            if (current instanceof java.io.IOException && message != null) {
+                String lower = message.toLowerCase();
+                if (lower.contains("connection reset")
+                        || lower.contains("broken pipe")
+                        || lower.contains("closed")
+                        || lower.contains("eof")
+                        || lower.contains("connection timed out")) {
+                    return true;
+                }
+            }
+            current = current.getCause();
+        }
+        return false;
     }
 
     public static void addOnlineCount() {

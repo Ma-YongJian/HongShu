@@ -56,12 +56,18 @@ public class UploadFileToLoacl implements OssFactory {
 
     @Override
     public Boolean delete(String path) {
+        if (path == null || !path.contains(UploadFileConstant.OSS)) {
+            return false;
+        }
         String prePath = UploadFileConstant.ADDRESS;
         String[] split = path.split(UploadFileConstant.OSS);
+        if (split.length < 2) {
+            return false;
+        }
         String filePath = prePath + split[1];
         log.info("filePath:{}", filePath);
         File file = new File(filePath);
-        if (file.exists()) {//文件是否存在
+        if (file.exists()) {
             return file.delete();
         }
         return false;

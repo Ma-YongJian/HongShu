@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class OssConfig {
 
     /**
-     * type 上传类型(0:本地 1：七牛云 2：minio)
+     * type 上传类型(0:本地 1/2:Minio)
      */
     @Value("${oss.type}")
     Integer type;

@@ -12,12 +12,10 @@ import com.hongshu.common.validator.ValidatorUtil;
 import com.hongshu.web.domain.entity.WebNavbar;
 import com.hongshu.web.domain.entity.WebNote;
 import com.hongshu.web.domain.entity.WebUser;
-import com.hongshu.web.domain.vo.NoteSearchVO;
 import com.hongshu.web.mapper.SysNavbarMapper;
 import com.hongshu.web.mapper.SysNoteMapper;
 import com.hongshu.web.mapper.WebUserMapper;
 import com.hongshu.web.service.ISysNoteService;
-import com.hongshu.web.service.IWebEsNoteService;
 import com.hongshu.web.service.IWebOssService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
@@ -38,8 +36,6 @@ public class SysNoteServiceImpl implements ISysNoteService {
 
     @Autowired
     private RedisUtil redisUtil;
-    @Autowired
-    private IWebEsNoteService esNoteService;
     @Autowired
     private WebUserMapper userMapper;
     @Autowired
@@ -283,21 +279,6 @@ public class SysNoteServiceImpl implements ISysNoteService {
         // 通过：1
         if ("pass".equals(auditType)) {
             note.setAuditStatus("1");
-            // 审核通过，笔记添加到ES中
-            WebUser user = userMapper.selectById(note.getUid());
-            WebNavbar parentCategory = navbarMapper.selectByCpid(note.getCpid());
-            NoteSearchVO noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVO.class);
-            if (StringUtils.isNotBlank(note.getCid())) {
-                WebNavbar category = navbarMapper.selectByPid(note.getCid());
-                noteSearchVo.setCategoryName(category.getTitle());
-            }
-            noteSearchVo.setUsername(user.getUsername())
-                    .setAvatar(user.getAvatar())
-                    .setLikeCount(0L)
-                    .setCategoryParentName(parentCategory.getTitle())
-//                    .setTags(tags.toString())
-                    .setTime(System.currentTimeMillis());
-            esNoteService.addNote(noteSearchVo);
         }
         // 拒绝：2
         if ("reject".equals(auditType)) {

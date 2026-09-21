@@ -5,18 +5,26 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hongshu.common.utils.ConvertUtils;
 import com.hongshu.web.auth.AuthContextHolder;
+import com.hongshu.web.domain.dto.AlbumNoteRelationDTO;
+import com.hongshu.web.domain.entity.WebAlbum;
 import com.hongshu.web.domain.entity.WebAlbumNoteRelation;
+import com.hongshu.web.domain.entity.WebLikeOrCollect;
 import com.hongshu.web.domain.entity.WebNote;
 import com.hongshu.web.domain.entity.WebUser;
 import com.hongshu.web.domain.vo.NoteSearchVO;
+import com.hongshu.web.mapper.WebAlbumMapper;
 import com.hongshu.web.mapper.WebAlbumNoteRelationMapper;
+import com.hongshu.web.mapper.WebLikeOrCollectMapper;
 import com.hongshu.web.mapper.WebNoteMapper;
 import com.hongshu.web.mapper.WebUserMapper;
 import com.hongshu.web.service.IWebAlbumNoteRelationService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +42,10 @@ public class WebAlbumNoteRelationServiceImpl extends ServiceImpl<WebAlbumNoteRel
 
     @Autowired
     WebUserMapper userMapper;
+    @Autowired
+    WebAlbumMapper albumMapper;
+    @Autowired
+    WebLikeOrCollectMapper likeOrCollectMapper;
 
 
     /**
@@ -84,5 +96,74 @@ public class WebAlbumNoteRelationServiceImpl extends ServiceImpl<WebAlbumNoteRel
         result.setTotal(total);
         result.setRecords(noteVoList);
         return result;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void addAlbumNoteRelation(AlbumNoteRelationDTO dto) {
+        if (dto == null || StringUtils.isBlank(dto.getAid()) || StringUtils.isBlank(dto.getNid())) {
+            return;
+        }
+        String currentUid = AuthContextHolder.getUserId();
+        if (StringUtils.isBlank(currentUid)) {
+            return;
+        }
+        WebNote note = noteMapper.selectById(dto.getNid());
+        if (note == null) {
+            return;
+        }
+        long relationCount = this.count(new QueryWrapper<WebAlbumNoteRelation>()
+                .eq("aid", dto.getAid()).eq("nid", dto.getNid()));
+        if (relationCount == 0) {
+            WebAlbumNoteRelation relation = new WebAlbumNoteRelation();
+            relation.setAid(dto.getAid());
+            relation.setNid(dto.getNid());
+            relation.setCreateTime(new Date());
+            relation.setUpdateTime(new Date());
+            this.save(relation);
+            WebAlbum album = albumMapper.selectById(dto.getAid());
+            if (album != null) {
+                Long imgCount = album.getImgCount();
+                album.setImgCount((imgCount == null ? 0L : imgCount) + 1);
+                if (StringUtils.isBlank(album.getAlbumCover())) {
+                    album.setAlbumCover(note.getNoteCover());
+                }
+                albumMapper.updateById(album);
+            }
+        }
+        long collectCount = likeOrCollectMapper.selectCount(new QueryWrapper<WebLikeOrCollect>()
+                .eq("uid", currentUid).eq("like_or_collection_id", dto.getNid()).eq("type", 3));
+        if (collectCount == 0) {
+            WebLikeOrCollect collect = new WebLikeOrCollect();
+            collect.setUid(currentUid);
+            collect.setLikeOrCollectionId(dto.getNid());
+            collect.setPublishUid(note.getUid());
+            collect.setType(3);
+            collect.setTimestamp(System.currentTimeMillis());
+            collect.setCreateTime(new Date());
+            collect.setUpdateTime(new Date());
+            likeOrCollectMapper.insert(collect);
+            Long noteCollect = note.getCollectionCount();
+            note.setCollectionCount((noteCollect == null ? 0L : noteCollect) + 1);
+            noteMapper.updateById(note);
+        }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteAlbumNoteRelation(AlbumNoteRelationDTO dto) {
+        if (dto == null || StringUtils.isBlank(dto.getNid())) {
+            return;
+        }
+        String currentUid = AuthContextHolder.getUserId();
+        QueryWrapper<WebAlbumNoteRelation> qw = new QueryWrapper<WebAlbumNoteRelation>().eq("nid", dto.getNid());
+        if (StringUtils.isNotBlank(dto.getAid())) {
+            qw.eq("aid", dto.getAid());
+        }
+        this.remove(qw);
+        if (StringUtils.isNotBlank(currentUid)) {
+            likeOrCollectMapper.delete(new QueryWrapper<WebLikeOrCollect>()
+                    .eq("uid", currentUid).eq("like_or_collection_id", dto.getNid()).eq("type", 3));
+        }
     }
 }

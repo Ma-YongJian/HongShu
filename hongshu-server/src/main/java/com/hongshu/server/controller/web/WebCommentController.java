@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hongshu.common.enums.Result;
 import com.hongshu.common.validator.ValidatorUtils;
 import com.hongshu.common.validator.group.AddGroup;
+import com.hongshu.common.validator.myVaildator.noLogin.NoLoginIntercept;
 import com.hongshu.web.domain.dto.CommentDTO;
 import com.hongshu.web.domain.vo.CommentVO;
 import com.hongshu.web.service.IWebCommentService;
@@ -35,6 +36,7 @@ public class WebCommentController {
      * @param noteId      笔记ID
      */
     @GetMapping("getOneCommentByNoteId/{currentPage}/{pageSize}")
+    @NoLoginIntercept
     public Result<?> getOneCommentByNoteId(@PathVariable long currentPage, @PathVariable long pageSize, String noteId) {
         Page<CommentVO> pageInfo = commentService.getOneCommentByNoteId(currentPage, pageSize, noteId);
         return Result.ok(pageInfo);
@@ -80,7 +82,8 @@ public class WebCommentController {
      * @param pageSize     分页数
      * @param oneCommentId 一级评论ID
      */
-    @GetMapping("getTwoCommentByOneCommentId/{currentPage}/{pageSize}")
+    @GetMapping({"getTwoCommentByOneCommentId/{currentPage}/{pageSize}", "getTwoCommentPageByOneCommentId/{currentPage}/{pageSize}"})
+    @NoLoginIntercept
     public Result<?> getTwoCommentByOneCommentId(@PathVariable long currentPage, @PathVariable long pageSize, String oneCommentId) {
         IPage<CommentVO> pageInfo = commentService.getTwoCommentByOneCommentId(currentPage, pageSize, oneCommentId);
         return Result.ok(pageInfo);
@@ -106,8 +109,14 @@ public class WebCommentController {
      * @param noteId      笔记ID
      */
     @GetMapping("getCommentWithCommentByNoteId/{currentPage}/{pageSize}")
-    public Result<?> getCommentWithCommentByNoteId(@PathVariable long currentPage, @PathVariable long pageSize, String noteId) {
-        Page<CommentVO> pageInfo = commentService.getCommentWithCommentByNoteId(currentPage, pageSize, noteId);
+    @NoLoginIntercept
+    public Result<?> getCommentWithCommentByNoteId(@PathVariable long currentPage, @PathVariable long pageSize,
+                                                   @RequestParam(value = "noteId", required = false) String noteId,
+                                                   @RequestParam(value = "nid", required = false) String nid,
+                                                   @RequestParam(value = "mid", required = false) String mid) {
+        String id = (noteId != null && !noteId.isEmpty()) ? noteId
+                : (nid != null && !nid.isEmpty()) ? nid : mid;
+        Page<CommentVO> pageInfo = commentService.getCommentWithCommentByNoteId(currentPage, pageSize, id);
         return Result.ok(pageInfo);
     }
 
@@ -129,6 +138,15 @@ public class WebCommentController {
      */
     @GetMapping("deleteCommentById")
     public Result<?> deleteCommentById(String commentId) {
+        commentService.deleteCommentById(commentId);
+        return Result.ok();
+    }
+
+    /**
+     * 删除评论（兼容 C 端 DELETE）
+     */
+    @DeleteMapping({"deleteComment", "deleteCommentById"})
+    public Result<?> deleteComment(String commentId) {
         commentService.deleteCommentById(commentId);
         return Result.ok();
     }

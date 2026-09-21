@@ -17,10 +17,19 @@ import java.util.Date;
 @Slf4j
 public class JwtUtils {
 
-    //定义两个常量，1.设置过期时间 2.密钥（随机，由公司生成）
-    public static final String APP_SECRET = "ukc8BDbRigUDaY6pZFfWus2jZWLPHO";
+    private static volatile String appSecret = "ukc8BDbRigUDaY6pZFfWus2jZWLPHO";
 
     private JwtUtils() {
+    }
+
+    public static void setAppSecret(String secret) {
+        if (StringUtils.isNotBlank(secret)) {
+            appSecret = secret;
+        }
+    }
+
+    private static String signingKey() {
+        return appSecret;
     }
 
     /**
@@ -43,7 +52,7 @@ public class JwtUtils {
                 //设置token的主题部分
                 .claim("userId", uid)
                 //签名哈希
-                .signWith(SignatureAlgorithm.HS256, APP_SECRET)
+                .signWith(SignatureAlgorithm.HS256, signingKey())
                 .compact();
     }
 
@@ -59,7 +68,7 @@ public class JwtUtils {
         }
         try {
             //验证是否有效的token
-            Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
+            Jwts.parser().setSigningKey(signingKey()).parseClaimsJws(jwtToken);
         } catch (Exception e) {
             log.error(e.getMessage());
             return false;
@@ -75,7 +84,7 @@ public class JwtUtils {
      */
     public static String getUserId(String jwtToken) {
         //验证是否有效的token
-        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
+        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(signingKey()).parseClaimsJws(jwtToken);
         //得到字符串的主题部分
         Claims claims = claimsJws.getBody();
         return (String) claims.get("userId");
@@ -93,7 +102,7 @@ public class JwtUtils {
             if (StringUtils.isEmpty(jwtToken)) {
                 return false;
             }
-            Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
+            Jwts.parser().setSigningKey(signingKey()).parseClaimsJws(jwtToken);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

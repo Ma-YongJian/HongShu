@@ -56,4 +56,11 @@ public interface IWebChatService extends IService<WebChat> {
      * @param sendUid 发送方用户ID
      */
     boolean closeChat(String sendUid);
+
+    /**
+     * 删除与某用户的会话
+     *
+     * @param sendUid 对方用户ID
+     */
+    void deleteChatUser(String sendUid);
 }

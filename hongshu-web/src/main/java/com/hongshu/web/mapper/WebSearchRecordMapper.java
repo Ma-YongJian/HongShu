@@ -1,12 +1,12 @@
 package com.hongshu.web.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.hongshu.web.domain.entity.WebCommentSync;
+import com.hongshu.web.domain.entity.WebSearchRecord;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @Author hongshu
  */
 @Mapper
-public interface WebCommentSyncMapper extends BaseMapper<WebCommentSync> {
+public interface WebSearchRecordMapper extends BaseMapper<WebSearchRecord> {
 }

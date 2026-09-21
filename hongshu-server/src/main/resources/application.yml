@@ -7,7 +7,10 @@ hongshu:
   # 版权年份
   copyrightYear: 2024
   # 文件路径 示例（ Windows配置 D:/hongshu/uploadPath，Linux配置 /home/hongshu/uploadPath）
-  profile: /Users/mayongjian/Desktop/hongshu-gitee/hongshu/upload
+  profile: /Users/mayongjian/Desktop/hongshu/upload
+  jwt:
+    # C 端 JWT 密钥，可按环境覆盖
+    app-secret: ukc8BDbRigUDaY6pZFfWus2jZWLPHO
   # 获取ip地址开关
   addressEnabled: false
   # 验证码类型 math 数字计算 char 字符验证
@@ -140,23 +143,9 @@ xss:
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
 
-# ElasticSearch配置
-es:
-  url: localhost
-  port: 9200
-  username:
-  password:
-
-# Oss配置
+# Oss配置（开源版：0 本地，1/2 Minio）
 oss:
-  type: 0 # 0：是本地存储，1：是七牛云存储
-
-# 七牛云配置
-qiNiuYun:
-  domain:
-  accessKey:
-  secretKey:
-  bucketName:
+  type: 0
 
 # 文件上传路径
 file:

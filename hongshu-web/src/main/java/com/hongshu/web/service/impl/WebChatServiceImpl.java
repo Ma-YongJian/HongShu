@@ -24,6 +24,7 @@ import com.hongshu.web.websocket.factory.ChatUserMessage;
 import com.hongshu.web.websocket.factory.MessageFactory;
 import com.hongshu.web.websocket.im.CountMessage;
 import com.hongshu.web.websocket.im.Message;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,11 +60,20 @@ public class WebChatServiceImpl extends ServiceImpl<WebChatMapper, WebChat> impl
      */
     @Override
     public void sendMsg(Message message) {
+        String currentUid = AuthContextHolder.getUserId();
+        if (StringUtils.isNotBlank(currentUid)) {
+            message.setSendUid(currentUid);
+        }
         webSocketServer.sendInfo(message);
         MessageFactory messageFactory = null;
 
-        // 过滤发送的请求类型
-        switch (message.getMsgType()) {
+        // 开源版私信只处理通知和文本
+        Integer msgType = message.getMsgType();
+        if (msgType == null) {
+            msgType = 1;
+            message.setMsgType(1);
+        }
+        switch (msgType) {
             case 0:
                 messageFactory = new ChatCountMessage(redisUtils);
                 break;
@@ -71,7 +81,7 @@ public class WebChatServiceImpl extends ServiceImpl<WebChatMapper, WebChat> impl
                 messageFactory = new ChatUserMessage(webSocketServer, this, userMapper, chatUserRelationMapper);
                 break;
             default:
-                break;
+                return;
         }
         if (messageFactory != null) {
             messageFactory.sendMessage(message);
@@ -107,8 +117,11 @@ public class WebChatServiceImpl extends ServiceImpl<WebChatMapper, WebChat> impl
         Map<String, WebUser> userMap = userMapper.selectBatchIds(uids).stream().collect(Collectors.toMap(WebUser::getId, user -> user));
 
         chatUserRelationList.forEach(item -> {
-            ChatUserRelationVO chatUserRelationVo = ConvertUtils.sourceToTarget(item, ChatUserRelationVO.class);
             WebUser user = userMap.get(item.getSendUid());
+            if (user == null) {
+                return;
+            }
+            ChatUserRelationVO chatUserRelationVo = ConvertUtils.sourceToTarget(item, ChatUserRelationVO.class);
             chatUserRelationVo.setUid(String.valueOf(user.getId()));
             chatUserRelationVo.setUsername(user.getUsername());
             chatUserRelationVo.setAvatar(user.getAvatar());
@@ -151,23 +164,45 @@ public class WebChatServiceImpl extends ServiceImpl<WebChatMapper, WebChat> impl
                 chatUserRelation.setCount(0);
                 chatUserRelationMapper.updateById(chatUserRelation);
             }
-        } else {
-            String messageCountKey = ImConstant.MESSAGE_COUNT_KEY + sendUid;
-            String json = redisUtils.get(messageCountKey);
-            CountMessage countMessage = JSONUtil.toBean(json, CountMessage.class);
-            switch (type) {
-                case 0:
-                    countMessage.setLikeOrCollectionCount(0L);
-                    break;
-                case 1:
-                    countMessage.setCommentCount(0L);
-                    break;
-                default:
-                    countMessage.setFollowCount(0L);
-                    break;
-            }
-            redisUtils.set(messageCountKey, JSONUtil.toJsonStr(countMessage));
+            return;
         }
+        String currentUid = AuthContextHolder.getUserId();
+        String uid = StringUtils.isNotBlank(currentUid) ? currentUid : sendUid;
+        String messageCountKey = ImConstant.MESSAGE_COUNT_KEY + uid;
+        if (Boolean.FALSE.equals(redisUtils.hasKey(messageCountKey))) {
+            return;
+        }
+        String json = redisUtils.get(messageCountKey);
+        if (StringUtils.isBlank(json)) {
+            return;
+        }
+        CountMessage countMessage = JSONUtil.toBean(json, CountMessage.class);
+        if (countMessage == null) {
+            return;
+        }
+        switch (type) {
+            case 0:
+                countMessage.setLikeOrCollectionCount(0L);
+                break;
+            case 1:
+                countMessage.setCommentCount(0L);
+                break;
+            default:
+                countMessage.setFollowCount(0L);
+                break;
+        }
+        redisUtils.set(messageCountKey, JSONUtil.toJsonStr(countMessage));
+    }
+
+    @Override
+    public void deleteChatUser(String sendUid) {
+        String currentUid = AuthContextHolder.getUserId();
+        if (StringUtils.isBlank(currentUid) || StringUtils.isBlank(sendUid)) {
+            return;
+        }
+        chatUserRelationMapper.delete(new QueryWrapper<WebChatUserRelation>()
+                .eq("send_uid", sendUid)
+                .eq("accept_uid", currentUid));
     }
 
     /**

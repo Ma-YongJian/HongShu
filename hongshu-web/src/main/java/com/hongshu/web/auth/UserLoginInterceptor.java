@@ -36,9 +36,11 @@ public class UserLoginInterceptor implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
         // 检查请求路径是否包含 "/web"
         if (requestURI.contains("/web")) {
+            if (!(handler instanceof HandlerMethod)) {
+                return true;
+            }
             String accessToken = request.getHeader(TokenConstant.ACCESS_TOKEN);
             log.info("accessToken:{},{}", accessToken, WebUtils.getRequestHeader(UserConstant.USER_ID));
-            //获取方法处理器
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             NoLoginIntercept noLoginIntercept =
                     handlerMethod.getMethod()//这一步是获取到我们要访问的方法
@@ -47,7 +49,11 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 
             if (noLoginIntercept != null) {
                 if (!StringUtils.isEmpty(accessToken)) {
-                    setLocalUser(accessToken);
+                    try {
+                        setLocalUser(accessToken);
+                    } catch (Exception e) {
+                        log.warn("可选登录态无效，按游客访问: {}", e.getMessage());
+                    }
                 }
                 return true;
             }

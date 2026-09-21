@@ -41,11 +41,9 @@
         <jwt.version>0.9.1</jwt.version>
         <lombok.version>1.18.24</lombok.version>
         <hutool.version>5.7.22</hutool.version>
-        <elasticsearch-version>8.1.0</elasticsearch-version>
         <guava.version>20.0</guava.version>
         <gson.version>2.9.0</gson.version>
         <mybatisplus.version>3.5.2</mybatisplus.version>
-        <qiniu.version>7.7.0</qiniu.version>
         <websocket.version>3.1.7</websocket.version>
     </properties>
 
@@ -152,12 +150,6 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
-            <!-- elasticsearch-->
-            <dependency>
-                <groupId>co.elastic.clients</groupId>
-                <artifactId>elasticsearch-java</artifactId>
-                <version>${elasticsearch-version}</version>
-            </dependency>
             <!-- guava-->
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -181,12 +173,6 @@
                         <artifactId>mybatis-plus-generator</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
-            <!-- 七牛云 -->
-            <dependency>
-                <groupId>com.qiniu</groupId>
-                <artifactId>qiniu-java-sdk</artifactId>
-                <version>${qiniu.version}</version>
             </dependency>
             <!-- websocket-->
             <dependency>

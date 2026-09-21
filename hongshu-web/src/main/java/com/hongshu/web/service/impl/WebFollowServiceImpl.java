@@ -19,6 +19,7 @@ import com.hongshu.web.mapper.WebNoteMapper;
 import com.hongshu.web.mapper.WebUserMapper;
 import com.hongshu.web.service.IWebFollowService;
 import com.hongshu.web.websocket.im.ChatUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,48 +52,54 @@ public class WebFollowServiceImpl extends ServiceImpl<WebFollowMapper, WebFollow
     @Override
     public Page<TrendVO> getFollowTrend(long currentPage, long pageSize) {
         Page<TrendVO> page = new Page<>();
-        // 得到当前用户所有关注的用户
         String currentUid = AuthContextHolder.getUserId();
+        if (StringUtils.isBlank(currentUid)) {
+            page.setTotal(0);
+            page.setRecords(new ArrayList<>());
+            return page;
+        }
         List<WebFollow> followers = this.list(new QueryWrapper<WebFollow>().eq("uid", currentUid));
-        List<String> fids = followers.stream().map(WebFollow::getFid).collect(Collectors.toList());
+        List<String> fids = followers.stream().map(WebFollow::getFid).filter(StringUtils::isNotBlank).collect(Collectors.toList());
         fids.add(currentUid);
         Page<WebNote> notePage = noteMapper.selectPage(new Page<>((int) currentPage, (int) pageSize),
                 new QueryWrapper<WebNote>()
-                        .like("audit_status", 1)
+                        .eq("status", "1")
+                        .and(w -> w.ne("audit_status", "2").or().isNull("audit_status"))
+                        .and(w -> w.ne("note_type", "2").or().isNull("note_type"))
                         .in("uid", fids)
                         .orderByDesc("update_time"));
         List<WebNote> notes = notePage.getRecords();
         List<TrendVO> trendVOS = new ArrayList<>();
         if (!notes.isEmpty()) {
-            // 得到所有用户的图片
             List<String> ids = notes.stream().map(WebNote::getUid).collect(Collectors.toList());
             List<WebUser> users = userMapper.selectBatchIds(ids);
             HashMap<String, WebUser> userMap = new HashMap<>();
-            users.forEach(item -> userMap.put(String.valueOf(item.getId()), item));
-            // 是否点赞
+            users.forEach(item -> {
+                if (item != null && item.getId() != null) {
+                    userMap.put(String.valueOf(item.getId()), item);
+                }
+            });
             List<WebLikeOrCollect> likeOrCollections = likeOrCollectMapper.selectList(new QueryWrapper<WebLikeOrCollect>().eq("uid", currentUid).eq("type", 1));
             List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollect::getLikeOrCollectionId).collect(Collectors.toList());
             for (WebNote note : notes) {
+                WebUser user = userMap.get(String.valueOf(note.getUid()));
                 TrendVO trendVo = new TrendVO();
-                WebUser user = userMap.get(note.getUid());
-                trendVo.setUid(String.valueOf(user.getId()))
-                        .setUsername(user.getUsername())
-                        .setAvatar(user.getAvatar())
+                String text = StringUtils.isNotBlank(note.getTitle()) ? note.getTitle() : note.getContent();
+                trendVo.setUid(String.valueOf(note.getUid()))
+                        .setUsername(user != null ? user.getUsername() : "用户")
+                        .setAvatar(user != null ? user.getAvatar() : null)
                         .setNid(String.valueOf(note.getId()))
-                        .setTime(note.getUpdateTime().getTime())
-                        .setContent(note.getTitle())
+                        .setTime(note.getUpdateTime() == null ? System.currentTimeMillis() : note.getUpdateTime().getTime())
+                        .setContent(text)
                         .setCommentCount(note.getCommentCount())
                         .setLikeCount(note.getLikeCount())
-                        .setIsLike(likeOrCollectionIds.contains(note.getId()))
+                        .setIsLike(likeOrCollectionIds.contains(note.getId()) || likeOrCollectionIds.contains(String.valueOf(note.getId())))
                         .setIsLoading(false);
-                String urls = note.getUrls();
-                List<String> imgList = JSONUtil.toList(urls, String.class);
-                trendVo.setImgUrls(imgList);
+                trendVo.setImgUrls(parseNoteUrls(note.getUrls(), note.getNoteCover()));
                 trendVOS.add(trendVo);
             }
         }
-        long total = notePage.getTotal();
-        page.setTotal(total);
+        page.setTotal(notePage.getTotal());
         page.setRecords(trendVOS);
         return page;
     }
@@ -109,9 +116,14 @@ public class WebFollowServiceImpl extends ServiceImpl<WebFollowMapper, WebFollow
         String currentUid = AuthContextHolder.getUserId();
         List<WebFollow> followers = this.list(new QueryWrapper<WebFollow>().eq("uid", currentUid));
         List<String> fids = followers.stream().map(WebFollow::getFid).collect(Collectors.toList());
+        if (fids.isEmpty()) {
+            page.setTotal(0);
+            page.setRecords(new ArrayList<>());
+            return page;
+        }
         Page<WebNote> notePage = noteMapper.selectPage(new Page<>((int) currentPage, (int) pageSize),
                 new QueryWrapper<WebNote>()
-                        .like("audit_status", 1)
+                        .eq("audit_status", "1")
                         .in("uid", fids)
                         .last("ORDER BY RAND()")); // 添加随机排序
         List<WebNote> notes = notePage.getRecords();
@@ -126,27 +138,24 @@ public class WebFollowServiceImpl extends ServiceImpl<WebFollowMapper, WebFollow
             List<WebLikeOrCollect> likeOrCollections = likeOrCollectMapper.selectList(new QueryWrapper<WebLikeOrCollect>().eq("uid", currentUid).eq("type", 1));
             List<String> likeOrCollectionIds = likeOrCollections.stream().map(WebLikeOrCollect::getLikeOrCollectionId).collect(Collectors.toList());
             for (WebNote note : notes) {
-                TrendVO trendVo = new TrendVO();
                 WebUser user = userMap.get(note.getUid());
+                if (user == null) {
+                    continue;
+                }
+                TrendVO trendVo = new TrendVO();
                 trendVo.setUid(String.valueOf(user.getId()))
                         .setUsername(user.getUsername())
                         .setAvatar(user.getAvatar())
                         .setNid(String.valueOf(note.getId()))
-                        .setTime(note.getUpdateTime().getTime())
+                        .setTime(note.getUpdateTime() == null ? System.currentTimeMillis() : note.getUpdateTime().getTime())
                         .setContent(note.getContent())
                         .setCommentCount(note.getCommentCount())
                         .setLikeCount(note.getLikeCount())
                         .setViewCount(note.getViewCount())
                         .setIsLike(likeOrCollectionIds.contains(note.getId()))
                         .setIsLoading(false);
-                String urls = note.getUrls();
-                List<String> imgList = JSONUtil.toList(urls, String.class);
-                if (imgList.size() > 4) {
-                    List<String> subList = imgList.subList(0, 4);
-                    trendVo.setImgUrls(subList);
-                } else {
-                    trendVo.setImgUrls(imgList);
-                }
+                List<String> imgList = parseNoteUrls(note.getUrls(), note.getNoteCover());
+                trendVo.setImgUrls(imgList.size() > 4 ? imgList.subList(0, 4) : imgList);
                 trendVOS.add(trendVo);
             }
         }
@@ -290,5 +299,35 @@ public class WebFollowServiceImpl extends ServiceImpl<WebFollowMapper, WebFollow
         result.setRecords(followVOList);
         result.setTotal(total);
         return result;
+    }
+
+    private List<String> parseNoteUrls(String urls, String cover) {
+        List<String> imgList = new ArrayList<>();
+        if (StringUtils.isNotBlank(urls)) {
+            try {
+                List<String> parsed = JSONUtil.toList(urls.trim(), String.class);
+                if (parsed != null) {
+                    for (String item : parsed) {
+                        if (StringUtils.isNotBlank(item)) {
+                            imgList.add(item);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                if (urls.contains(",")) {
+                    for (String item : urls.split(",")) {
+                        if (StringUtils.isNotBlank(item)) {
+                            imgList.add(item.trim());
+                        }
+                    }
+                } else {
+                    imgList.add(urls.trim());
+                }
+            }
+        }
+        if (imgList.isEmpty() && StringUtils.isNotBlank(cover)) {
+            imgList.add(cover);
+        }
+        return imgList;
     }
 }

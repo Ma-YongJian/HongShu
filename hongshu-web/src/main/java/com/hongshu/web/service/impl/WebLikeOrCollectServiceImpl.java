@@ -40,8 +40,6 @@ public class WebLikeOrCollectServiceImpl extends ServiceImpl<WebLikeOrCollectMap
     @Autowired
     WebCommentMapper commentMapper;
     @Autowired
-    WebCommentSyncMapper commentSyncMapper;
-    @Autowired
     WebAlbumNoteRelationMapper albumNoteRelationMapper;
     @Autowired
     ChatUtils chatUtils;
@@ -123,10 +121,13 @@ public class WebLikeOrCollectServiceImpl extends ServiceImpl<WebLikeOrCollectMap
             Set<String> noteIds = commentList.stream().map(WebComment::getNid).collect(Collectors.toSet());
             Map<String, WebNote> noteMap1 = noteMapper.selectBatchIds(noteIds).stream().collect(Collectors.toMap(WebNote::getId, note -> note));
 
-            commentList.forEach((item -> {
+			commentList.forEach((item -> {
                 CommentVO commentVo = ConvertUtils.sourceToTarget(item, CommentVO.class);
                 WebNote note = noteMap1.get(item.getNid());
-                commentVo.setNoteCover(note.getNoteCover());
+                if (note != null) {
+                    commentVo.setNoteCover(note.getNoteCover());
+                    commentVo.setNid(note.getId());
+                }
                 commentVoMap.put(String.valueOf(item.getId()), commentVo);
             }));
         }
@@ -140,6 +141,9 @@ public class WebLikeOrCollectServiceImpl extends ServiceImpl<WebLikeOrCollectMap
         for (WebLikeOrCollect model : likeOrCollectionList) {
             LikeOrCollectVO likeOrCollectVo = new LikeOrCollectVO();
             WebUser user = userMap.get(model.getUid());
+            if (user == null) {
+                continue;
+            }
             likeOrCollectVo.setUid(String.valueOf(user.getId()))
                     .setUsername(user.getUsername())
                     .setAvatar(user.getAvatar())
@@ -148,20 +152,26 @@ public class WebLikeOrCollectServiceImpl extends ServiceImpl<WebLikeOrCollectMap
             switch (model.getType()) {
                 case 2:
                     CommentVO commentVo = commentVoMap.get(model.getLikeOrCollectionId());
-                    likeOrCollectVo.setItemId(commentVo.getId())
-                            .setItemCover(commentVo.getNoteCover())
-                            .setContent(commentVo.getContent());
+                    if (commentVo != null) {
+                        likeOrCollectVo.setItemId(commentVo.getNid())
+                                .setItemCover(commentVo.getNoteCover())
+                                .setContent(commentVo.getContent());
+                    }
                     break;
                 case 4:
                     WebAlbum album = albumMap.get(model.getLikeOrCollectionId());
-                    likeOrCollectVo.setItemId(String.valueOf(album.getId()))
-                            .setItemCover(album.getAlbumCover())
-                            .setContent(album.getTitle());
+                    if (album != null) {
+                        likeOrCollectVo.setItemId(String.valueOf(album.getId()))
+                                .setItemCover(album.getAlbumCover())
+                                .setContent(album.getTitle());
+                    }
                     break;
                 default:
                     WebNote note = noteMap.get(model.getLikeOrCollectionId());
-                    likeOrCollectVo.setItemId(String.valueOf(note.getId()))
-                            .setItemCover(note.getNoteCover());
+                    if (note != null) {
+                        likeOrCollectVo.setItemId(String.valueOf(note.getId()))
+                                .setItemCover(note.getNoteCover());
+                    }
                     break;
             }
             likeOrCollectVOList.add(likeOrCollectVo);
@@ -183,12 +193,9 @@ public class WebLikeOrCollectServiceImpl extends ServiceImpl<WebLikeOrCollectMap
                 break;
             case 2:
                 WebComment comment = commentMapper.selectById(likeOrCollectDTO.getLikeOrCollectionId());
-                if (comment == null) {
-                    WebCommentSync commentSync = commentSyncMapper.selectById(likeOrCollectDTO.getLikeOrCollectionId());
-                    commentSync.setLikeCount(commentSync.getLikeCount() + val);
-                    commentSyncMapper.updateById(commentSync);
-                } else {
-                    comment.setLikeCount(comment.getLikeCount() + val);
+                if (comment != null) {
+                    long likeCount = comment.getLikeCount() == null ? 0L : comment.getLikeCount();
+                    comment.setLikeCount(likeCount + val);
                     commentMapper.updateById(comment);
                 }
                 break;

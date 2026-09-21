@@ -5,6 +5,7 @@ import com.hongshu.common.enums.Result;
 import com.hongshu.common.validator.myVaildator.noLogin.NoLoginIntercept;
 import com.hongshu.web.domain.dto.EsNoteDTO;
 import com.hongshu.web.domain.entity.WebNavbar;
+import com.hongshu.web.domain.entity.WebUser;
 import com.hongshu.web.domain.vo.NoteSearchVO;
 import com.hongshu.web.service.IWebEsNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,15 @@ public class WebEsNoteController {
     @GetMapping("getRecommendNote/{currentPage}/{pageSize}")
     public Result<?> getRecommendNote(@PathVariable long currentPage, @PathVariable long pageSize) {
         Page<NoteSearchVO> page = esNoteService.getRecommendNote(currentPage, pageSize);
+        return Result.ok(page);
+    }
+
+    /**
+     * 获取推荐用户
+     */
+    @GetMapping("getRecommendUser/{currentPage}/{pageSize}")
+    public Result<?> getRecommendUser(@PathVariable long currentPage, @PathVariable long pageSize) {
+        Page<WebUser> page = esNoteService.getRecommendUser(currentPage, pageSize);
         return Result.ok(page);
     }
 

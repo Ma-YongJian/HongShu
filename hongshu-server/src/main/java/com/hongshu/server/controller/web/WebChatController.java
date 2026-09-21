@@ -2,7 +2,6 @@ package com.hongshu.server.controller.web;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hongshu.common.enums.Result;
-import com.hongshu.common.validator.myVaildator.noLogin.NoLoginIntercept;
 import com.hongshu.web.domain.entity.WebChat;
 import com.hongshu.web.domain.vo.ChatUserRelationVO;
 import com.hongshu.web.websocket.im.CountMessage;
@@ -32,7 +31,6 @@ public class WebChatController {
      * @param message 消息实体
      */
     @PostMapping("sendMsg")
-    @NoLoginIntercept
     public Result<?> sendMsg(@RequestBody Message message) {
         chatService.sendMsg(message);
         return Result.ok();
@@ -89,8 +87,9 @@ public class WebChatController {
      * 删除所有聊天用户
      */
     @GetMapping("deleteChatUser")
-    public String deleteChatUser() {
-        return null;
+    public Result<?> deleteChatUser(String sendUid) {
+        chatService.deleteChatUser(sendUid);
+        return Result.ok();
     }
 
     /**

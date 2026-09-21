@@ -45,4 +45,13 @@ public class WebEsRecordController {
         esRecordService.addRecord(esRecordDTO);
         return Result.ok();
     }
+
+    /**
+     * 清空当前用户搜索记录
+     */
+    @PostMapping("clearRecord")
+    public Result<?> clearRecord(@RequestBody(required = false) EsRecordDTO esRecordDTO) {
+        esRecordService.clearRecordByUser(esRecordDTO == null ? new EsRecordDTO() : esRecordDTO);
+        return Result.ok();
+    }
 }

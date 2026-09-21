@@ -56,4 +56,7 @@ public class NoteDTO implements Serializable {
 
     @ApiModelProperty("笔记类型")
     private Integer type;
+
+    @ApiModelProperty("专辑ID")
+    private String albumId;
 }

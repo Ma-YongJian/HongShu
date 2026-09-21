@@ -27,9 +27,16 @@ public class WebOssController {
      * @param file 文件
      */
     @PostMapping("save/{type}")
-    public Result<?> save(MultipartFile file) {
-        String path = ossService.save(file);
-        return Result.ok(path);
+    public Result<?> save(@RequestParam("file") MultipartFile file) {
+        if (file == null || file.isEmpty()) {
+            return Result.build(500, "请选择图片");
+        }
+        try {
+            String path = ossService.save(file);
+            return Result.ok(path);
+        } catch (Exception e) {
+            return Result.build(500, e.getMessage() != null ? e.getMessage() : "上传失败");
+        }
     }
 
     /**

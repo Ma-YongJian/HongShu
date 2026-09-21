@@ -21,7 +21,8 @@ public class LoginMvcConfigureAdapter extends WebMvcConfigurationSupport {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new UserLoginInterceptor())
-                .addPathPatterns("/**");
+                .addPathPatterns("/**")
+                .excludePathPatterns("/profile/**");
         super.addInterceptors(registry);
     }
 

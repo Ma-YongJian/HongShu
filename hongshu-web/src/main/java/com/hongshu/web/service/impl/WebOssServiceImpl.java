@@ -2,13 +2,16 @@ package com.hongshu.web.service.impl;
 
 import com.hongshu.common.config.HongshuConfig;
 import com.hongshu.common.config.OssConfig;
+import com.hongshu.common.constant.Constants;
 import com.hongshu.common.utils.MinioUtil;
-import com.hongshu.common.utils.QiniuUtil;
 import com.hongshu.common.utils.file.FileUploadUtils;
+import com.hongshu.common.utils.file.FileUtils;
 import com.hongshu.common.utils.file.MimeTypeUtils;
 import com.hongshu.web.service.IWebOssService;
 import com.hongshu.web.websocket.factory.OssFactory;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,15 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * OSS
+ * OSS：开源版仅本地 / Minio
  *
  * @Author hongshu
  */
+@Slf4j
 @Service
 public class WebOssServiceImpl implements IWebOssService {
 
-    @Autowired
-    QiniuUtil qiniuUtil;
     @Autowired
     MinioUtil minioUtil;
     @Autowired
@@ -40,20 +42,13 @@ public class WebOssServiceImpl implements IWebOssService {
     @Override
     public String save(MultipartFile file) {
         Integer type = ossConfig.getType();
-        switch (type) {
-            case 0:
-                // 本地存储
-                return FileUploadUtils.upload(HongshuConfig.getAvatarPath(), file, MimeTypeUtils.IMAGE_EXTENSION);
-            case 1:
-                // 七牛云存储
-                OssFactory qiniuFactory = new QiNiuYunUploadFile();
-                return qiniuFactory.save(file);
-            case 2:
-                // Minio存储
-                return minioUtil.uploadFile(file);
-            default:
-                throw new IllegalArgumentException("不支持的存储类型: " + type);
+        if (type == null || type == 0) {
+            return FileUploadUtils.upload(HongshuConfig.getAvatarPath(), file, MimeTypeUtils.IMAGE_EXTENSION);
         }
+        if (type == 1 || type == 2) {
+            return minioUtil.uploadFile(file);
+        }
+        throw new IllegalArgumentException("开源版仅支持本地或 Minio 存储: " + type);
     }
 
     /**
@@ -64,7 +59,6 @@ public class WebOssServiceImpl implements IWebOssService {
     @Override
     public List<String> saveBatch(MultipartFile[] files) {
         List<String> result = new ArrayList<>();
-        // 需要进行加锁，不然会出现多次添加
         for (MultipartFile file : files) {
             result.add(this.save(file));
         }
@@ -78,20 +72,22 @@ public class WebOssServiceImpl implements IWebOssService {
      */
     @Override
     public void delete(String path) {
-        OssFactory factory = null;
-        Integer type = ossConfig.getType();
-        switch (type) {
-            case 0:
-                // 本地上传图片
-                factory = new UploadFileToLoacl();
-                break;
-            case 1:
-                factory = new QiNiuYunUploadFile();
-                break;
-            default:
-                break;
+        if (StringUtils.isBlank(path)) {
+            return;
         }
-        factory.delete(path);
+        Integer type = ossConfig.getType();
+        if (type == null || type == 0) {
+            deleteLocal(path);
+            return;
+        }
+        if (type == 1 || type == 2) {
+            String objectName = path;
+            int slash = path.lastIndexOf('/');
+            if (slash >= 0 && slash < path.length() - 1) {
+                objectName = path.substring(slash + 1);
+            }
+            minioUtil.deleteFile(objectName);
+        }
     }
 
     /**
@@ -101,8 +97,35 @@ public class WebOssServiceImpl implements IWebOssService {
      */
     @Override
     public void batchDelete(List<String> filePaths) {
+        if (filePaths == null || filePaths.isEmpty()) {
+            return;
+        }
         for (String path : filePaths) {
-            delete(path);
+            try {
+                delete(path);
+            } catch (Exception e) {
+                log.warn("删除文件失败: {}", path, e);
+            }
+        }
+    }
+
+    /**
+     * 开源版本地上传走 /profile，旧路径才带 /oss/
+     */
+    private void deleteLocal(String path) {
+        String value = path.trim();
+        int profileIdx = value.indexOf(Constants.RESOURCE_PREFIX + "/");
+        if (profileIdx >= 0) {
+            value = value.substring(profileIdx);
+        }
+        if (value.startsWith(Constants.RESOURCE_PREFIX + "/")) {
+            String abs = HongshuConfig.getProfile() + value.substring(Constants.RESOURCE_PREFIX.length());
+            FileUtils.deleteFile(abs);
+            return;
+        }
+        if (value.contains("/oss/")) {
+            OssFactory factory = new UploadFileToLoacl();
+            factory.delete(value);
         }
     }
 }

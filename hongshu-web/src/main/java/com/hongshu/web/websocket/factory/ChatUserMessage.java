@@ -80,17 +80,22 @@ public class ChatUserMessage implements MessageFactory {
     public void getUserChatList(Message message, Integer type) {
         String acceptUid = type == 0 ? message.getSendUid() : message.getAcceptUid();
         List<WebChatUserRelation> chatUserRelationList = chatUserRelationMapper.selectList(new QueryWrapper<WebChatUserRelation>().eq("accept_uid", acceptUid).orderByDesc("create_time"));
-        Set<String> uids = chatUserRelationList.stream().map(WebChatUserRelation::getSendUid).collect(Collectors.toSet());
-        Map<String, WebUser> userMap = userMapper.selectBatchIds(uids).stream().collect(Collectors.toMap(WebUser::getId, user -> user));
         List<ChatUserRelationVO> chatUserRelationVOList = new ArrayList<>();
-        chatUserRelationList.forEach(item -> {
-            ChatUserRelationVO chatUserRelationVo = ConvertUtils.sourceToTarget(item, ChatUserRelationVO.class);
-            WebUser user = userMap.get(item.getSendUid());
-            chatUserRelationVo.setUid(String.valueOf(user.getId()));
-            chatUserRelationVo.setUsername(user.getUsername());
-            chatUserRelationVo.setAvatar(user.getAvatar());
-            chatUserRelationVOList.add(chatUserRelationVo);
-        });
+        if (chatUserRelationList != null && !chatUserRelationList.isEmpty()) {
+            Set<String> uids = chatUserRelationList.stream().map(WebChatUserRelation::getSendUid).collect(Collectors.toSet());
+            Map<String, WebUser> userMap = userMapper.selectBatchIds(uids).stream().collect(Collectors.toMap(WebUser::getId, user -> user, (a, b) -> a));
+            chatUserRelationList.forEach(item -> {
+                WebUser user = userMap.get(item.getSendUid());
+                if (user == null) {
+                    return;
+                }
+                ChatUserRelationVO chatUserRelationVo = ConvertUtils.sourceToTarget(item, ChatUserRelationVO.class);
+                chatUserRelationVo.setUid(String.valueOf(user.getId()));
+                chatUserRelationVo.setUsername(user.getUsername());
+                chatUserRelationVo.setAvatar(user.getAvatar());
+                chatUserRelationVOList.add(chatUserRelationVo);
+            });
+        }
 
         Message currentUserMessage = new Message();
         currentUserMessage.setAcceptUid(acceptUid);

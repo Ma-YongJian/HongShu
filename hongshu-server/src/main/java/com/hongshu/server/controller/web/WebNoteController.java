@@ -43,7 +43,8 @@ public class WebNoteController {
      * @param files    图片文件
      */
     @PostMapping("saveNoteByDTO")
-    public Result<?> saveNoteByDTO(@RequestParam("noteData") String noteData, @RequestParam("uploadFiles") MultipartFile[] files) {
+    public Result<?> saveNoteByDTO(@RequestParam("noteData") String noteData,
+                                   @RequestParam(value = "uploadFiles", required = false) MultipartFile[] files) {
         noteService.saveNoteByDTO(noteData, files);
         return Result.ok();
     }
@@ -66,7 +67,8 @@ public class WebNoteController {
      * @param files    图片文件
      */
     @PostMapping("updateNoteByDTO")
-    public Result<?> updateNoteByDTO(@RequestParam("noteData") String noteData, @RequestParam("uploadFiles") MultipartFile[] files) {
+    public Result<?> updateNoteByDTO(@RequestParam("noteData") String noteData,
+                                     @RequestParam(value = "uploadFiles", required = false) MultipartFile[] files) {
         noteService.updateNoteByDTO(noteData, files);
         return Result.ok();
     }

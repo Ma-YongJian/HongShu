@@ -64,7 +64,7 @@ public class SysCommentController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('web:comment:query')")
     @GetMapping(value = "/list/{nid}")
-    public AjaxResult getComment(@PathVariable Long nid) {
+    public AjaxResult getComment(@PathVariable String nid) {
         return success(commentService.selectCommentByNid(nid));
     }
 

@@ -1,12 +1,8 @@
 package com.hongshu.web.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch.core.GetResponse;
-import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.hongshu.common.constant.NoteConstant;
 import com.hongshu.common.utils.ConvertUtils;
 import com.hongshu.web.domain.dto.BrowseRecordDTO;
 import com.hongshu.web.domain.entity.WebLikeOrCollect;
@@ -43,8 +39,6 @@ public class WebBrowseRecordServiceImpl extends ServiceImpl<WebNoteMapper, WebNo
     private WebUserNoteRelationMapper userNoteRelationMapper;
     @Autowired
     private WebLikeOrCollectMapper likeOrCollectionMapper;
-    @Autowired
-    private ElasticsearchClient elasticsearchClient;
 
 
     /**
@@ -69,15 +63,25 @@ public class WebBrowseRecordServiceImpl extends ServiceImpl<WebNoteMapper, WebNo
 
             noteRelationList.forEach(item -> {
                 WebNote note = noteMap.get(item.getNid());
+                if (note == null) {
+                    return;
+                }
                 WebUser user = userMapper.selectById(note.getUid());
                 NoteSearchVO noteSearchVo = ConvertUtils.sourceToTarget(note, NoteSearchVO.class);
-                noteSearchVo.setAvatar(user.getAvatar());
+                if (user != null) {
+                    noteSearchVo.setAvatar(user.getAvatar());
+                    noteSearchVo.setUsername(user.getUsername());
+                }
                 noteSearchVo.setIsLike(likeOrCollectionIds.contains(note.getId()));
-                noteSearchVo.setUsername(user.getUsername());
                 noteSearchVOList.add(noteSearchVo);
             });
         }
-        return noteSearchVOList;
+        int from = (int) Math.max((page - 1) * limit, 0);
+        if (from >= noteSearchVOList.size()) {
+            return Collections.emptyList();
+        }
+        int to = (int) Math.min(from + limit, noteSearchVOList.size());
+        return new ArrayList<>(noteSearchVOList.subList(from, to));
     }
 
     /**
@@ -106,36 +110,10 @@ public class WebBrowseRecordServiceImpl extends ServiceImpl<WebNoteMapper, WebNo
         // 更新浏览数量
         WebNote note = noteMapper.selectOne(new QueryWrapper<WebNote>()
                 .eq("id", browseRecordDTO.getNid()));
-        note.setViewCount(note.getViewCount() + 1);
-        noteMapper.updateById(note);
-        // 更新ES数据
-        this.updateEsNote(browseRecordDTO);
-    }
-
-    /**
-     * 更新ES浏览记录
-     */
-    private void updateEsNote(BrowseRecordDTO browseRecordDTO) {
-        try {
-            // Step 1: 获取现有的数据
-            GetResponse<NoteSearchVO> getResponse = elasticsearchClient.get(g ->
-                            g.index(NoteConstant.NOTE_INDEX)
-                                    .id(browseRecordDTO.getNid()),
-                    NoteSearchVO.class);
-            // 检查是否获取到了数据
-            if (getResponse.found()) {
-                NoteSearchVO noteSearchVo = getResponse.source();
-                // Step 2: 更新 viewCount 字段
-                noteSearchVo.setViewCount(noteSearchVo.getViewCount() + 1);
-                // Step 3: 将更新后的数据保存回 Elasticsearch
-                UpdateResponse<NoteSearchVO> updateResponse = elasticsearchClient.update(u ->
-                                u.index(NoteConstant.NOTE_INDEX)
-                                        .id(browseRecordDTO.getNid())
-                                        .doc(noteSearchVo),
-                        NoteSearchVO.class);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (note != null) {
+            Long viewCount = note.getViewCount();
+            note.setViewCount((viewCount == null ? 0L : viewCount) + 1);
+            noteMapper.updateById(note);
         }
     }
 

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hongshu.common.core.domain.Query;
 import com.hongshu.common.global.BaseSQLConf;
 import com.hongshu.common.utils.RandomUtil;
+import com.hongshu.common.utils.StringUtils;
 import com.hongshu.common.utils.ip.AddressUtils;
 import com.hongshu.common.utils.ip.IpUtils;
 import com.hongshu.common.validator.ValidatorUtil;
@@ -52,7 +53,9 @@ public class SysMemberServiceImpl implements ISysMemberService {
         qw.lambda().ge(ValidatorUtil.isNotNull(query.get("params[beginTime]")), WebUser::getCreateTime, query.get("params[beginTime]"));
         qw.lambda().le(ValidatorUtil.isNotNull(query.get("params[endTime]")), WebUser::getCreateTime, query.get("params[endTime]"));
         qw.orderByDesc("create_time");
-        return memberMapper.selectList(qw);
+        List<WebUser> list = memberMapper.selectList(qw);
+        list.forEach(this::hidePassword);
+        return list;
     }
 
     /**
@@ -70,7 +73,9 @@ public class SysMemberServiceImpl implements ISysMemberService {
      */
     @Override
     public WebUser selectMemberById(Long id) {
-        return memberMapper.selectById(id);
+        WebUser user = memberMapper.selectById(id);
+        hidePassword(user);
+        return user;
     }
 
     /**
@@ -108,13 +113,12 @@ public class SysMemberServiceImpl implements ISysMemberService {
             String avatar = ossService.save(file);
             user.setAvatar(avatar);
         }
-        String newPassword = webUser.getPassword();
-        String originPassword = SecureUtil.md5(user.getPassword());
-        // 确认更换了新密码
-        if (!originPassword.equals(newPassword)) {
-            user.setPassword(SecureUtil.md5(user.getPassword()));
+        String submitted = user.getPassword();
+        if (StringUtils.isEmpty(submitted) || submitted.equals(webUser.getPassword())) {
+            user.setPassword(webUser.getPassword());
+        } else {
+            user.setPassword(SecureUtil.md5(submitted.trim()));
         }
-        user.setPassword(webUser.getPassword());
         user.setLoginIp(IpUtils.getIpAddr());
         user.setAddress(AddressUtils.getRealAddressByIP(user.getLoginIp()));
         user.setUpdater("System");
@@ -155,5 +159,11 @@ public class SysMemberServiceImpl implements ISysMemberService {
         QueryWrapper<WebUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(BaseSQLConf.STATUS, status);
         return Math.toIntExact(memberMapper.selectCount(queryWrapper));
+    }
+
+    private void hidePassword(WebUser user) {
+        if (user != null) {
+            user.setPassword(null);
+        }
     }
 }

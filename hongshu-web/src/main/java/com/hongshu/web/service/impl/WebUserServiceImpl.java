@@ -9,6 +9,7 @@ import com.hongshu.common.enums.ResultCodeEnum;
 import com.hongshu.common.exception.web.HongshuException;
 import com.hongshu.common.utils.ConvertUtils;
 import com.hongshu.common.utils.WebUtils;
+import com.hongshu.web.auth.AuthContextHolder;
 import com.hongshu.web.domain.entity.WebLikeOrCollect;
 import com.hongshu.web.domain.entity.WebNote;
 import com.hongshu.web.domain.entity.WebUser;
@@ -16,9 +17,9 @@ import com.hongshu.web.domain.vo.NoteSearchVO;
 import com.hongshu.web.mapper.WebLikeOrCollectMapper;
 import com.hongshu.web.mapper.WebNoteMapper;
 import com.hongshu.web.mapper.WebUserMapper;
-import com.hongshu.web.service.IWebEsNoteService;
 import com.hongshu.web.service.IWebUserService;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +38,6 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
     private WebUserMapper userMapper;
     @Autowired
     private WebNoteMapper noteMapper;
-    @Autowired
-    private IWebEsNoteService esNoteService;
     @Autowired
     private WebLikeOrCollectMapper likeOrCollectionMapper;
 
@@ -68,8 +67,13 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
         if (ObjectUtils.isEmpty(user)) {
             throw new HongshuException(ResultCodeEnum.FAIL);
         }
-        List<WebNote> noteList = noteMapper.selectList(new QueryWrapper<WebNote>().like("uid", userId));
-        user.setTrendCount((long) noteList.size());
+        QueryWrapper<WebNote> noteQuery = new QueryWrapper<WebNote>().eq("uid", userId);
+        String currentUserId = AuthContextHolder.getUserId();
+        if (!StringUtils.equals(currentUserId, userId)) {
+            noteQuery.eq("audit_status", "1");
+        }
+        Long noteCount = noteMapper.selectCount(noteQuery);
+        user.setTrendCount(noteCount == null ? 0L : noteCount);
         return user;
     }
 
@@ -80,20 +84,40 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
      */
     @Override
     public WebUser updateUser(WebUser user) {
-        WebUser webUser = userMapper.selectById(user.getId());
+        String currentUid = AuthContextHolder.getUserId();
+        if (StringUtils.isBlank(currentUid)) {
+            throw new HongshuException(ResultCodeEnum.TOKEN_FAIL);
+        }
+        WebUser webUser = userMapper.selectById(currentUid);
         if (ObjectUtils.isEmpty(webUser)) {
             throw new HongshuException(ResultCodeEnum.FAIL);
         }
-        webUser.setAvatar(user.getAvatar());
-        webUser.setUsername(user.getUsername());
-        webUser.setDescription(user.getDescription());
-        webUser.setTags(user.getTags());
+        if (StringUtils.isNotBlank(user.getAvatar())) {
+            webUser.setAvatar(user.getAvatar());
+        }
+        if (StringUtils.isNotBlank(user.getUsername())) {
+            webUser.setUsername(user.getUsername().trim());
+        }
+        if (user.getDescription() != null) {
+            webUser.setDescription(user.getDescription());
+        }
+        if (user.getTags() != null) {
+            webUser.setTags(user.getTags());
+        }
+        if (user.getGender() != null) {
+            webUser.setGender(String.valueOf(user.getGender()));
+        }
+        if (user.getBirthday() != null) {
+            webUser.setBirthday(user.getBirthday());
+        }
+        if (user.getAddress() != null) {
+            webUser.setAddress(user.getAddress());
+        }
+        if (StringUtils.isNotBlank(user.getUserCover())) {
+            webUser.setUserCover(user.getUserCover());
+        }
         webUser.setUpdateTime(new Date());
         userMapper.updateById(webUser);
-
-        // TODO 更新用户ES数据(待优化)
-        esNoteService.refreshNoteData();
-
         return webUser;
     }
 
@@ -180,10 +204,13 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
      */
     private Page<NoteSearchVO> getLikeOrCollectionPageByUser(long currentPage, long pageSize, String userId) {
         Page<NoteSearchVO> noteSearchVoPage = new Page<>();
-        // 得到当前用户发布的所有专辑
         String currentUserId = WebUtils.getRequestHeader(UserConstant.USER_ID);
-        Page<WebNote> notePage;
-        notePage = noteMapper.selectPage(new Page<>(currentPage, pageSize), new QueryWrapper<WebNote>().eq("uid", userId).orderByDesc("pinned", "update_time"));
+        QueryWrapper<WebNote> noteQuery = new QueryWrapper<WebNote>().eq("uid", userId);
+        if (!StringUtils.equals(currentUserId, userId)) {
+            noteQuery.eq("audit_status", "1");
+        }
+        noteQuery.orderByDesc("pinned", "update_time");
+        Page<WebNote> notePage = noteMapper.selectPage(new Page<>(currentPage, pageSize), noteQuery);
         List<WebNote> noteList = notePage.getRecords();
         long total = notePage.getTotal();
 
@@ -204,7 +231,7 @@ public class WebUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> impl
                         .setAvatar(user.getAvatar())
                         .setIsLike(likeOrCollectionIds.contains(note.getId()))
                         .setTime(note.getUpdateTime().getTime());
-                if (!currentUserId.equals(userId)) {
+                if (!StringUtils.equals(currentUserId, userId)) {
                     noteSearchVo.setViewCount(null);
                 }
                 noteSearchVOList.add(noteSearchVo);

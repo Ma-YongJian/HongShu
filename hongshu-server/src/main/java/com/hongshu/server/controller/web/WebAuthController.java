@@ -4,9 +4,11 @@ import com.hongshu.common.enums.Result;
 import com.hongshu.common.enums.ResultCodeEnum;
 import com.hongshu.common.utils.JwtUtils;
 import com.hongshu.common.validator.myVaildator.noLogin.NoLoginIntercept;
+import com.hongshu.web.auth.AuthContextHolder;
 import com.hongshu.web.domain.dto.AuthUserDTO;
 import com.hongshu.web.domain.entity.WebUser;
 import com.hongshu.web.service.IWebAuthUserService;
+import org.apache.commons.lang3.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -106,6 +108,9 @@ public class WebAuthController {
     @ApiOperation("退出登录")
     @GetMapping("loginOut")
     public Result<?> loginOut(String userId) {
+        if (StringUtils.isBlank(userId)) {
+            userId = AuthContextHolder.getUserId();
+        }
         authUserService.loginOut(userId);
         return Result.ok();
     }

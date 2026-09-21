@@ -155,14 +155,19 @@ public class WebAuthUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> 
      */
     @Override
     public void loginOut(String userId) {
+        if (StringUtils.isBlank(userId)) {
+            return;
+        }
         String userKey = AuthConstant.USER_KEY + userId;
         String refreshTokenStartTimeKey = AuthConstant.REFRESH_TOKEN_START_TIME + userId;
         List<String> keyList = new ArrayList<>();
         keyList.add(userKey);
         keyList.add(refreshTokenStartTimeKey);
         redisUtils.delete(keyList);
-        // 保存日志
-        WebUser authUser = this.getOne(new QueryWrapper<WebUser>().eq("id", userId));
+        WebUser authUser = this.getById(userId);
+        if (ObjectUtil.isEmpty(authUser)) {
+            return;
+        }
         AsyncManager.me().execute(AsyncFactory.recordLoginInfor(
                 authUser.getId(),
                 authUser.getUsername(),
@@ -177,17 +182,23 @@ public class WebAuthUserServiceImpl extends ServiceImpl<WebUserMapper, WebUser> 
      */
     @Override
     public boolean updatePassword(AuthUserDTO authUserDTO) {
+        String currentUid = com.hongshu.web.auth.AuthContextHolder.getUserId();
+        if (StringUtils.isBlank(currentUid)) {
+            throw new HongshuException(ResultCodeEnum.TOKEN_FAIL);
+        }
+        if (authUserDTO == null || StringUtils.isBlank(authUserDTO.getPassword())
+                || StringUtils.isBlank(authUserDTO.getCheckPassword())) {
+            throw new HongshuException("请输入新密码");
+        }
         if (!authUserDTO.getPassword().equals(authUserDTO.getCheckPassword())) {
-            return false;
+            throw new HongshuException("两次输入的密码不一致");
         }
-        String pwd = SecureUtil.md5(authUserDTO.getPassword());
-        WebUser user;
-        if (StringUtils.isBlank(authUserDTO.getId())) {
-            user = this.getOne(new QueryWrapper<WebUser>().eq("phone", authUserDTO.getPhone()).or().eq("email", authUserDTO.getEmail()));
-        } else {
-            user = this.getById(authUserDTO.getId());
+        WebUser user = this.getById(currentUid);
+        if (ObjectUtil.isEmpty(user)) {
+            throw new HongshuException(ResultCodeEnum.FAIL);
         }
-        user.setPassword(pwd);
+        user.setPassword(SecureUtil.md5(authUserDTO.getPassword()));
+        user.setUpdateTime(new Date());
         return this.updateById(user);
     }
 
